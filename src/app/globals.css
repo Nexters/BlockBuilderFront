@@ -1,3 +1,77 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --color-gray-100: #f8fafb;
+  --color-gray-200: #f2f4f5;
+  --color-gray-300: #eaeced;
+  --color-gray-400: #dbddde;
+  --color-gray-500: #b7b9bb;
+  --color-gray-600: #989a9b;
+  --color-gray-700: #6f7172;
+  --color-gray-800: #3d3f40;
+  --color-gray-900: #1d1d1d;
+  --color-yellow-100: #fdfce9;
+  --color-yellow-200: #fbf7c8;
+  --color-yellow-300: #f9f2a5;
+  --color-yellow-400: #fffa95;
+  --color-yellow-500: #f5e96a;
+  --color-yellow-600: #f3e34e;
+  --color-yellow-700: #f2d44b;
+  --color-yellow-800: #efbd43;
+  --color-yellow-900: #eba73a;
+  --color-blue-100: #e7ebff;
+  --color-blue-200: #c3cdfe;
+  --color-blue-300: #97adfe;
+  --color-blue-400: #638dff;
+  --color-blue-500: #4f6df1;
+  --color-blue-600: #3456ec;
+  --color-blue-700: #013dd4;
+  --color-blue-800: #0131c9;
+  --color-blue-900: #001bb1;
+  --color-system-red: #ff4242;
+  --color-system-green: #03bf40;
+  --shadow-normal: 0px 1px 10px 0px rgba(0, 0, 0, 0.12),
+    0px 0px 1px 0px rgba(0, 0, 0, 0.08), 0px 0px 1px 0px rgba(0, 0, 0, 0.08);
+  --shadow-emphasize: 0px 2px 8px 0px rgba(183, 185, 187, 0.5),
+    0px 1px 4px 0px rgba(152, 154, 155, 0.3),
+    0px 0px 2px 0px rgba(152, 154, 155, 0.2);
+}
+
+.dark {
+  --color-gray-100: #1d1d1d;
+  --color-gray-200: #28292a;
+  --color-gray-300: #464848;
+  --color-gray-400: #5f6162;
+  --color-gray-500: #7e8081;
+  --color-gray-600: #9aa0a2;
+  --color-gray-700: #c8cdd0;
+  --color-gray-800: #dce2e4;
+  --color-gray-900: #ecf1f4;
+  --color-yellow-100: #dba34a;
+  --color-yellow-200: #e3b844;
+  --color-yellow-300: #eec14b;
+  --color-yellow-400: #f5cc55;
+  --color-yellow-500: #f7d46a;
+  --color-yellow-600: #fce08c;
+  --color-yellow-700: #fde9a4;
+  --color-yellow-800: #f6f3cd;
+  --color-yellow-900: #fbfaeb;
+  --color-blue-100: #293365;
+  --color-blue-200: #253eae;
+  --color-blue-300: #2f4ebf;
+  --color-blue-400: #3a5fd9;
+  --color-blue-500: #466be0;
+  --color-blue-600: #5278f5;
+  --color-blue-700: #9eb1f7;
+  --color-blue-800: #c7cffa;
+  --color-blue-900: #e9ecfd;
+  --color-system-red: #ff6363;
+  --color-system-green: #1ed45a;
+  --shadow-normal: 0px 1px 2px 0px rgba(0, 0, 0, 0.12),
+    0px 0px 2px 0px rgba(0, 0, 0, 0.12);
+  --shadow-emphasize: 0px 0px 0px 0px rgba(183, 185, 187, 0.5),
+    0px 1px 4px 0px rgba(152, 154, 155, 0.3),
+    0px 0px 2px 0px rgba(152, 154, 155, 0.2);
+}
