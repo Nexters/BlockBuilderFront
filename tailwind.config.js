@@ -5,9 +5,9 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        mobile: { max: "759px" },
-        tablet: { min: "760px", max: "1023px" },
-        desktop: { min: "1024px" },
+        mobile: { max: "767px" },
+        tablet: { min: "768px", max: "1439px" },
+        desktop: { min: "1440px" },
       },
       colors: {
         "gray-100": "var(--color-gray-100)",
