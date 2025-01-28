@@ -41,6 +41,7 @@ module.exports = {
         "system-green": "var(--color-system-green)",
         white: "#FFFFFF",
         dark: "#0E0E0E",
+        background: "var(--color-background)",
       },
       fontSize: {
         // headline

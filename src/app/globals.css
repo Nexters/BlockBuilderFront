@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+  --color-background: #ffffff;
   --color-gray-100: #f8fafb;
   --color-gray-200: #f2f4f5;
   --color-gray-300: #eaeced;
@@ -40,6 +41,7 @@
 }
 
 .dark {
+  --color-background: #0e0e0e;
   --color-gray-100: #1d1d1d;
   --color-gray-200: #28292a;
   --color-gray-300: #464848;
@@ -74,4 +76,9 @@
   --shadow-emphasize: 0px 0px 0px 0px rgba(183, 185, 187, 0.5),
     0px 1px 4px 0px rgba(152, 154, 155, 0.3),
     0px 0px 2px 0px rgba(152, 154, 155, 0.2);
+}
+
+html,
+body {
+  font-size: 10px;
 }
