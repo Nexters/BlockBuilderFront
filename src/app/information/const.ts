@@ -1,0 +1,100 @@
+export const newsList = [
+  {
+    id: 11383,
+    url: "https://x.com/sendaifun/status/1879665076879360159",
+    title:
+      "RT @sendaifun: 1/ Main Track –– the best overall project 🥇 $60,000 by @askthehive_ai [Grand Winner] 🥈 $30,000 by @joinFXN [Runners Up] 🥉 $…",
+    contentText:
+      "1/ Main Track –– the best overall project\n\n🥇 $60,000 by @askthehive_ai [Grand Winner]\n🥈 $30,000 by @joinFXN [Runners Up]\n🥉 $20,000 by @jailbreakme_xyz [Second Runners Up]\n\nHonourable Mentions: @neur_sh, @infinityg_ai pic.twitter.com/h6BOk3qWFD— SendAI (@sendaifun) January 15, 2025\n",
+    datePublished: "2025-01-28T04:30:27.000Z",
+    sourceIndex: "8abba2807314a5b1b3300995a38dbbb9",
+    network: "02",
+    organizationCode: "01",
+    createdAt: "2025-01-16T15:00:02.000Z",
+    updatedAt: "2025-01-16T15:00:02.000Z",
+    sourceUrl: "https://x.com/sendaifun/status/1879665076879360159",
+    categoryCode: "01",
+    thumbnailUrl: "/images/no-result.webp",
+  },
+  {
+    id: 11382,
+    url: "https://x.com/SuperteamKorea/status/1879770058953797907",
+    title:
+      "🔥 Join the Seoul meetup hosted by @humafinance driving innovation in the PayFi ecosystem! @SuperteamKorea will also be there — let's meet and connect! https://t.co/nz89A8lGhc",
+    contentText:
+      "🔥 Join the Seoul meetup hosted by @humafinance  driving innovation in the PayFi ecosystem!@SuperteamKorea will also be there — let's meet and connect!https://t.co/nz89A8lGhc— Superteam Korea (@SuperteamKorea) January 16, 2025\n",
+    datePublished: "2025-01-16T05:58:01.000Z",
+    sourceIndex: "65498438f2cc78698b826c442a6be491",
+    network: "02",
+    organizationCode: "01",
+    createdAt: "2025-01-16T15:00:02.000Z",
+    updatedAt: "2025-01-16T15:00:02.000Z",
+    sourceUrl: "https://x.com/SuperteamKorea/status/1879770058953797907",
+    categoryCode: "01",
+    thumbnailUrl: "/images/no-result.webp",
+  },
+  {
+    id: 11381,
+    url: "https://x.com/solana/status/1879527780062552511",
+    title: "RT @solana: Me after writing one (1) tweet https://t.co/jcXhtiw0dj",
+    contentText:
+      "Me after writing one (1) tweet pic.twitter.com/jcXhtiw0dj— Solana (@solana) January 15, 2025\n",
+    datePublished: "2025-01-16T07:59:37.000Z",
+    sourceIndex: "1c8eb348486b7f270a02bc6dee553c3f",
+    network: "02",
+    organizationCode: "01",
+    createdAt: "2025-01-16T15:00:02.000Z",
+    updatedAt: "2025-01-16T15:00:02.000Z",
+    sourceUrl: "https://x.com/solana/status/1879527780062552511",
+    categoryCode: "01",
+    thumbnailUrl: "/images/no-result.webp",
+  },
+  {
+    id: 11376,
+    url: "https://x.com/Arbitrum_korea/status/1873925912615596092",
+    title:
+      "다들 즐거운 연말연시 보내시고 행복한 새해 맞이하시길 바랍니다💙🧡 pic.twitter.com/lBwl4PGUKz",
+    contentText:
+      "다들 즐거운 연말연시 보내시고 행복한 새해 맞이하시길 바랍니다💙🧡 pic.twitter.com/lBwl4PGUKz— Arbitrum Korea (💙,🧡) (@Arbitrum_korea) December 31, 2024\n",
+    datePublished: "2024-12-31T02:55:28.000Z",
+    sourceIndex: "7cbbed09aa64691590b73a976546318a",
+    network: "01",
+    organizationCode: "01",
+    createdAt: "2025-01-16T15:00:01.000Z",
+    updatedAt: "2025-01-16T15:00:01.000Z",
+    sourceUrl: "https://x.com/Arbitrum_korea/status/1873925912615596092",
+    categoryCode: "01",
+    thumbnailUrl: "/images/no-result.webp",
+  },
+  {
+    id: 11373,
+    url: "https://x.com/Arbitrum_korea/status/1875019333266760082",
+    title:
+      "[국문 블로그] 아비트럼의 창시자 스티븐 골드페더님 인터뷰: 블록체인 기술과 생태계의 미래🎙️@OffchainLabs CEO @sgoldfed 님의 인터뷰 요약글을 익숙한 한국어로 아비트럼 코리아 블로그에서 읽어보세요! https://t.co/CIFgnQTlpN",
+    contentText:
+      "[국문 블로그] 아비트럼의 창시자 스티븐 골드페더님 인터뷰: 블록체인 기술과 생태계의 미래🎙️@OffchainLabs CEO @sgoldfed 님의 인터뷰 요약글을 익숙한 한국어로 아비트럼 코리아 블로그에서 읽어보세요! https://t.co/CIFgnQTlpN— Arbitrum Korea (💙,🧡) (@Arbitrum_korea) January 3, 2025\n",
+    datePublished: "2025-01-03T03:20:19.000Z",
+    sourceIndex: "3d33f58c3c3d8178194442a0bd211f35",
+    network: "01",
+    organizationCode: "01",
+    createdAt: "2025-01-16T15:00:01.000Z",
+    updatedAt: "2025-01-16T15:00:01.000Z",
+    sourceUrl: "https://x.com/Arbitrum_korea/status/1875019333266760082",
+    categoryCode: "01",
+    thumbnailUrl: "/images/no-result.webp",
+  },
+];
+
+export const blocChainNetworkCodeNameMap: { [key: string]: string } = {
+  "00": "ETC",
+  "01": "Ethereum",
+  "02": "Solana",
+  "03": "Sui",
+  "04": "Aptos",
+  "05": "Cosmos",
+  "06": "Near",
+  "07": "Mina",
+  "08": "Optimism",
+  "09": "Arbitrum",
+  "10": "Avalanche",
+};
