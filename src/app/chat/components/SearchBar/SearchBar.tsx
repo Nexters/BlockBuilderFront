@@ -38,7 +38,7 @@ const SearchBar = () => {
         onKeyDown={handleKeyDown}
         rows={1}
         placeholder="보도블록에게 궁금한 블록체인 정보를 물어보세요."
-        className="text-body-1-regular rounded- bg-gray-200 w-full py-[1.6rem] pl-[2.2rem] pr-[6rem] rounded-[2.4rem] resize-none focus:outline-none focus:ring-1 focus:ring-blue-400 focus:bg-gray-100 max-h-[12rem] overflow-y-auto"
+        className="text-body-1-regular bg-gray-200 w-full py-[1.6rem] pl-[2.2rem] pr-[6rem] rounded-[2.4rem] resize-none focus:outline-none focus:ring-1 focus:ring-blue-400 focus:bg-gray-100 max-h-[12rem] overflow-y-auto"
       />
       <button
         type="submit"
