@@ -52,7 +52,7 @@ const NavigationItem = ({ menu, children }: { menu: Menu; children: React.ReactN
   return (
     <li
       className={clsx(
-        'w-[100%] h-[36px] pl-[12px] pr-[12px] rounded-[8px] flex items-center cursor-pointer',
+        'w-[100%] h-[36px] px-[12px] rounded-[8px] flex items-center cursor-pointer',
         isActiveMenu(menu) && 'bg-gray-200'
       )}
       onClick={handleChangeMenu(menu)}
