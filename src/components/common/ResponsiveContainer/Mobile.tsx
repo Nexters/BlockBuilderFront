@@ -10,7 +10,7 @@ export default function Mobile({ children }: { children: React.ReactNode }) {
             console.log('menu clicked');
           }}
         >
-          <Icons.Menu />
+          <Icons.Menu className="fill-gray-900" />
         </button>
         <button className="w-[36px] h-[36px] ml-[20px] bg-[#6390FA] rounded-[10px]"></button>
       </header>
