@@ -51,7 +51,7 @@ const ThemeSwitch = () => {
 
   return (
     <button
-      className="w-[36px] h-[36px] bg-gray-200 rounded-[10px] flex justify-center items-center"
+      className="size-[36px] bg-gray-200 rounded-[10px] flex justify-center items-center"
       onClick={() => setTheme(isLightMode ? 'dark' : 'light')}
     >
       <Icon name={isLightMode ? 'LightMode' : 'DarkMode'} className={isLightMode ? 'fill-gray-900' : 'fill-gray-500'} />
