@@ -76,14 +76,20 @@ const ThemeSwitch = () => {
     <div className=" w-[100%] flex p-[4px] bg-gray-200 rounded-full">
       <button
         onClick={() => setTheme('light')}
-        className={`w-[100%] flex items-center justify-center px-[20px] py-[4px] gap-[6px] rounded-full ${theme === 'light' ? 'bg-white' : ''}`}
+        className={clsx(
+          'w-[100%] flex items-center justify-center px-[20px] py-[4px] gap-[6px] rounded-full',
+          theme === 'light' ? 'bg-white' : ''
+        )}
       >
         <Icon name={'LightMode'} className={theme === 'light' ? 'fill-gray-900' : 'fill-gray-500'} />
         <span className={theme === 'light' ? 'text-gray-800' : 'text-gray-500'}>Light</span>
       </button>
       <button
         onClick={() => setTheme('dark')}
-        className={`w-[100%] flex items-center justify-center px-[20px] py-[4px] gap-[6px] rounded-full ${theme === 'dark' ? 'bg-dark' : ''}`}
+        className={clsx(
+          'w-[100%] flex items-center justify-center px-[20px] py-[4px] gap-[6px] rounded-full',
+          theme === 'dark' ? 'bg-dark' : ''
+        )}
       >
         <Icon name={'DarkMode'} className={theme === 'dark' ? 'fill-gray-900' : 'fill-gray-500'} />
         <span className={theme === 'dark' ? 'text-gray-800' : 'text-gray-500'}>Dark</span>
