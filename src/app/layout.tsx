@@ -1,20 +1,17 @@
 import type { Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
-import { Geist, Geist_Mono } from 'next/font/google';
+import localFont from 'next/font/local';
 
 import ResponsiveContainer from '@/components/common/ResponsiveContainer';
 import { getInitialViewport } from '@/utils/viewport';
 
 import './globals.css';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+const pretendard = localFont({
+  src: '../../public/fonts/PretendardVariable.woff2',
+  display: 'swap',
+  weight: '45 920',
+  variable: '--font-pretendard',
 });
 
 export const metadata: Metadata = {
@@ -29,8 +26,8 @@ export default async function RootLayout({
 }>) {
   const initialWidth = await getInitialViewport();
   return (
-    <html lang="ko" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="ko" suppressHydrationWarning className={`${pretendard.variable}`}>
+      <body>
         <ThemeProvider attribute="class">
           <ResponsiveContainer initialWidth={initialWidth}>{children}</ResponsiveContainer>
         </ThemeProvider>
