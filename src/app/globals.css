@@ -81,4 +81,5 @@
 html,
 body {
   font-size: 10px;
+  color: var(--color-gray-900);
 }
