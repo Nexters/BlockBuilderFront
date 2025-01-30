@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import ThemeSwitch from "@/components/ThemeSwitch";
-import { Level } from "./data";
-import LevelCard from "./components/LevelCard/LevelCard";
-import { useState } from "react";
-import Title from "./components/Title";
-import Questions from "./components/Questions";
+import { Level } from './data';
+import LevelCard from './components/LevelCard/LevelCard';
+import { useState } from 'react';
+import Title from './components/Title';
+import Questions from './components/Questions';
+import SearchBar from './components/SearchBar';
 
 export default function ChatPage() {
   const [selectedLevel, setSelectedLevel] = useState<Level>(Level.BEGINNER);
 
   return (
-    <main className="h-screen w-screen bg-gray-100">
-      <div className="flex size-full flex-col items-center justify-center gap-[2.2rem]">
+    <div className="relative size-full bg-gray-100">
+      <div className="flex-1 flex size-full flex-col items-center justify-center gap-[2.2rem] pb-[13.8rem]">
         <Title />
         <div className="flex flex-col items-center gap-[3rem]">
           <div className="flex gap-[1.8rem]">
@@ -28,8 +28,8 @@ export default function ChatPage() {
           </div>
           <Questions />
         </div>
-        <ThemeSwitch />
       </div>
-    </main>
+      <SearchBar />
+    </div>
   );
 }

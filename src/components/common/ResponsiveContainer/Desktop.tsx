@@ -41,7 +41,7 @@ export default function Desktop({ children }: { children: React.ReactNode }) {
 
         <ThemeSwitch />
       </aside>
-      <main className="">{children}</main>
+      <main className="flex-1">{children}</main>
     </div>
   );
 }
