@@ -5,6 +5,7 @@ import LightMode from './LightMode';
 import Menu from './Menu';
 import News from './News';
 import Poll from './Poll';
+import ArrowRight from './ArrowRight';
 
 export const Icons = {
   Menu,
@@ -13,6 +14,7 @@ export const Icons = {
   News,
   LightMode,
   DarkMode,
+  ArrowRight,
 } as const;
 
 export type IconType = keyof typeof Icons;
