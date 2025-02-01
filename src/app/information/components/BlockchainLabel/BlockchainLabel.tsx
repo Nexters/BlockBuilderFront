@@ -1,8 +1,8 @@
-import Image from "next/image";
-import { blockchainNetworkLabelMap } from "./const";
+import Image from 'next/image';
+import { blockchainNetworkLabelMap } from './const';
 
 const BlockChainLabel = ({
-  className = "",
+  className = '',
   blockchainNetwork,
 }: {
   className?: string;
@@ -21,7 +21,6 @@ const BlockChainLabel = ({
         height={16}
         priority
       />
-
       <span className="text-caption-1-semibold text-gray-700">{text}</span>
     </div>
   );
