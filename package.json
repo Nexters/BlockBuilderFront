@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate-svg-components": "npx @svgr/cli --typescript --no-index --jsx-runtime automatic --out-dir ./src/assets/icons -- ./public/icons/"
+    "generate-svg-components": "npx @svgr/cli --typescript --no-index --jsx-runtime automatic --out-dir ./src/assets/icons --ignore-existing -- ./public/icons/"
   },
   "dependencies": {
     "clsx": "^2.1.1",
