@@ -1,6 +1,6 @@
-import clsx from "clsx";
-import { Level } from "../../data";
-import Image from "next/image";
+import clsx from 'clsx';
+import { Level } from '../../data';
+import Image from 'next/image';
 
 const LevelCard = ({
   level,
@@ -16,10 +16,8 @@ const LevelCard = ({
   return (
     <button
       className={clsx(
-        "flex h-[6rem] w-[5.2rem] flex-col items-center justify-center gap-[0.2rem] rounded-md border",
-        isSelected
-          ? "border-blue-400 text-blue-500 shadow-normal"
-          : "border-gray-300 text-gray-600",
+        'flex h-[6rem] w-[5.2rem] flex-col items-center justify-center gap-[0.2rem] rounded-[0.6rem] border',
+        isSelected ? 'border-blue-400 text-blue-500 shadow-normal' : 'border-gray-300 text-gray-600'
       )}
       onClick={onClick}
     >
