@@ -1,11 +1,12 @@
 import { SVGProps } from 'react';
+import ArrowRight from './ArrowRight';
 import Chat from './Chat';
 import DarkMode from './DarkMode';
+import Information from './Information';
 import LightMode from './LightMode';
 import Menu from './Menu';
 import News from './News';
 import Poll from './Poll';
-import ArrowRight from './ArrowRight';
 
 export const Icons = {
   Menu,
@@ -14,6 +15,7 @@ export const Icons = {
   News,
   LightMode,
   DarkMode,
+  Information,
   ArrowRight,
 } as const;
 
