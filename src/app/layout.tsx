@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
 import localFont from 'next/font/local';
 
-import ResponsiveContainer from '@/components/common/ResponsiveContainer';
+import ResponsiveContainer from '@/components/ResponsiveContainer';
 import { getInitialViewport } from '@/utils/viewport';
 
 import './globals.css';
@@ -28,7 +28,7 @@ export default async function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning className={`${pretendard.variable}`}>
       <body>
-        <ThemeProvider attribute="class">
+        <ThemeProvider attribute="class" enableSystem={false}>
           <ResponsiveContainer initialWidth={initialWidth}>{children}</ResponsiveContainer>
         </ThemeProvider>
       </body>
