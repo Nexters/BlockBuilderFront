@@ -4,8 +4,16 @@ import { Level } from '../../data';
 import LevelCard from '../LevelCard';
 import Questions from '../Questions/Questions';
 
-const QuestionRecommendation = () => {
+interface QuestionRecommendationProps {
+  handleSubmit: (text: string) => void;
+}
+
+const QuestionRecommendation = ({ handleSubmit }: QuestionRecommendationProps) => {
   const [selectedLevel, setSelectedLevel] = useState<Level>(Level.BEGINNER);
+
+  const handleClick = (text: string) => {
+    handleSubmit(text);
+  };
 
   return (
     <div className="flex-1 flex size-full flex-col items-center justify-center gap-[2.2rem] pb-[13.8rem]">
@@ -22,7 +30,7 @@ const QuestionRecommendation = () => {
             />
           ))}
         </div>
-        <Questions />
+        <Questions handleClick={handleClick} />
       </div>
     </div>
   );

@@ -1,32 +1,33 @@
 import { Icon } from '@/assets/icons';
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 
-const SearchBar = () => {
-  const [text, setText] = useState('');
+const MAX_LINE = 5;
+const LINE_HEIGHT = 24;
+
+interface SearchBarProps {
+  text: string;
+  setText: (text: string) => void;
+  handleSubmit: (text: string) => void;
+  disabled: boolean;
+}
+
+const SearchBar = ({ text, setText, handleSubmit, disabled }: SearchBarProps) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
-    if (textareaRef.current) {
-      const maxHeight = 5 * 24;
-      textareaRef.current.style.height = 'auto';
-      const newHeight = Math.min(textareaRef.current.scrollHeight, maxHeight);
-      textareaRef.current.style.height = `${newHeight}px`;
-    }
-  }, [text]);
+    if (!textareaRef.current) return;
 
-  const handleSubmit = () => {
-    // TODO: 서버에 전송
-    if (text.trim().length > 0) {
-      console.log(text.trim());
-      setText('');
-    }
-  };
+    const maxHeight = MAX_LINE * LINE_HEIGHT;
+    const newHeight = Math.min(textareaRef.current.scrollHeight, maxHeight);
+    textareaRef.current.style.height = `${newHeight}px`;
+  }, [text]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
+      if (disabled) return;
       if (e.nativeEvent.isComposing) return;
-      handleSubmit();
+      handleSubmit(text);
     }
   };
 
@@ -43,9 +44,9 @@ const SearchBar = () => {
       />
       <button
         type="submit"
-        onClick={handleSubmit}
-        className="absolute flex justify-center items-center size-[3.2rem] right-[1.2rem] bottom-[1.2rem] bg-blue-400 text-white rounded-full disabled:bg-gray-500"
-        disabled={text.trim().length === 0}
+        onClick={() => handleSubmit(text)}
+        className="absolute flex justify-center items-center size-[3.2rem] right-[1.2rem] bottom-[1.2rem] bg-blue-400 text-white rounded-full disabled:bg-gray-500 -rotate-90"
+        disabled={text.trim().length === 0 || disabled}
       >
         <Icon name="ArrowRight" className="text-white" />
       </button>

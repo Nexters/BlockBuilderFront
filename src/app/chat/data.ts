@@ -37,3 +37,9 @@ export const questions = [
     question: "블록체인은 어떤 문제를 해결하려고 만들어졌어?",
   },
 ];
+
+export type ChatType = {
+  id: number;
+  text: string;
+  isUser: boolean;
+};

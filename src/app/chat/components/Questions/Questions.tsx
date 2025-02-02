@@ -5,7 +5,11 @@ import Question from './Question';
 import NavigationButton from './NavigationButton';
 import 'swiper/css';
 
-const Questions = () => {
+interface QuestionsProps {
+  handleClick: (text: string) => void;
+}
+
+const Questions = ({ handleClick }: QuestionsProps) => {
   return (
     <>
       <Swiper
@@ -21,7 +25,14 @@ const Questions = () => {
         <NavigationButton direction="next" />
         {questions.map((question) => (
           <SwiperSlide key={question.id}>
-            {({ isActive, isPrev }) => <Question {...question} isActive={isActive} isPrev={isPrev} />}
+            {({ isActive, isPrev }) => (
+              <Question
+                {...question}
+                isActive={isActive}
+                isPrev={isPrev}
+                onClick={() => handleClick(question.question)}
+              />
+            )}
           </SwiperSlide>
         ))}
       </Swiper>
