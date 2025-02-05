@@ -1,5 +1,17 @@
 import { useEffect, useState } from 'react';
 
+const STORAGE_KEY = 'for-the-block.storage';
+
+const userStorage = {
+  getUserData: () => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved) : null;
+  },
+  saveUserData: (userData: { token: string; nickname: string }) => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(userData));
+  },
+};
+
 export const useUser = () => {
   const [data, setData] = useState<{
     token: string;
@@ -11,9 +23,9 @@ export const useUser = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const savedUser = localStorage.getItem('for-the-block.storage');
+        const savedUser = userStorage.getUserData();
         if (savedUser) {
-          setData(JSON.parse(savedUser));
+          setData(savedUser);
           setIsLoading(false);
           return;
         }
@@ -30,7 +42,7 @@ export const useUser = () => {
         };
 
         setData(userData);
-        localStorage.setItem('for-the-block.storage', JSON.stringify(userData));
+        userStorage.saveUserData(userData);
       } catch (err: unknown) {
         setError((err as Error).message);
       } finally {
