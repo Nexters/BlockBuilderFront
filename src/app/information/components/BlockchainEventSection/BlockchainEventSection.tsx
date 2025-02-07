@@ -1,5 +1,6 @@
 'use client';
 
+import { Icon } from '@/assets/icons';
 import { useState } from 'react';
 import { hackathonList, meetupList } from '../../const';
 import BlockchainEventList from './BlockchainEventList';
@@ -38,17 +39,21 @@ const BlockchainEventSection = () => {
           })}
         </div>
 
-        <div className="flex items-center gap-x-[2rem] mobile:hidden">
+        <div className="flex items-center gap-x-[2rem] opacity-0 md:opacity-100">
           <button
-            className="h-[2.8rem] w-[2.8rem] cursor-pointer rounded-full bg-gray-100 disabled:cursor-not-allowed disabled:text-gray-400"
+            className="flex h-[2.8rem] w-[2.8rem] rotate-180 cursor-pointer items-center justify-center rounded-full bg-gray-100 disabled:cursor-not-allowed disabled:text-gray-400"
             disabled={currentPage === 1}
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-          >{`<`}</button>
+          >
+            <Icon name="ArrowRight" />
+          </button>
           <button
-            className="h-[2.8rem] w-[2.8rem] cursor-pointer rounded-full bg-gray-100 disabled:cursor-not-allowed disabled:text-gray-400"
+            className="flex h-[2.8rem] w-[2.8rem] cursor-pointer items-center justify-center rounded-full bg-gray-100 disabled:cursor-not-allowed disabled:text-gray-400"
             disabled={currentPage === maxPage}
             onClick={() => setCurrentPage((prev) => Math.min(prev + 1, maxPage))}
-          >{`>`}</button>
+          >
+            <Icon name="ArrowRight" />
+          </button>
         </div>
       </div>
 
