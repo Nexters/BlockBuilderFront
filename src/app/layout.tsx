@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
 import localFont from 'next/font/local';
 
-import ResponsiveContainer from '@/components/common/ResponsiveContainer';
+import ResponsiveContainer from '@/components/ResponsiveContainer';
 import { getInitialViewport } from '@/utils/viewport';
 import { UserProvider } from '@/contexts/UserContext';
 
