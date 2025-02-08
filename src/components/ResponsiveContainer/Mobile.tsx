@@ -24,7 +24,7 @@ export default function Mobile({ children }: { children: React.ReactNode }) {
       {isDrawerOpen && <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={handleToggleDrawer} />}
       <aside
         className={clsx(
-          'fixed top-0 left-0 w-[260px] h-[100vh] bg-white z-50 transition-transform duration-300 ease-in-out',
+          'fixed top-0 left-0 w-[260px] h-[100vh] bg-background z-50 transition-transform duration-300 ease-in-out',
           isDrawerOpen ? 'translate-x-0' : '-translate-x-full'
         )}
       >
