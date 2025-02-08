@@ -1,15 +1,15 @@
 import { TBlockchainInformationApiResponse, TBlockchainInformationResponse } from '../type';
 import { convertFromBlockchainInformationApiResponse } from '../util';
 
-export const fetchNewsList = async ({
+export const fetchMeetupList = async ({
   page,
   size,
 }: {
-  page: number;
+  page?: number;
   size?: number;
 }): Promise<TBlockchainInformationResponse> => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/info/news?page=${page}&size=${size ?? 20}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/info/meetup?page=${page}&size=${size}`);
     const data = (await res.json()) as TBlockchainInformationApiResponse;
     return convertFromBlockchainInformationApiResponse(data);
   } catch (error) {
