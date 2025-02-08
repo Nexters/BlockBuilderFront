@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-async function handleRequest(req: NextRequest, params: { path: string[] }, method: "GET" | "POST") {
+async function handleRequest(req: NextRequest, params: { path: string[] }) {
   try {
     const API_HOST = process.env.API_HOST;
     if (!API_HOST) {
@@ -10,18 +10,18 @@ async function handleRequest(req: NextRequest, params: { path: string[] }, metho
     const endpoint = params.path.join("/");
     const fullUrl = `${API_HOST}/api/v1/${endpoint}`;
 
-    if (method === "POST") {
+    if (req.method === "POST") {
       console.log("Proxying POST request to:", fullUrl);
     }
 
     const fetchOptions: RequestInit = {
-      method,
+      method: req.method,
       headers: {
         "Content-Type": "application/json",
       },
     };
 
-    if (method === "POST") {
+    if (req.method === "POST") {
       const body = await req.json();
       fetchOptions.body = JSON.stringify(
         req.cookies.get("token") 
@@ -39,9 +39,9 @@ async function handleRequest(req: NextRequest, params: { path: string[] }, metho
 }
 
 export async function GET(req: NextRequest, { params }: { params: { path: string[] } }) {
-  return handleRequest(req, params, "GET");
+  return handleRequest(req, params);
 }
 
 export async function POST(req: NextRequest, { params }: { params: { path: string[] } }) {
-  return handleRequest(req, params, "POST"); 
+  return handleRequest(req, params);
 }
