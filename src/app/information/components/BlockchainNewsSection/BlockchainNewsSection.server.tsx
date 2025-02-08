@@ -1,8 +1,8 @@
-import { getNewsList } from '../../actions/getNewsList';
+import { fetchNewsList } from '../../actions/fetchNewsList';
 import BlockchainNewsSectionClient from './BlockchainNewsSection.client';
 
 const BlockchainNewsSection = async () => {
-  const initialNewsListResponse = await getNewsList({ page: 1 });
+  const initialNewsListResponse = await fetchNewsList({ page: 1 });
 
   return (
     <BlockchainNewsSectionClient

@@ -1,10 +1,8 @@
-'use server';
-
 import { TBlockchainInformationApiResponse, TBlockchainInformationResponse } from '../type';
 
 const DEFAULT_SIZE = 20;
 
-export const getNewsList = async ({
+export const fetchNewsList = async ({
   page,
   size,
 }: {
