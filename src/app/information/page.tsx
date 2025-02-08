@@ -5,7 +5,7 @@ export default function InformationPage() {
   return (
     <main className="min-h-screen bg-gray-100">
       <div
-        className="mx-auto flex flex-col px-[4rem] py-[6.4rem] mobile:px-[2rem] tablet:max-w-[70.8rem] desktop:max-w-[92rem]"
+        className="mx-auto flex flex-col px-[4rem] py-[6.4rem] mobile:px-[2rem] tablet:max-w-[70.8rem] desktop:max-w-[76.4rem]"
         style={{ flexDirection: 'column', rowGap: '7rem' }}
       >
         <div>

@@ -1,7 +1,8 @@
 'use client';
 
 import { Icon } from '@/assets/icons';
-import { useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
+import { SwiperRef } from 'swiper/react';
 import { hackathonList, meetupList } from '../../const';
 import BlockchainEventList from './BlockchainEventList';
 
@@ -14,9 +15,27 @@ export type TEventTab = (typeof eventTabList)[number]['value'] | undefined;
 
 const BlockchainEventSection = () => {
   const [currentEventTabValue, setCurrentEventTabValue] = useState<TEventTab>(eventTabList.at(0)?.value ?? undefined);
-
   const [currentPage, setCurrentPage] = useState(1);
-  const maxPage = 5;
+  const swiperRef = useRef<SwiperRef>(null);
+
+  const maxPage = useMemo(
+    () => Math.floor((currentEventTabValue === 'hackathon' ? hackathonList.length : meetupList.length) / 4),
+    [currentEventTabValue]
+  );
+
+  const handlePrevClick = () => {
+    if (swiperRef && swiperRef?.current) {
+      setCurrentPage((prev) => Math.max(prev - 1, 1));
+      swiperRef.current.swiper.slidePrev();
+    }
+  };
+
+  const handleNextClick = () => {
+    if (swiperRef && swiperRef?.current) {
+      setCurrentPage((prev) => Math.min(prev + 1, maxPage));
+      swiperRef.current.swiper.slideNext();
+    }
+  };
 
   return (
     <div>
@@ -43,21 +62,26 @@ const BlockchainEventSection = () => {
           <button
             className="flex h-[2.8rem] w-[2.8rem] rotate-180 cursor-pointer items-center justify-center rounded-full bg-gray-100 disabled:cursor-not-allowed disabled:text-gray-400"
             disabled={currentPage === 1}
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            onClick={handlePrevClick}
           >
             <Icon name="ArrowRight" />
           </button>
           <button
             className="flex h-[2.8rem] w-[2.8rem] cursor-pointer items-center justify-center rounded-full bg-gray-100 disabled:cursor-not-allowed disabled:text-gray-400"
             disabled={currentPage === maxPage}
-            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, maxPage))}
+            onClick={handleNextClick}
           >
             <Icon name="ArrowRight" />
           </button>
         </div>
       </div>
 
-      <BlockchainEventList eventList={currentEventTabValue === 'hackathon' ? hackathonList : meetupList} />
+      <div suppressHydrationWarning>
+        <BlockchainEventList
+          eventList={currentEventTabValue === 'hackathon' ? hackathonList : meetupList}
+          swiperRef={swiperRef}
+        />
+      </div>
     </div>
   );
 };
