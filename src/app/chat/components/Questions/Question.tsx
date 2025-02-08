@@ -1,16 +1,16 @@
 import clsx from 'clsx';
-import { QuestionType } from '../../data';
+import { QuestionCategory } from '../../data';
 
 interface QuestionProps {
   id: number;
-  type: QuestionType;
+  category_name: QuestionCategory;
   question: string;
   isActive: boolean;
   isPrev: boolean;
   onClick: () => void;
 }
 
-const Question = ({ id, type, question, isActive, isPrev, onClick }: QuestionProps) => {
+const Question = ({ id, category_name, question, isActive, isPrev, onClick }: QuestionProps) => {
   return (
     <div key={id} className={clsx('flex h-full items-center', isPrev && 'justify-end')}>
       <button
@@ -20,7 +20,7 @@ const Question = ({ id, type, question, isActive, isPrev, onClick }: QuestionPro
         )}
         onClick={onClick}
       >
-        <p className="text-body-3-semibold text-blue-500">{type}</p>
+        <p className="text-body-3-semibold text-blue-500">{category_name}</p>
         <p className="text-body-1-medium">{question}</p>
       </button>
     </div>

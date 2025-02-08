@@ -1,22 +1,22 @@
-import { useState } from 'react';
 import Title from '../Title';
 import { Level } from '../../data';
 import LevelCard from '../LevelCard';
 import Questions from '../Questions/Questions';
+import useRecommendQuestions from '../../hooks/useRecommendQuestions';
 
 interface QuestionRecommendationProps {
   handleSubmit: (text: string) => void;
 }
 
 const QuestionRecommendation = ({ handleSubmit }: QuestionRecommendationProps) => {
-  const [selectedLevel, setSelectedLevel] = useState<Level>(Level.BEGINNER);
+  const { questions, selectedLevel, setSelectedLevel } = useRecommendQuestions();
 
   const handleClick = (text: string) => {
     handleSubmit(text);
   };
 
   return (
-    <div className="flex-1 flex size-full flex-col items-center justify-center gap-[2.2rem] pb-[13.8rem]">
+    <div className="flex size-full flex-1 flex-col items-center justify-center gap-[2.2rem] pb-[13.8rem]">
       <Title />
       <div className="flex flex-col items-center gap-[3rem]">
         <div className="flex gap-[1.8rem]">
@@ -30,7 +30,7 @@ const QuestionRecommendation = ({ handleSubmit }: QuestionRecommendationProps) =
             />
           ))}
         </div>
-        <Questions handleClick={handleClick} />
+        <Questions questions={questions} handleClick={handleClick} />
       </div>
     </div>
   );

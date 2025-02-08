@@ -1,42 +1,42 @@
 export enum Level {
-  BEGINNER = "초급",
-  INTERMEDIATE = "중급",
-  ADVANCED = "고급",
+  BEGINNER = "beginner",
+  INTERMEDIATE = "intermediate",
+  ADVANCED = "advanced",
 }
 
-export enum QuestionType {
-  CONCEPT = "개념",
-  EXAMPLE = "예제",
-  QUESTION = "질문",
-}
+export const LevelMap = {
+  [Level.BEGINNER]: "초급",
+  [Level.INTERMEDIATE]: "중급",
+  [Level.ADVANCED]: "고급",
+};
 
-export const questions = [
-  {
-    id: 1,
-    type: QuestionType.CONCEPT,
-    question: "블록체인이란 무엇인가요?",
-  },
-  {
-    id: 2,
-    type: QuestionType.EXAMPLE,
-    question: "이더리움의 블록체인 구조 예시를 알려줘.",
-  },
-  {
-    id: 3,
-    type: QuestionType.QUESTION,
-    question: "블록체인은 어떤 문제를 해결하려고 만들어졌어?",
-  },
-  {
-    id: 4,
-    type: QuestionType.CONCEPT,
-    question: "블록체인이 무엇인가요?",
-  },
-  {
-    id: 5,
-    type: QuestionType.QUESTION,
-    question: "블록체인은 어떤 문제를 해결하려고 만들어졌어?",
-  },
-];
+export type Question = {
+  id: number;
+  question: string;
+  category_id: keyof typeof QuestionCategoryMap;
+  category_name: QuestionCategory;
+};
+
+export type RecommendQuestion = Question & {
+  level: Level;
+};
+
+export type Questions = {
+  level: Level;
+  questions: Question[];
+}[];
+
+export const QuestionCategoryMap = {
+  1: "개념 정리",
+  2: "트렌드",
+  3: "네트워크",
+  4: "백서요약",
+  5: "보안과 최적화",
+  6: "코드 예제",
+  7: "실제 응용",
+} as const;
+
+export type QuestionCategory = (typeof QuestionCategoryMap)[keyof typeof QuestionCategoryMap];
 
 export type ChatType = {
   id: number;

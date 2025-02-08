@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Level } from '../../data';
+import { Level, LevelMap } from '../../data';
 import Image from 'next/image';
 
 const LevelCard = ({
@@ -22,7 +22,7 @@ const LevelCard = ({
       onClick={onClick}
     >
       <Image src={image} alt={level} width={28} height={28} />
-      <span className="text-body-2-semibold">{level}</span>
+      <span className="text-body-2-semibold">{LevelMap[level]}</span>
     </button>
   );
 };

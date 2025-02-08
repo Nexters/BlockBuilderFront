@@ -1,15 +1,16 @@
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { questions } from '../../data';
+import { RecommendQuestion } from '../../data';
 import Question from './Question';
 import NavigationButton from './NavigationButton';
 import 'swiper/css';
 
 interface QuestionsProps {
+  questions: RecommendQuestion[];
   handleClick: (text: string) => void;
 }
 
-const Questions = ({ handleClick }: QuestionsProps) => {
+const Questions = ({ questions, handleClick }: QuestionsProps) => {
   return (
     <>
       <Swiper
