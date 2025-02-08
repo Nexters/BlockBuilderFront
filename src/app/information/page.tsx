@@ -1,5 +1,5 @@
 import BlockchainEventSection from './components/BlockchainEventSection/BlockchainEventSection';
-import BlockchainNewsSection from './components/BlockchainNewsSection/BlockchainNewsSection';
+import BlockchainNewsSection from './components/BlockchainNewsSection/BlockchainNewsSection.server';
 
 export default function InformationPage() {
   return (
