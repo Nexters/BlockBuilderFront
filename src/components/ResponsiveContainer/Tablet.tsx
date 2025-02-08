@@ -8,7 +8,7 @@ import { useTheme } from 'next-themes';
 export default function Tablet({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex">
-      <aside className="w-[60px] h-[100vh] pt-[20px] pb-[20px] flex flex-col items-center">
+      <aside className="min-w-[60px] w-[60px] h-[100vh] pt-[20px] pb-[20px] flex flex-col items-center">
         <button className="w-[36px] h-[36px] bg-[#6390FA] rounded-[10px]"></button>
         <nav className="h-[100%] mt-[26px] mb-[72px] flex flex-col justify-between">
           <ul className="flex flex-col items-center gap-[10px]">
