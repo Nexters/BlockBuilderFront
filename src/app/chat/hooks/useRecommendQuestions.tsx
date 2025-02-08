@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { RecommendQuestion, Level } from '../data';
+import { fetchJson } from '../../../utils/api';
 
 const useRecommendQuestions = () => {
   const [questionsData, setQuestionsData] = useState<RecommendQuestion[]>();
@@ -7,8 +8,7 @@ const useRecommendQuestions = () => {
 
   useEffect(() => {
     const fetchQuestions = async () => {
-      const response = await fetch(`/api/info/questions`);
-      const data = await response.json();
+      const data = await fetchJson<RecommendQuestion[]>('/api/info/questions');
       setQuestionsData(data);
     };
 
