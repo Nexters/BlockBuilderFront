@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { useState, useEffect, useMemo, memo } from 'react';
+import { TextShimmer } from '@/components/ui/TextShimmer';
 
 const BotBubble = memo(
   ({
@@ -39,13 +40,24 @@ const BotBubble = memo(
 
     return (
       <div className="chat-message flex w-full gap-[1.6rem]">
-        <div className="size-[4rem] shrink-0">
-          <Image src="/images/chat/bot-profile.png" alt="bot-profile" width={40} height={40} />
+        <div className="size-[4rem] shrink-0 rounded-[1.2rem] bg-blue-400">
+          <Image
+            src={isLoading ? '/images/chat/block-creating.gif' : '/images/chat/block-created.png'}
+            alt="block"
+            width={40}
+            height={40}
+          />
         </div>
-        <div
-          className="max-w-[calc(100%-5.6rem)] flex-1 whitespace-break-spaces text-body-1-medium [&>*]:w-full [&>*]:whitespace-pre-line"
-          dangerouslySetInnerHTML={{ __html: isLoading ? '답변 생성중입니다..' : displayText }}
-        />
+        {isLoading ? (
+          <div className="max-w-[calc(100%-5.6rem)] flex-1 text-body-1-medium">
+            <TextShimmer duration={1}>답변 생성중입니다..</TextShimmer>
+          </div>
+        ) : (
+          <div
+            className="max-w-[calc(100%-5.6rem)] flex-1 whitespace-break-spaces text-body-1-medium [&>*]:w-full [&>*]:whitespace-pre-line"
+            dangerouslySetInnerHTML={{ __html: displayText }}
+          />
+        )}
       </div>
     );
   }

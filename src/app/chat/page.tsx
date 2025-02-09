@@ -38,7 +38,7 @@ export default function ChatPage() {
   );
 
   return (
-    <div className="chat-background relative size-full">
+    <div className="chat-background relative size-full mobile:h-[calc(100vh-56px)]">
       {chatList.length === 0 ? (
         <QuestionRecommendation handleSubmit={handleSubmit} />
       ) : (
