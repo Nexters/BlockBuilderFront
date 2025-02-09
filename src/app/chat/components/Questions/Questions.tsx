@@ -14,7 +14,7 @@ const Questions = ({ questions, handleClick }: QuestionsProps) => {
   return (
     <>
       <Swiper
-        className="h-[13.1rem] w-[68.4rem]"
+        className="mx-[4rem] h-[13.1rem] w-full max-w-[68.4rem] tablet:max-w-[min(calc(100vw-60px),68.4rem)]"
         modules={[Navigation]}
         slidesPerView={3}
         centeredSlides

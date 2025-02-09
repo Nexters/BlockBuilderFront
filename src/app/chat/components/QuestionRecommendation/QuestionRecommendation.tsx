@@ -19,7 +19,7 @@ const QuestionRecommendation = ({ handleSubmit }: QuestionRecommendationProps) =
   return (
     <div className="relative flex size-full flex-1 flex-col items-center justify-center gap-[3.2rem] pb-[13.8rem]">
       <Title className="z-10" />
-      <div className="z-10 flex flex-col items-center gap-[2rem]">
+      <div className="z-10 flex w-full flex-col items-center gap-[2rem] overflow-hidden">
         <div className="flex gap-[1.2rem]">
           {Object.entries(Level).map(([key, value]) => (
             <LevelCard
