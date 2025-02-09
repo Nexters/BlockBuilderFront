@@ -6,10 +6,12 @@ import SearchBar from './components/SearchBar';
 import Chat from './components/Chat';
 import { ChatType } from './data';
 import useGenerateAnswer from './hooks/useGenerateAnswer';
+import TotalQuestions from './components/TotalQuestions';
 
 export default function ChatPage() {
   const [text, setText] = useState('');
   const [chatList, setChatList] = useState<ChatType[]>([]);
+  const [view, setView] = useState<'recommendation' | 'total'>('recommendation');
   const { generateAnswer, isLoading, isAnswering, handleFinishAnswering } = useGenerateAnswer();
 
   useEffect(() => {
@@ -40,7 +42,11 @@ export default function ChatPage() {
   return (
     <div className="chat-background relative size-full mobile:h-[calc(100vh-56px)]">
       {chatList.length === 0 ? (
-        <QuestionRecommendation handleSubmit={handleSubmit} />
+        view === 'recommendation' ? (
+          <QuestionRecommendation handleSubmit={handleSubmit} handleViewChange={() => setView('total')} />
+        ) : (
+          <TotalQuestions handleSubmit={handleSubmit} />
+        )
       ) : (
         <Chat chatList={chatList} isLoading={isLoading} handleFinishAnswering={handleFinishAnswering} />
       )}

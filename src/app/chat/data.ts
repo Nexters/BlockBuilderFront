@@ -27,6 +27,7 @@ export type Questions = {
 }[];
 
 export const QuestionCategoryMap = {
+  0: "전체",
   1: "개념 정리",
   2: "트렌드",
   3: "네트워크",

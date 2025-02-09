@@ -4,12 +4,14 @@ import LevelCard from '../LevelCard';
 import Questions from '../Questions/Questions';
 import useRecommendQuestions from '../../hooks/useRecommendQuestions';
 import Image from 'next/image';
+import { Icon } from '@/assets/icons';
 
 interface QuestionRecommendationProps {
   handleSubmit: (text: string) => void;
+  handleViewChange: () => void;
 }
 
-const QuestionRecommendation = ({ handleSubmit }: QuestionRecommendationProps) => {
+const QuestionRecommendation = ({ handleSubmit, handleViewChange }: QuestionRecommendationProps) => {
   const { questions, selectedLevel, setSelectedLevel } = useRecommendQuestions();
 
   const handleClick = (text: string) => {
@@ -31,6 +33,13 @@ const QuestionRecommendation = ({ handleSubmit }: QuestionRecommendationProps) =
           ))}
         </div>
         <Questions questions={questions} handleClick={handleClick} />
+        <button
+          onClick={handleViewChange}
+          className="flex items-center gap-[0.4rem] rounded-full border border-blue-100 bg-white/60 py-[0.6rem] pl-[1.2rem] pr-[0.8rem] text-body-2-medium text-gray-700"
+        >
+          <span>질문 더보기</span>
+          <Icon name="ArrowRight" size={20} />
+        </button>
       </div>
       <Image
         className="absolute left-1/2 top-[calc(50%-24rem)] -translate-x-1/2 -translate-y-1/2"
