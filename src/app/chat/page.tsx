@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import QuestionRecommendation from './components/QuestionRecommendation';
 import SearchBar from './components/SearchBar';
 import Chat from './components/Chat';
@@ -12,20 +12,30 @@ export default function ChatPage() {
   const [chatList, setChatList] = useState<ChatType[]>([]);
   const { generateAnswer, isLoading, isAnswering, handleFinishAnswering } = useGenerateAnswer();
 
-  const handleSubmit = async (text: string) => {
-    if (text.trim().length > 0) {
-      setText('');
-      createChat(text.trim(), true);
-      const result = await generateAnswer(text);
-      if (result.isOk) {
-        createChat(result.answer, false);
-      }
+  useEffect(() => {
+    if (chatList.length > 0) {
+      const lastChat = document.querySelector('.chat-message:last-child');
+      lastChat?.scrollIntoView({ behavior: 'smooth' });
     }
-  };
+  }, [chatList]);
 
-  const createChat = (text: string, isUser: boolean) => {
+  const createChat = useCallback((text: string, isUser: boolean) => {
     setChatList((prev) => [...prev, { id: prev.length + 1, text, isUser }]);
-  };
+  }, []);
+
+  const handleSubmit = useCallback(
+    async (text: string) => {
+      if (text.trim().length > 0) {
+        setText('');
+        createChat(text.trim(), true);
+        const result = await generateAnswer(text);
+        if (result.isOk) {
+          createChat(result.answer, false);
+        }
+      }
+    },
+    [createChat, generateAnswer]
+  );
 
   return (
     <div className="relative size-full bg-gray-100">

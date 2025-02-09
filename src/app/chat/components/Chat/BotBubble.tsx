@@ -32,8 +32,13 @@ const BotBubble = memo(
       return () => clearInterval(timer);
     }, [handleFinishAnswering, text, words]);
 
+    useEffect(() => {
+      const lastChat = document.querySelector('.chat-message:last-child');
+      lastChat?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }, [displayText]);
+
     return (
-      <div className="flex w-full gap-[1.6rem]">
+      <div className="chat-message flex w-full gap-[1.6rem]">
         <div className="size-[4rem] shrink-0">
           <Image src="/images/chat/bot-profile.png" alt="bot-profile" width={40} height={40} />
         </div>

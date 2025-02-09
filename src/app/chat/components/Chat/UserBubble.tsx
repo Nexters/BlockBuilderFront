@@ -1,5 +1,5 @@
 const UserBubble = ({ text }: { text?: string }) => {
-  return <div className="text-body-1-medium self-end bg-blue-200 rounded-[1.6rem] p-[2rem]">{text}</div>;
+  return <div className="chat-message self-end rounded-[1.6rem] bg-blue-200 p-[2rem] text-body-1-medium">{text}</div>;
 };
 
 export default UserBubble;
