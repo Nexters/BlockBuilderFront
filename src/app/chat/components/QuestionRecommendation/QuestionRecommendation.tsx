@@ -1,8 +1,9 @@
-import Title from '../Title';
+import Title from './Title';
 import { Level } from '../../data';
 import LevelCard from '../LevelCard';
 import Questions from '../Questions/Questions';
 import useRecommendQuestions from '../../hooks/useRecommendQuestions';
+import Image from 'next/image';
 
 interface QuestionRecommendationProps {
   handleSubmit: (text: string) => void;
@@ -16,22 +17,28 @@ const QuestionRecommendation = ({ handleSubmit }: QuestionRecommendationProps) =
   };
 
   return (
-    <div className="flex size-full flex-1 flex-col items-center justify-center gap-[2.2rem] pb-[13.8rem]">
-      <Title />
-      <div className="flex flex-col items-center gap-[3rem]">
-        <div className="flex gap-[1.8rem]">
+    <div className="relative flex size-full flex-1 flex-col items-center justify-center gap-[3.2rem] pb-[13.8rem]">
+      <Title className="z-10" />
+      <div className="z-10 flex flex-col items-center gap-[2rem]">
+        <div className="flex gap-[1.2rem]">
           {Object.entries(Level).map(([key, value]) => (
             <LevelCard
               key={key}
               level={value}
               isSelected={selectedLevel === value}
               onClick={() => setSelectedLevel(value)}
-              image={`/images/chat/${key.toLowerCase()}.png`}
             />
           ))}
         </div>
         <Questions questions={questions} handleClick={handleClick} />
       </div>
+      <Image
+        className="absolute left-1/2 top-[calc(50%-24rem)] -translate-x-1/2 -translate-y-1/2"
+        src="/images/chat/block.gif"
+        alt="block"
+        width={596}
+        height={596}
+      />
     </div>
   );
 };

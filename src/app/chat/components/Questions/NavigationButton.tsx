@@ -7,15 +7,12 @@ const NavigationButton = ({ direction }: { direction: 'prev' | 'next' }) => {
   return (
     <div
       className={clsx(
-        'absolute top-0 z-10 flex h-full w-[4.3rem] items-center',
+        'absolute top-0 z-10 flex h-full w-[3.4rem] items-center',
         direction === 'prev' ? 'left-0' : 'right-0 justify-end'
       )}
     >
       <button
-        className={clsx(
-          'flex size-[2.8rem] items-center justify-center rounded-full bg-gray-200',
-          direction === 'prev' && 'rotate-180'
-        )}
+        className={clsx('flex size-[3rem] items-center justify-center', direction === 'prev' && 'rotate-180')}
         onClick={() => {
           if (direction === 'prev') {
             swiper.slidePrev();
@@ -24,7 +21,7 @@ const NavigationButton = ({ direction }: { direction: 'prev' | 'next' }) => {
           }
         }}
       >
-        <Icon name="ArrowRight" className="text-gray-500" />
+        <Icon name="ArrowRight" className="text-gray-900" />
       </button>
     </div>
   );
