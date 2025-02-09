@@ -7,13 +7,13 @@ const NavigationButton = ({ direction }: { direction: 'prev' | 'next' }) => {
   return (
     <div
       className={clsx(
-        'flex items-center z-10 bg-gray-100 w-[4.3rem] h-full absolute top-0',
+        'absolute top-0 z-10 flex h-full w-[4.3rem] items-center',
         direction === 'prev' ? 'left-0' : 'right-0 justify-end'
       )}
     >
       <button
         className={clsx(
-          'size-[2.8rem] bg-gray-200 rounded-full flex items-center justify-center',
+          'flex size-[2.8rem] items-center justify-center rounded-full bg-gray-200',
           direction === 'prev' && 'rotate-180'
         )}
         onClick={() => {
