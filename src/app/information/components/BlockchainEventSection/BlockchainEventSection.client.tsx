@@ -53,7 +53,7 @@ const BlockchainEventSectionClient = ({
 
   return (
     <div>
-      <div className="flex items-center justify-between pb-[2.4rem]">
+      <div className="flex items-center justify-between px-[4rem] pb-[2.4rem] mobile:px-[2rem]">
         <div className="flex items-center gap-x-[1.2rem]">
           {eventTabList.map((eventTab) => {
             return (
@@ -90,7 +90,7 @@ const BlockchainEventSectionClient = ({
         </div>
       </div>
 
-      <div>
+      <div className="md:pl-[4rem] mobile:px-0">
         <BlockchainEventList
           eventList={currentEventTabValue === 'hackathon' ? hackathonList : meetupList}
           swiperRef={swiperRef}

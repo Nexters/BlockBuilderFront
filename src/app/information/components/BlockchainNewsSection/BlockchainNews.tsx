@@ -8,7 +8,7 @@ const BlockchainNews = ({ news }: { news: TBlockchainInformationData }) => {
   const { url, imgUrl, network, datePublished, title } = news;
 
   return (
-    <li className="group">
+    <li className="group flex-1">
       <Link href={url} target="_blank">
         <div className="relative h-[15rem] w-full overflow-clip rounded-[1.2rem]">
           <Image
@@ -25,9 +25,7 @@ const BlockchainNews = ({ news }: { news: TBlockchainInformationData }) => {
           <BlockChainLabel blockchainNetwork={network} />
           <span className="text-body-2-medium text-gray-700">{formatRelativeTime(datePublished)}</span>
         </div>
-        <h3 className="group-hover:underline: line-clamp-2 pt-[0.4rem] text-title-3-semibold text-gray-900 group-hover:underline">
-          {title}
-        </h3>
+        <h3 className="line-clamp-2 pt-[0.4rem] text-title-3-semibold text-gray-900 group-hover:underline">{title}</h3>
       </Link>
     </li>
   );

@@ -9,7 +9,7 @@ const BlockchainEvent = ({ blockChainEvent }: { blockChainEvent: TBlockchainInfo
 
   return (
     <Link href={url} target="_blank">
-      <div className="flex gap-x-[2rem]">
+      <div className="group flex gap-x-[2rem]">
         <div className="relative min-h-[14.4rem] min-w-[12rem] overflow-clip rounded-[0.8rem] bg-background">
           <Image
             src={imgUrl || '/images/no-result.webp'}
@@ -18,6 +18,7 @@ const BlockchainEvent = ({ blockChainEvent }: { blockChainEvent: TBlockchainInfo
             style={{
               objectFit: 'cover',
             }}
+            className="transition-all duration-300 group-hover:scale-110"
             priority
           />
         </div>
@@ -28,7 +29,7 @@ const BlockchainEvent = ({ blockChainEvent }: { blockChainEvent: TBlockchainInfo
             <p className="text-nowrap pb-[0.2rem] text-body-2-regular text-gray-700">
               {startDate} ~ {endDate}
             </p>
-            <h3 className="line-clamp-1 text-title-3-semibold text-gray-900">{title}</h3>
+            <h3 className="line-clamp-1 text-title-3-semibold text-gray-900 group-hover:underline">{title}</h3>
           </div>
 
           <div className="flex flex-col gap-y-[0.2rem]">
