@@ -12,8 +12,8 @@ const QuizPage = () => {
   const [correctCount, setCorrectCount] = useState(0);
 
   return (
-    <div className="flex size-full items-center justify-center">
-      <div className="h-full max-h-[60rem] w-[40rem] p-[2rem]">
+    <div className="flex size-full items-center justify-center mobile:h-[calc(100vh-56px)]">
+      <div className="size-full max-w-[72rem] px-[2rem] py-[4rem] tablet:max-h-[60rem]">
         {state === 'Entry' && <Entry onStart={() => setState('Quiz')} />}
         {state === 'Quiz' && (
           <Quiz onCorrect={() => setCorrectCount(correctCount + 1)} onFinish={() => setState('Result')} />

@@ -30,14 +30,14 @@ const Quiz = ({ onCorrect, onFinish }: { onCorrect: () => void; onFinish: () => 
 
   return (
     <div className="flex size-full flex-col justify-between gap-[3rem]">
-      <h1 className="text-title-1-semibold">{`${question.id}. ${question.question}`}</h1>
+      <h1 className="break-keep text-title-1-semibold">{`${question.id}. ${question.question}`}</h1>
       <div className="flex flex-col gap-[3rem]">
-        <div className="flex h-[24rem] flex-col gap-[1rem]">
+        <div className="flex flex-col gap-[1rem]">
           {question.options.map((option) => (
             <button
               className={clsx(
-                'flex w-full flex-1 items-center justify-center rounded-[1.2rem] border border-blue-100 py-[0.5rem] text-title-3-regular',
-                selectedAnswer === option && 'border-blue-500 bg-blue-500 text-white'
+                'flex h-[7.2rem] w-full items-center justify-center whitespace-pre-wrap break-keep rounded-[1.2rem] border border-blue-100 px-[1.2rem] py-[0.8rem] text-title-3-regular hover:bg-blue-100',
+                selectedAnswer === option && 'border-blue-100 bg-blue-100'
               )}
               key={option}
               onClick={() => onSelectAnswer(option)}
@@ -48,7 +48,7 @@ const Quiz = ({ onCorrect, onFinish }: { onCorrect: () => void; onFinish: () => 
         </div>
         <button
           className={clsx(
-            'flex h-[5.4rem] w-full items-center justify-center rounded-[1.2rem] bg-blue-200 py-[0.5rem] text-title-2-semibold hover:bg-blue-300 disabled:bg-gray-300'
+            'flex h-[7.2rem] w-full items-center justify-center rounded-[1.2rem] bg-blue-400 py-[0.5rem] text-title-2-semibold text-white hover:bg-blue-500 disabled:bg-gray-200 disabled:text-gray-500'
           )}
           disabled={selectedAnswer === null}
           onClick={() => onSubmit(selectedAnswer)}
