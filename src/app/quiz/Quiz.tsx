@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { questions } from './data';
 import clsx from 'clsx';
+import ProgressBar from './ProgressBar';
 
 const Quiz = ({ onCorrect, onFinish }: { onCorrect: () => void; onFinish: () => void }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -29,9 +30,10 @@ const Quiz = ({ onCorrect, onFinish }: { onCorrect: () => void; onFinish: () => 
   };
 
   return (
-    <div className="flex size-full flex-col justify-between gap-[3rem]">
+    <div className="flex size-full flex-col justify-between gap-[2rem]">
+      <ProgressBar current={currentQuestion + 1} total={questions.length} />
       <h1 className="break-keep text-title-1-semibold">{`${question.id}. ${question.question}`}</h1>
-      <div className="flex flex-col gap-[3rem]">
+      <div className="flex flex-col gap-[2.4rem]">
         <div className="flex flex-col gap-[1rem]">
           {question.options.map((option) => (
             <button
