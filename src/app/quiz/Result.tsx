@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { contentMap, getRecommendations } from './data';
 import Recommendation from './Recommendation';
+import Explanation from './Explanation';
 
 const Result = ({ correctCount }: { correctCount: number }) => {
   const [loading, setLoading] = useState(true);
-  const [isExplanationOpen, setIsExplanationOpen] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -39,12 +39,7 @@ const Result = ({ correctCount }: { correctCount: number }) => {
         <p className="text-title-1-semibold">
           <span className="pr-[0.4rem] text-blue-500">{correctCount}</span>문제를 맞히셨어요!
         </p>
-        <button
-          className="rounded-full bg-blue-500 px-[1.6rem] py-[0.6rem] text-body-2-semibold text-white"
-          onClick={() => setIsExplanationOpen(true)}
-        >
-          해설 보기
-        </button>
+        <Explanation />
       </div>
       <p className="text-title-2-semibold">아래 활동을 추천드릴게요!</p>
       <div className="flex w-full flex-1 gap-[1.6rem] mobile:flex-col">
