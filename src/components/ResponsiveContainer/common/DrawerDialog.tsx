@@ -57,10 +57,10 @@ export function DrawerDialog({
           <DrawerTitle>{title}</DrawerTitle>
           <DrawerDescription>{description}</DrawerDescription>
         </DrawerHeader>
-        {children}
+        <div className="flex-1 overflow-auto">{children}</div>
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
-            <button>Cancel</button>
+            <button className="text-body-1-semibold">닫기</button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>

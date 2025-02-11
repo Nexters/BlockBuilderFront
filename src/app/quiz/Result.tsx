@@ -4,7 +4,7 @@ import { contentMap, getRecommendations } from './data';
 import Recommendation from './Recommendation';
 import Explanation from './Explanation';
 
-const Result = ({ correctCount }: { correctCount: number }) => {
+const Result = ({ correctCount, submittedAnswer }: { correctCount: number; submittedAnswer: string[] }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const Result = ({ correctCount }: { correctCount: number }) => {
         <p className="text-title-1-semibold">
           <span className="pr-[0.4rem] text-blue-500">{correctCount}</span>문제를 맞히셨어요!
         </p>
-        <Explanation />
+        <Explanation submittedAnswer={submittedAnswer} />
       </div>
       <p className="text-title-2-semibold">아래 활동을 추천드릴게요!</p>
       <div className="flex w-full flex-1 gap-[1.6rem] mobile:flex-col">

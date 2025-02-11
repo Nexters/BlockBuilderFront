@@ -32,7 +32,7 @@ const DrawerContent = React.forwardRef<
     <DrawerPrimitive.Content
       ref={ref}
       className={clsx(
-        'fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border bg-background',
+        'fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto max-h-[calc(100vh-12rem)] flex-col rounded-t-[10px] border bg-background px-[1.6rem]',
         className
       )}
       {...props}
@@ -58,11 +58,7 @@ const DrawerTitle = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Title>,
   React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Title>
 >(({ className, ...props }, ref) => (
-  <DrawerPrimitive.Title
-    ref={ref}
-    className={clsx('text-lg font-semibold leading-none tracking-tight', className)}
-    {...props}
-  />
+  <DrawerPrimitive.Title ref={ref} className={clsx('text-headline-4-bold', className)} {...props} />
 ));
 DrawerTitle.displayName = DrawerPrimitive.Title.displayName;
 
@@ -70,7 +66,7 @@ const DrawerDescription = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Description>,
   React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Description>
 >(({ className, ...props }, ref) => (
-  <DrawerPrimitive.Description ref={ref} className={clsx('text-muted-foreground text-sm', className)} {...props} />
+  <DrawerPrimitive.Description ref={ref} className={clsx('text-body-2-medium', className)} {...props} />
 ));
 DrawerDescription.displayName = DrawerPrimitive.Description.displayName;
 

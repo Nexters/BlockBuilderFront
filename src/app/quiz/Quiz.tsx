@@ -3,7 +3,15 @@ import { questions } from './data';
 import clsx from 'clsx';
 import ProgressBar from './ProgressBar';
 
-const Quiz = ({ onCorrect, onFinish }: { onCorrect: () => void; onFinish: () => void }) => {
+const Quiz = ({
+  onCorrect,
+  onSubmit,
+  onFinish,
+}: {
+  onCorrect: () => void;
+  onSubmit: (answer: string) => void;
+  onFinish: () => void;
+}) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const question = questions[currentQuestion];
@@ -16,11 +24,12 @@ const Quiz = ({ onCorrect, onFinish }: { onCorrect: () => void; onFinish: () => 
     }
   };
 
-  const onSubmit = (answer: string | null) => {
+  const onAnswerSubmit = (answer: string | null) => {
     if (answer === null) return;
     if (answer === question.correctAnswer) {
       onCorrect();
     }
+    onSubmit(answer);
     setSelectedAnswer(null);
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
@@ -55,7 +64,7 @@ const Quiz = ({ onCorrect, onFinish }: { onCorrect: () => void; onFinish: () => 
             'flex h-[7.2rem] w-full items-center justify-center rounded-[1.2rem] bg-blue-400 py-[0.5rem] text-title-2-semibold text-white hover:bg-blue-500 disabled:bg-gray-200 disabled:text-gray-500'
           )}
           disabled={selectedAnswer === null}
-          onClick={() => onSubmit(selectedAnswer)}
+          onClick={() => onAnswerSubmit(selectedAnswer)}
         >
           {currentQuestion < questions.length - 1 ? 'Next' : 'Finish'}
         </button>
