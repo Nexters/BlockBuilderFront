@@ -13,8 +13,8 @@ export default function Tablet({ children }: { children: React.ReactNode }) {
         <nav className="mb-[72px] mt-[26px] flex h-[100%] flex-col justify-between">
           <ul className="flex flex-col items-center gap-[10px]">
             <NavigationItem menu="chat" />
-            <NavigationItem menu="information" />
             <NavigationItem menu="poll" />
+            <NavigationItem menu="information" />
           </ul>
           <ThemeSwitch />
         </nav>
