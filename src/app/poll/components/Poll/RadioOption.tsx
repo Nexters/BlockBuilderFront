@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+
 interface RadioOptionProps {
   name: string;
   value: string;
@@ -29,7 +31,9 @@ export default function RadioOption({ name, value, label, percentage, checked, o
           <div className="flex flex-1 flex-col gap-[1.2rem]">
             <div className="flex justify-between">
               <span className="text-body-1-medium text-gray-900">{label}</span>
-              <span className="text-body-2-semibold text-blue-400">{percentage}%</span>
+              <span className={clsx('text-body-2-semibold', checked ? 'text-blue-400' : 'text-gray-600')}>
+                {percentage}%
+              </span>
             </div>
             {/* Progress Bar */}
             <div className="pl=[4rem] h-[1rem] w-full rounded-full bg-gray-200">
