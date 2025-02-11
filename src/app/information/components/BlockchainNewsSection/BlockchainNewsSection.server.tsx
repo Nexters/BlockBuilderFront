@@ -1,14 +1,18 @@
-import { fetchNewsList } from '../../actions/fetchNewsList';
+import { fetchBlockchainInformation } from '../../api/fetchBlockchainInformation';
 import BlockchainNewsSectionClient from './BlockchainNewsSection.client';
 
 const BlockchainNewsSection = async () => {
-  const initialNewsListResponse = await fetchNewsList({ page: 1 });
+  const initialNewsResponse = await fetchBlockchainInformation({
+    page: 1,
+    size: 20,
+    blockchainInformationType: 'news',
+  });
 
   return (
     <BlockchainNewsSectionClient
-      initialCurrentPage={initialNewsListResponse.currentPage}
-      initialTotalPage={initialNewsListResponse.totalPages}
-      initialData={initialNewsListResponse.data}
+      initialCurrentPage={initialNewsResponse.currentPage}
+      initialTotalPage={initialNewsResponse.totalPages}
+      initialData={initialNewsResponse.data}
     />
   );
 };
