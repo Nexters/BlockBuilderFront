@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { fetchNewsList } from '../../actions/fetchNewsList';
+import { fetchBlockchainInformation } from '../../api/fetchBlockchainInformation';
 import { TBlockchainInformationData } from '../../type';
 import BlockchainNews from './BlockchainNews';
 
@@ -25,11 +25,15 @@ const BlockchainNewsSectionClient = ({
   useEffect(() => {
     const fetchNextPage = async () => {
       setIsLoading(true);
-      const res = await fetchNewsList({ page: currentPage });
+      const response = await fetchBlockchainInformation({
+        page: currentPage,
+        size: 20,
+        blockchainInformationType: 'news',
+      });
 
-      setNewsList((prevNewsList) => [...prevNewsList, ...res.data]);
-      setCurrentPage(res.currentPage + 1);
-      setHasNextPage(res.currentPage < res.totalPages);
+      setNewsList((prevNewsList) => [...prevNewsList, ...response.data]);
+      setCurrentPage(response.currentPage + 1);
+      setHasNextPage(response.currentPage < response.totalPages);
       setIsLoading(false);
     };
 

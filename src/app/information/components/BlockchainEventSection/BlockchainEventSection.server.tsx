@@ -1,17 +1,16 @@
-import { fetchHackathonList } from '../../actions/fetchHackathonList';
-import { fetchMeetupList } from '../../actions/fetchMeetupList';
+import { fetchBlockchainInformation } from '../../api/fetchBlockchainInformation';
 import BlockchainEventSectionClient from './BlockchainEventSection.client';
 
 const BlockchainEventSection = async () => {
-  const [initialHackathonListResponse, initialMeetupListResponse] = await Promise.all([
-    fetchHackathonList({}),
-    fetchMeetupList({}),
+  const [initialHackathonResponse, initialMeetupResponse] = await Promise.all([
+    fetchBlockchainInformation({ blockchainInformationType: 'hackathon' }),
+    fetchBlockchainInformation({ blockchainInformationType: 'meetup' }),
   ]);
 
   return (
     <BlockchainEventSectionClient
-      hackathonList={initialHackathonListResponse.data}
-      meetupList={initialMeetupListResponse.data}
+      hackathonList={initialHackathonResponse.data}
+      meetupList={initialMeetupResponse.data}
     />
   );
 };

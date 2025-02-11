@@ -3,15 +3,16 @@
 import { Icon } from '@/assets/icons';
 import { useMemo, useRef, useState } from 'react';
 import { SwiperRef } from 'swiper/react';
+import { TBlockchainInformationType } from '../../api/fetchBlockchainInformation';
 import { TBlockchainInformationData } from '../../type';
 import BlockchainEventList from './BlockchainEventList';
 
-const eventTabList = [
+const eventTabList: { text: string; value: TBlockchainInformationType }[] = [
   { text: '해커톤', value: 'hackathon' },
   { text: '밋업', value: 'meetup' },
 ] as const;
 
-export type TEventTab = (typeof eventTabList)[number]['value'] | undefined;
+export type TEventTab = (typeof eventTabList)[number]['value'];
 
 const BlockchainEventSectionClient = ({
   hackathonList,
@@ -21,7 +22,7 @@ const BlockchainEventSectionClient = ({
   meetupList: TBlockchainInformationData[];
 }) => {
   const swiperRef = useRef<SwiperRef>(null);
-  const [currentEventTabValue, setCurrentEventTabValue] = useState<TEventTab>(eventTabList.at(0)?.value ?? undefined);
+  const [currentEventTabValue, setCurrentEventTabValue] = useState<TEventTab>(eventTabList[0].value);
   const [currentPage, setCurrentPage] = useState(1);
 
   const maxPage = useMemo(
@@ -92,7 +93,8 @@ const BlockchainEventSectionClient = ({
 
       <div className="md:pl-[4rem] mobile:px-0">
         <BlockchainEventList
-          eventList={currentEventTabValue === 'hackathon' ? hackathonList : meetupList}
+          blockchainEventType={currentEventTabValue}
+          blockchainEventList={currentEventTabValue === 'hackathon' ? hackathonList : meetupList}
           swiperRef={swiperRef}
         />
       </div>
