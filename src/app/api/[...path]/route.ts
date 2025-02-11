@@ -8,7 +8,8 @@ async function handleRequest(req: NextRequest, params: { path: string[] }) {
     }
 
     const endpoint = params.path.join('/');
-    const fullUrl = `${API_HOST}/api/v1/${endpoint}`;
+    const queryString = req.nextUrl.searchParams.toString();
+    const fullUrl = queryString ? `${API_HOST}/api/v1/${endpoint}?${queryString}` : `${API_HOST}/api/v1/${endpoint}`;
 
     if (req.method === 'POST') {
       console.log('Proxying POST request to:', fullUrl);

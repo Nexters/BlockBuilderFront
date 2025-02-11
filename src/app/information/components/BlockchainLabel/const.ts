@@ -1,9 +1,12 @@
+import { TBlockchainNetworkCode } from '../../type';
+
 export type TBlockchainLabel = {
   text: string;
   value: string;
 };
 
-export const blockchainNetworkLabelMap: { [key: string]: TBlockchainLabel } = {
+export const blockchainNetworkLabelMap: { [key in TBlockchainNetworkCode]: TBlockchainLabel } = {
+  '00': { text: '기타', value: 'etc' },
   '01': { text: '이더리움', value: 'ethereum' },
   '02': { text: '솔라나', value: 'solana' },
   '03': { text: '수이', value: 'sui' },
@@ -14,5 +17,4 @@ export const blockchainNetworkLabelMap: { [key: string]: TBlockchainLabel } = {
   '08': { text: '옵티미즘', value: 'optimism' },
   '09': { text: '아비트럼', value: 'arbitrum' },
   '10': { text: '아발란체', value: 'avalanche' },
-  '00': { text: '기타', value: 'etc' },
 };
