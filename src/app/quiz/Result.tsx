@@ -1,21 +1,39 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { contentMap, getRecommendations } from './data';
 import Recommendation from './Recommendation';
 import Explanation from './Explanation';
+import { userStorage } from '@/hooks/useUser';
 
-const Result = ({ correctCount, submittedAnswer }: { correctCount: number; submittedAnswer: string[] }) => {
+const Result = ({
+  isChecking = false,
+  correctCount,
+  submittedAnswer,
+}: {
+  isChecking?: boolean;
+  correctCount: number;
+  submittedAnswer: string[];
+}) => {
   const [loading, setLoading] = useState(true);
 
+  const onFinish = useCallback(() => {
+    setLoading(false);
+    userStorage.saveQuizResult({ correctCount, submittedAnswer });
+  }, [correctCount, submittedAnswer]);
+
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  }, []);
+    if (isChecking) {
+      setTimeout(() => {
+        onFinish();
+      }, 3000);
+    } else {
+      onFinish();
+    }
+  }, [onFinish, isChecking]);
 
   const { level, recommendations } = getRecommendations(correctCount);
 
-  if (loading) {
+  if (isChecking && loading) {
     return (
       <div className="flex size-full flex-col items-center gap-[3rem]">
         <div className="flex flex-col items-center gap-[1.6rem]">
