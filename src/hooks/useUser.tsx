@@ -1,14 +1,30 @@
 import { useEffect, useState } from 'react';
 
-const STORAGE_KEY = 'for-the-block.storage';
+export const STORAGE_KEY = 'for-the-block.storage';
 
-const userStorage = {
+export const userStorage = {
   getUserData: () => {
     const saved = localStorage.getItem(STORAGE_KEY);
     return saved ? JSON.parse(saved) : null;
   },
   saveUserData: (userData: { token: string; nickname: string }) => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(userData));
+  },
+
+  getQuizResult: () => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved).quizResult : null;
+  },
+
+  saveQuizResult: (result: { correctCount: number; submittedAnswer: string[] }) => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    const userData = saved ? JSON.parse(saved) : null;
+    if (userData) {
+      userData.quizResult = result;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(userData));
+    } else {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ quizResult: result }));
+    }
   },
 };
 
