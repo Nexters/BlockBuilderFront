@@ -91,7 +91,7 @@ const BlockchainEventSectionClient = ({
         </div>
       </div>
 
-      <div className="md:pl-[4rem] mobile:px-0">
+      <div className="md:px-[4rem] mobile:px-0">
         <BlockchainEventList
           blockchainEventType={currentEventTabValue}
           blockchainEventList={currentEventTabValue === 'hackathon' ? hackathonList : meetupList}

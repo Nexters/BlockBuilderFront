@@ -36,20 +36,22 @@ const BlockchainEvent = ({
           />
         </div>
 
-        <div className="flex flex-col justify-between">
+        <div className="flex min-w-[16.5rem] flex-col justify-between">
           <div>
             <BlockChainLabel className="mb-[0.8rem]" blockchainNetwork={network} />
             <p className="text-nowrap pb-[0.2rem] text-body-2-medium text-gray-700">
               {convertedStartDate} ~ {convertedEndDate}
             </p>
-            <h3 className="line-clamp-1 text-title-3-semibold text-gray-900 group-hover:underline">{title}</h3>
+            <h3 className="line-clamp-1 break-all text-title-3-semibold text-gray-900 group-hover:underline">
+              {title}
+            </h3>
           </div>
 
           <div className="flex flex-col gap-y-[0.2rem]">
             {host && (
               <div className="flex items-center text-body-2-medium text-gray-600">
                 <Icon className="mr-[0.2rem]" name="Meetup" size={18} />
-                <p className="mr-[0.4rem]">주최</p>
+                <p className="mr-[0.4rem] text-nowrap">주최</p>
                 <p className="line-clamp-1">{host}</p>
               </div>
             )}
