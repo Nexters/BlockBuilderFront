@@ -1,32 +1,30 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from 'next/server';
 
 async function handleRequest(req: NextRequest, params: { path: string[] }) {
   try {
     const API_HOST = process.env.API_HOST;
     if (!API_HOST) {
-      throw new Error("API_HOST is not defined");
+      throw new Error('API_HOST is not defined');
     }
 
-    const endpoint = params.path.join("/");
+    const endpoint = params.path.join('/');
     const fullUrl = `${API_HOST}/api/v1/${endpoint}`;
 
-    if (req.method === "POST") {
-      console.log("Proxying POST request to:", fullUrl);
+    if (req.method === 'POST') {
+      console.log('Proxying POST request to:', fullUrl);
     }
 
     const fetchOptions: RequestInit = {
       method: req.method,
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     };
 
-    if (req.method === "POST") {
+    if (req.method === 'POST') {
       const body = await req.json();
       fetchOptions.body = JSON.stringify(
-        req.cookies.get("token") 
-          ? { ...body, eoa: req.cookies.get("token")?.value }
-          : body
+        req.cookies.get('token') ? { ...body, eoa: req.cookies.get('token')?.value } : body
       );
     }
 
@@ -38,10 +36,10 @@ async function handleRequest(req: NextRequest, params: { path: string[] }) {
   }
 }
 
-export async function GET(req: NextRequest, { params }: { params: { path: string[] } }) {
-  return handleRequest(req, params);
+export async function GET(req: NextRequest, { params }: { params: Promise<{ path: string[] }> }) {
+  return handleRequest(req, await params);
 }
 
-export async function POST(req: NextRequest, { params }: { params: { path: string[] } }) {
-  return handleRequest(req, params);
+export async function POST(req: NextRequest, { params }: { params: Promise<{ path: string[] }> }) {
+  return handleRequest(req, await params);
 }

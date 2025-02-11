@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import BlockChainLabel from '../BlockchainLabel/BlockchainLabel';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const BlockchainEventList = ({ eventList }: { eventList: any[] }) => {
   return (
     <div className="grid grid-cols-2 grid-rows-2 gap-[2rem] mobile:grid-cols-1">
