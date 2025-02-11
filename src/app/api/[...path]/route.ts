@@ -37,10 +37,10 @@ async function handleRequest(req: NextRequest, params: { path: string[] }) {
   }
 }
 
-export async function GET(req: NextRequest, { params }: { params: { path: string[] } }) {
-  return handleRequest(req, params);
+export async function GET(req: NextRequest, { params }: { params: Promise<{ path: string[] }> }) {
+  return handleRequest(req, await params);
 }
 
-export async function POST(req: NextRequest, { params }: { params: { path: string[] } }) {
-  return handleRequest(req, params);
+export async function POST(req: NextRequest, { params }: { params: Promise<{ path: string[] }> }) {
+  return handleRequest(req, await params);
 }
