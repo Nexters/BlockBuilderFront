@@ -13,7 +13,8 @@ export const fetchBlockchainInformation = async ({
 }): Promise<TBlockchainInformationResponse> => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/info/${blockchainInformationType}?page=${page}&size=${size}`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/info/${blockchainInformationType}?page=${page}&size=${size}`,
+      { cache: 'force-cache', next: { revalidate: 3600 } }
     );
     const data = (await res.json()) as TBlockchainInformationApiResponse;
 
