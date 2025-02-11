@@ -1,9 +1,11 @@
 import { SVGProps } from 'react';
 import ArrowRight from './ArrowRight';
+import Bag from './Bag';
 import Chat from './Chat';
 import DarkMode from './DarkMode';
 import Information from './Information';
 import LightMode from './LightMode';
+import Meetup from './Meetup';
 import Menu from './Menu';
 import News from './News';
 import Poll from './Poll';
@@ -17,6 +19,8 @@ export const Icons = {
   DarkMode,
   Information,
   ArrowRight,
+  Bag,
+  Meetup,
 } as const;
 
 export type IconType = keyof typeof Icons;
