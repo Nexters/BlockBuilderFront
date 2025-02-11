@@ -1,6 +1,16 @@
 import { useEffect, useState } from 'react';
+import { fetchJson } from '../utils/api';
 
 export const STORAGE_KEY = 'for-the-block.storage';
+
+type walletMeResponse = {
+  encrypted_mnemonic: string;
+  encrypted_private_key: string;
+  ethereum_address: string;
+  iv_mnemonic: string;
+  iv_private_key: string;
+  nickname: string;
+};
 
 export const userStorage = {
   getUserData: () => {
@@ -46,12 +56,7 @@ export const useUser = () => {
           return;
         }
 
-        const response = await fetch('/api/wallet/me');
-        if (!response.ok) {
-          throw new Error('Failed to fetch user data');
-        }
-
-        const fetchedData = await response.json();
+        const fetchedData = await fetchJson<walletMeResponse>('/api/wallet/me');
         const userData = {
           token: fetchedData.ethereum_address,
           nickname: fetchedData.nickname,

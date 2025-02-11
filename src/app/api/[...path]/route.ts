@@ -24,8 +24,12 @@ async function handleRequest(req: NextRequest, params: { path: string[] }) {
 
     if (req.method === 'POST') {
       const body = await req.json();
+      const token = req.headers.get('x-custom-token');
+
       fetchOptions.body = JSON.stringify(
-        req.cookies.get('token') ? { ...body, eoa: req.cookies.get('token')?.value } : body
+        token
+          ? { ...body, eoa: token }
+          : body
       );
     }
 
