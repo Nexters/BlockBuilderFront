@@ -75,14 +75,14 @@ const BlockchainEventSectionClient = ({
 
         <div className="flex items-center gap-x-[2rem] opacity-0 md:opacity-100">
           <button
-            className="flex h-[2.8rem] w-[2.8rem] rotate-180 cursor-pointer items-center justify-center rounded-full bg-gray-200 disabled:cursor-not-allowed disabled:text-gray-400"
+            className="flex h-[2.8rem] w-[2.8rem] rotate-180 cursor-pointer items-center justify-center rounded-full border border-solid border-blue-100 bg-gray-100 disabled:cursor-not-allowed disabled:text-gray-400"
             disabled={currentPage === 1}
             onClick={handlePrevClick}
           >
             <Icon name="ArrowRight" />
           </button>
           <button
-            className="flex h-[2.8rem] w-[2.8rem] cursor-pointer items-center justify-center rounded-full bg-gray-200 disabled:cursor-not-allowed disabled:text-gray-400"
+            className="flex h-[2.8rem] w-[2.8rem] cursor-pointer items-center justify-center rounded-full border border-solid border-blue-100 bg-gray-100 disabled:cursor-not-allowed disabled:text-gray-400"
             disabled={currentPage === maxPage}
             onClick={handleNextClick}
           >
@@ -91,7 +91,7 @@ const BlockchainEventSectionClient = ({
         </div>
       </div>
 
-      <div className="md:pl-[4rem] mobile:px-0">
+      <div className="md:px-[4rem] mobile:px-0">
         <BlockchainEventList
           blockchainEventType={currentEventTabValue}
           blockchainEventList={currentEventTabValue === 'hackathon' ? hackathonList : meetupList}

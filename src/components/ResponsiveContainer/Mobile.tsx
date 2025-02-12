@@ -14,25 +14,25 @@ export default function Mobile({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <header className="w-full h-[56px] pl-[20px] pr-[20px] flex items-center">
+      <header className="flex h-[56px] w-full items-center pl-[20px] pr-[20px]">
         <button onClick={handleToggleDrawer}>
           <Icons.Menu className="fill-gray-900" />
         </button>
-        <button className="w-[36px] h-[36px] ml-[20px] bg-[#6390FA] rounded-[10px]"></button>
+        <button className="ml-[20px] h-[36px] w-[36px] rounded-[10px] bg-[#6390FA]"></button>
       </header>
 
-      {isDrawerOpen && <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={handleToggleDrawer} />}
+      {isDrawerOpen && <div className="fixed inset-0 z-40 bg-black bg-opacity-50" onClick={handleToggleDrawer} />}
       <aside
         className={clsx(
-          'fixed top-0 left-0 w-[260px] h-[100vh] bg-background z-50 transition-transform duration-300 ease-in-out',
+          'fixed left-0 top-0 z-50 h-[100vh] w-[260px] bg-background transition-transform duration-300 ease-in-out',
           isDrawerOpen ? 'translate-x-0' : '-translate-x-full'
         )}
       >
-        <div className="h-full px-[20px] pt-[20px] pb-[80px] flex flex-col justify-between">
+        <div className="flex h-full flex-col justify-between px-[20px] pb-[80px] pt-[20px]">
           <div>
             <header className="flex items-center">
-              <Icons.Menu className="fill-gray-900 mr-[2rem]" onClick={handleToggleDrawer} />
-              <button className="w-[36px] h-[36px] bg-[#6390FA] rounded-[10px]"></button>
+              <Icons.Menu className="mr-[2rem] fill-gray-900" onClick={handleToggleDrawer} />
+              <button className="h-[36px] w-[36px] rounded-[10px] bg-[#6390FA]"></button>
               <h1 className="ml-[12px] text-title-2-medium text-gray-800">for-the-block</h1>
             </header>
             <Navigation />
@@ -41,7 +41,7 @@ export default function Mobile({ children }: { children: React.ReactNode }) {
           <ThemeSwitch />
         </div>
       </aside>
-      <main className="w-full">{children}</main>
+      <main className="bg-gradient-light dark:bg-gradient-dark w-full">{children}</main>
     </>
   );
 }

@@ -3,7 +3,7 @@ import BlockchainNewsSection from './components/BlockchainNewsSection/Blockchain
 
 export default function InformationPage() {
   return (
-    <main className="min-h-screen bg-gray-100">
+    <main className="min-h-screen">
       <div
         className="mx-auto flex flex-col py-[6.4rem] tablet:max-w-[70.8rem] desktop:max-w-[76.4rem]"
         style={{ flexDirection: 'column', rowGap: '7rem' }}

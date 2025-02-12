@@ -1,3 +1,4 @@
+import { BASE_URL } from '@/constants/url';
 import { TBlockchainInformationApiResponse, TBlockchainInformationResponse } from '../type';
 
 export type TBlockchainInformationType = 'hackathon' | 'meetup' | 'news';
@@ -12,10 +13,7 @@ export const fetchBlockchainInformation = async ({
   size?: number;
 }): Promise<TBlockchainInformationResponse> => {
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/info/${blockchainInformationType}?page=${page}&size=${size}`,
-      { cache: 'force-cache', next: { revalidate: 3600 } }
-    );
+    const res = await fetch(`${BASE_URL}/api/info/${blockchainInformationType}?page=${page}&size=${size}`);
     const data = (await res.json()) as TBlockchainInformationApiResponse;
 
     return convertFromBlockchainInformationApiResponse({ apiResponse: data, blockchainInformationType });
