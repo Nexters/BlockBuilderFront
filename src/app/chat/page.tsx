@@ -39,6 +39,18 @@ export default function ChatPage() {
     [createChat, generateAnswer]
   );
 
+  const recreateChat = useCallback(
+    (id: number) => {
+      if (chatList.length > 0) {
+        const lastUserChat = [...chatList].find((chat) => chat.id === id);
+        if (lastUserChat) {
+          handleSubmit(lastUserChat.text);
+        }
+      }
+    },
+    [chatList, handleSubmit]
+  );
+
   return (
     <div className="relative h-screen w-full mobile:h-[calc(100vh-56px)]">
       {chatList.length === 0 ? (
@@ -48,7 +60,13 @@ export default function ChatPage() {
           <TotalQuestions handleSubmit={handleSubmit} />
         )
       ) : (
-        <Chat chatList={chatList} isLoading={isLoading} handleFinishAnswering={handleFinishAnswering} />
+        <Chat
+          chatList={chatList}
+          isLoading={isLoading}
+          handleFinishAnswering={handleFinishAnswering}
+          isAnswering={isAnswering}
+          recreateChat={recreateChat}
+        />
       )}
       <SearchBar text={text} setText={setText} handleSubmit={handleSubmit} disabled={isAnswering} />
     </div>

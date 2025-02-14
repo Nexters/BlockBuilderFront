@@ -9,6 +9,8 @@ import Meetup from './Meetup';
 import Menu from './Menu';
 import News from './News';
 import Poll from './Poll';
+import Reaction from './Reaction';
+import Copy from './Copy';
 
 export const Icons = {
   Menu,
@@ -21,6 +23,8 @@ export const Icons = {
   ArrowRight,
   Bag,
   Meetup,
+  Reaction,
+  Copy,
 } as const;
 
 export type IconType = keyof typeof Icons;
