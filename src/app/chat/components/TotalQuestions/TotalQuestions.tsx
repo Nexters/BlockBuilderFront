@@ -57,14 +57,14 @@ const TotalQuestions = ({ handleSubmit }: TotalQuestionsProps) => {
           </button>
         ))}
       </div>
-      <div className="scrollbar-hide grid h-full flex-1 grid-cols-1 gap-[1.2rem] overflow-y-auto pb-[15.6rem] mobile:pb-[10rem] tablet:grid-cols-2 desktop:grid-cols-3">
+      <div className="scrollbar-hide -m-[0.6rem] grid h-full flex-1 grid-cols-1 overflow-y-auto pb-[15.6rem] mobile:pb-[10rem] tablet:grid-cols-2 desktop:grid-cols-3">
         {questions
           .find((question) => question.level === tab)
           ?.questions.filter((question) => filter === '전체' || question.category_name === filter)
           .map((question) => (
             <button
               key={question.id}
-              className="hover:bg-gradient-card-2 flex h-[13.1rem] flex-col gap-[0.9rem] rounded-[1.2rem] border border-blue-100 bg-white/60 p-[1.6rem] text-start hover:shadow-normal"
+              className="hover:bg-gradient-card-2 m-[0.6rem] flex h-[13.1rem] flex-col gap-[0.9rem] rounded-[1.2rem] border border-blue-100 bg-white/60 p-[1.6rem] text-start hover:shadow-normal"
               onClick={() => handleClick(question.question)}
             >
               <p className="text-body-3-semibold text-blue-500">{question.category_name}</p>
