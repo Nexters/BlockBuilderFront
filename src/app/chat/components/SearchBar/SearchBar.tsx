@@ -32,8 +32,8 @@ const SearchBar = ({ text, setText, handleSubmit, disabled }: SearchBarProps) =>
   };
 
   return (
-    <div className="absolute bottom-[7.2rem] flex h-auto w-full justify-center px-[4rem]">
-      <div className="relative flex min-h-[5.6rem] w-full items-end desktop:max-w-[68.4rem]">
+    <div className="absolute bottom-0 flex h-auto w-full justify-center rounded-t-[2.4rem] pb-[7.2rem] backdrop-blur-[15px] mobile:mx-[2rem] mobile:w-[calc(100%-4rem)] tablet:mx-[4rem] tablet:w-[calc(100%-8rem)] desktop:left-1/2 desktop:max-w-[68.4rem] desktop:-translate-x-1/2">
+      <div className="relative flex min-h-[5.6rem] w-full items-end">
         <textarea
           ref={textareaRef}
           value={text}
@@ -41,7 +41,7 @@ const SearchBar = ({ text, setText, handleSubmit, disabled }: SearchBarProps) =>
           onKeyDown={handleKeyDown}
           rows={1}
           placeholder="궁금한 정보를 모두 물어보세요."
-          className="max-h-[12rem] w-full resize-none overflow-y-auto rounded-[2.4rem] border border-blue-100 bg-white py-[1.6rem] pl-[2.2rem] pr-[6rem] text-body-1-regular focus:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-400"
+          className="scrollbar-hide max-h-[12rem] w-full resize-none overflow-y-auto rounded-[2.4rem] border border-blue-100 bg-white py-[1.6rem] pl-[2.2rem] pr-[6rem] text-body-1-regular focus:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-400"
         />
         <button
           type="submit"

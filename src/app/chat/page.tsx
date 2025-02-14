@@ -40,7 +40,7 @@ export default function ChatPage() {
   );
 
   return (
-    <div className="chat-background relative size-full mobile:h-[calc(100vh-56px)]">
+    <div className="relative h-screen w-full mobile:h-[calc(100vh-56px)]">
       {chatList.length === 0 ? (
         view === 'recommendation' ? (
           <QuestionRecommendation handleSubmit={handleSubmit} handleViewChange={() => setView('total')} />
