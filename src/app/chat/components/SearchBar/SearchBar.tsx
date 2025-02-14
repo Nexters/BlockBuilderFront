@@ -1,7 +1,7 @@
 import { Icon } from '@/assets/icons';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useCallback } from 'react';
 
-const MAX_LINE = 5;
+const MAX_HEIGHT = 204;
 const LINE_HEIGHT = 24;
 
 interface SearchBarProps {
@@ -14,22 +14,41 @@ interface SearchBarProps {
 const SearchBar = ({ text, setText, handleSubmit, disabled }: SearchBarProps) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  useEffect(() => {
+  const resetHeight = useCallback(() => {
+    if (!textareaRef.current) return;
+    textareaRef.current.style.height = 'auto';
+  }, []);
+
+  const calculateHeight = useCallback(() => {
     if (!textareaRef.current) return;
 
-    const maxHeight = MAX_LINE * LINE_HEIGHT;
-    const newHeight = Math.min(textareaRef.current.scrollHeight, maxHeight);
-    textareaRef.current.style.height = `${newHeight}px`;
-  }, [text]);
+    // 임시로 높이를 초기화하여 실제 스크롤 높이를 측정
+    textareaRef.current.style.height = `${LINE_HEIGHT}px`;
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      if (disabled) return;
-      if (e.nativeEvent.isComposing) return;
-      handleSubmit(text);
-    }
-  };
+    // padding 값을 제외한 실제 content 높이 계산 (상하 padding 각각 1.6rem = 16px)
+    const contentHeight = textareaRef.current.scrollHeight - 32;
+    const lines = Math.ceil(contentHeight / LINE_HEIGHT);
+    const newHeight = Math.min(lines * LINE_HEIGHT, MAX_HEIGHT) + 32; // padding 다시 추가
+
+    textareaRef.current.style.height = `${newHeight}px`;
+  }, []);
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        if (disabled) return;
+        if (e.nativeEvent.isComposing) return;
+        handleSubmit(text);
+        resetHeight();
+      }
+    },
+    [disabled, handleSubmit, text, resetHeight]
+  );
+
+  useEffect(() => {
+    calculateHeight();
+  }, [calculateHeight, text]);
 
   return (
     <div className="absolute bottom-0 flex h-auto w-full justify-center rounded-t-[2.4rem] pb-[7.2rem] backdrop-blur-[15px] mobile:mx-[2rem] mobile:w-[calc(100%-4rem)] tablet:mx-[4rem] tablet:w-[calc(100%-8rem)] desktop:left-1/2 desktop:max-w-[68.4rem] desktop:-translate-x-1/2">
@@ -41,7 +60,7 @@ const SearchBar = ({ text, setText, handleSubmit, disabled }: SearchBarProps) =>
           onKeyDown={handleKeyDown}
           rows={1}
           placeholder="궁금한 정보를 모두 물어보세요."
-          className="scrollbar-hide max-h-[12rem] w-full resize-none overflow-y-auto rounded-[2.4rem] border border-blue-100 bg-white py-[1.6rem] pl-[2.2rem] pr-[6rem] text-body-1-regular focus:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-400"
+          className="scrollbar-hide max-h-[20.4rem] w-full resize-none overflow-y-auto rounded-[2.4rem] border border-blue-100 bg-white py-[1.6rem] pl-[2.2rem] pr-[6rem] text-body-1-regular focus:bg-gray-100 focus:shadow-normal focus:outline-none focus:ring-1 focus:ring-blue-400"
         />
         <button
           type="submit"

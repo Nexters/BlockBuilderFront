@@ -35,7 +35,7 @@ const QuestionRecommendation = ({ handleSubmit, handleViewChange }: QuestionReco
         <Questions questions={questions} handleClick={handleClick} />
         <button
           onClick={handleViewChange}
-          className="flex items-center gap-[0.4rem] rounded-full border border-blue-100 bg-white/60 py-[0.6rem] pl-[1.2rem] pr-[0.8rem] text-body-2-medium text-gray-700"
+          className="flex items-center gap-[0.4rem] rounded-full border border-blue-100 bg-white/60 py-[0.6rem] pl-[1.2rem] pr-[0.8rem] text-body-2-medium text-gray-700 hover:shadow-normal"
         >
           <span>질문 더보기</span>
           <Icon name="ArrowRight" size={20} />
