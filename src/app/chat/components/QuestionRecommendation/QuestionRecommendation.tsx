@@ -5,6 +5,7 @@ import Questions from '../Questions/Questions';
 import useRecommendQuestions from '../../hooks/useRecommendQuestions';
 import Image from 'next/image';
 import { Icon } from '@/assets/icons';
+import useScreen from '@/hooks/useScreen';
 
 interface QuestionRecommendationProps {
   handleSubmit: (text: string) => void;
@@ -13,6 +14,7 @@ interface QuestionRecommendationProps {
 
 const QuestionRecommendation = ({ handleSubmit, handleViewChange }: QuestionRecommendationProps) => {
   const { questions, selectedLevel, setSelectedLevel } = useRecommendQuestions();
+  const { isMobile } = useScreen();
 
   const handleClick = (text: string) => {
     handleSubmit(text);
@@ -45,8 +47,8 @@ const QuestionRecommendation = ({ handleSubmit, handleViewChange }: QuestionReco
         className="absolute left-1/2 top-[calc(50%-24rem)] -translate-x-1/2 -translate-y-1/2"
         src="/images/chat/block.gif"
         alt="block"
-        width={596}
-        height={596}
+        width={isMobile ? 408 : 596}
+        height={isMobile ? 408 : 596}
       />
     </div>
   );

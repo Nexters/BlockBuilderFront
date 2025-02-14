@@ -18,7 +18,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ResponsiveContainer/common/Drawer';
-import { BREAKPOINT } from '@/constants/viewport';
+import useScreen from '@/hooks/useScreen';
 
 export function DrawerDialog({
   trigger,
@@ -32,7 +32,7 @@ export function DrawerDialog({
   children: React.ReactNode;
 }) {
   const [open, setOpen] = React.useState(false);
-  const isMobile = window.matchMedia(`(max-width: ${BREAKPOINT.MOBILE}px)`).matches;
+  const { isMobile } = useScreen();
 
   if (!isMobile) {
     return (
