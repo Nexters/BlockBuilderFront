@@ -60,7 +60,7 @@ const SearchBar = ({ text, setText, handleSubmit, disabled }: SearchBarProps) =>
           onKeyDown={handleKeyDown}
           rows={1}
           placeholder="궁금한 정보를 모두 물어보세요."
-          className="scrollbar-hide max-h-[20.4rem] w-full resize-none overflow-y-auto rounded-[2.4rem] border border-blue-100 bg-white py-[1.6rem] pl-[2.2rem] pr-[6rem] text-body-1-regular focus:bg-gray-100 focus:shadow-normal focus:outline-none focus:ring-1 focus:ring-blue-400"
+          className="scrollbar-hide max-h-[20.4rem] w-full resize-none overflow-y-auto rounded-[2.4rem] border border-blue-100 bg-white py-[1.6rem] pl-[2.2rem] pr-[6rem] text-body-1-regular focus:bg-gray-100 focus:shadow-normal focus:outline-none focus:ring-1 focus:ring-blue-400 mobile:max-h-[11.6rem]"
         />
         <button
           type="submit"
