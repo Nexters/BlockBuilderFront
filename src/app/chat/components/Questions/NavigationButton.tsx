@@ -1,23 +1,34 @@
 import { Icon } from '@/assets/icons';
 import clsx from 'clsx';
-import { useSwiper } from 'swiper/react';
+import { SwiperClass } from 'swiper/react';
 
-const NavigationButton = ({ direction }: { direction: 'prev' | 'next' }) => {
-  const swiper = useSwiper();
+const NavigationButton = ({
+  direction,
+  swiper,
+  isSmall,
+}: {
+  direction: 'prev' | 'next';
+  swiper: SwiperClass | null;
+  isSmall: boolean;
+}) => {
   return (
     <div
       className={clsx(
-        'absolute top-0 z-10 flex h-full w-[3.4rem] items-center',
+        'flex w-[3rem] items-center justify-center',
         direction === 'prev' ? 'left-0' : 'right-0 justify-end'
       )}
     >
       <button
-        className={clsx('flex size-[3rem] items-center justify-center', direction === 'prev' && 'rotate-180')}
+        className={clsx(
+          'pointer-events-auto flex size-[2.8rem] items-center justify-center',
+          isSmall && 'rounded-full border border-blue-100 bg-white',
+          direction === 'prev' && 'rotate-180'
+        )}
         onClick={() => {
           if (direction === 'prev') {
-            swiper.slidePrev();
+            swiper?.slidePrev();
           } else {
-            swiper.slideNext();
+            swiper?.slideNext();
           }
         }}
       >
