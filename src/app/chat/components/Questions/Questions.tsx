@@ -30,7 +30,7 @@ const Questions = ({ questions, handleClick }: QuestionsProps) => {
     <div className="@container relative flex h-[15.1rem] w-full max-w-[76.4rem] items-center justify-center overflow-hidden tablet:max-w-[min(calc(100vw-60px),76.4rem)]">
       <div
         className={clsx(
-          'pointer-events-none absolute top-0 z-10 flex size-full h-[13.1rem] max-w-[76.4rem] items-center justify-between px-[4rem]',
+          'pointer-events-none absolute top-0 z-10 flex size-full h-[15.1rem] max-w-[76.4rem] items-center justify-between px-[4rem]',
           isSmall &&
             'bg-[linear-gradient(90deg,#F9FAF8_7%,rgba(255,255,255,0)_27%,rgba(255,255,255,0)_73.5%,#F1F4FD_93%)]'
         )}
