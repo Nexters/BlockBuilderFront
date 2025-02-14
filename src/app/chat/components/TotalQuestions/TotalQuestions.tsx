@@ -25,7 +25,7 @@ const TotalQuestions = ({ handleSubmit }: TotalQuestionsProps) => {
   };
 
   return (
-    <div className="mx-auto flex size-full flex-col gap-[2.8rem] px-[4rem] py-[6.4rem] mobile:px-[2rem] mobile:py-[4rem] desktop:max-w-[76.4rem]">
+    <div className="mx-auto flex size-full flex-col gap-[2.8rem] px-[4rem] pt-[6.4rem] mobile:px-[2rem] mobile:py-[4rem] desktop:max-w-[76.4rem]">
       <h1 className="text-title-1-semibold">단계별 질문 추천</h1>
       <div className="flex h-[3rem] w-full">
         {Object.entries(Level).map(([key, value]) => (
@@ -57,14 +57,14 @@ const TotalQuestions = ({ handleSubmit }: TotalQuestionsProps) => {
           </button>
         ))}
       </div>
-      <div className="grid max-h-[calc(100vh-40rem)] flex-1 grid-cols-1 gap-[1.2rem] overflow-y-auto tablet:grid-cols-2 desktop:grid-cols-3">
+      <div className="scrollbar-hide -m-[0.6rem] grid h-full flex-1 grid-cols-1 overflow-y-auto pb-[15.6rem] mobile:pb-[10rem] tablet:grid-cols-2 desktop:grid-cols-3">
         {questions
           .find((question) => question.level === tab)
           ?.questions.filter((question) => filter === '전체' || question.category_name === filter)
           .map((question) => (
             <button
               key={question.id}
-              className="flex h-[13.1rem] flex-col gap-[0.9rem] rounded-[1.2rem] border border-blue-100 bg-white/60 p-[1.6rem] text-start"
+              className="hover:bg-gradient-card-2 m-[0.6rem] flex h-[13.1rem] flex-col gap-[0.9rem] rounded-[1.2rem] border border-blue-100 bg-white/60 p-[1.6rem] text-start hover:shadow-normal"
               onClick={() => handleClick(question.question)}
             >
               <p className="text-body-3-semibold text-blue-500">{question.category_name}</p>

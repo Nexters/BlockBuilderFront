@@ -12,11 +12,13 @@ interface QuestionProps {
 
 const Question = ({ id, category_name, question, isActive, isPrev, onClick }: QuestionProps) => {
   return (
-    <div key={id} className={clsx('flex h-full items-center', isPrev && 'justify-end')}>
+    <div key={id} className={clsx('flex h-[13.1rem] items-center', isPrev && 'justify-end')}>
       <button
         className={clsx(
-          'flex h-full flex-col gap-[0.8rem] rounded-[1.2rem] p-[1.6rem] text-start transition-transform',
-          isActive ? 'h-full w-[22rem] bg-blue-200' : 'h-[10.6rem] w-[18.6rem] border border-blue-100 bg-white/60'
+          'flex h-full flex-col gap-[0.8rem] rounded-[1.2rem] p-[1.6rem] text-start transition-transform hover:shadow-normal',
+          isActive
+            ? 'hover:bg-gradient-card-1 h-full w-[22rem] bg-blue-200'
+            : 'h-[10.6rem] w-[18.6rem] border border-blue-100 bg-white/60'
         )}
         onClick={onClick}
       >

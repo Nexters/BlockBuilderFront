@@ -81,12 +81,3 @@ body {
   font-size: 10px;
   color: var(--color-gray-900);
 }
-
-.chat-background {
-  background: radial-gradient(
-      106.26% 71.92% at 7.42% 86.67%,
-      rgba(253, 252, 233, 0.5) 0%,
-      rgba(248, 250, 251, 0) 68.5%
-    ),
-    radial-gradient(117.67% 98.65% at 85.14% 22.26%, rgba(231, 235, 255, 0.8) 0%, rgba(248, 250, 251, 0) 81.5%), #f8fafb;
-}

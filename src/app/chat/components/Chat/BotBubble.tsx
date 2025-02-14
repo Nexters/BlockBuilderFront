@@ -1,21 +1,37 @@
 import Image from 'next/image';
-import { useState, useEffect, useMemo, memo } from 'react';
+import { useState, useEffect, useMemo, memo, useCallback } from 'react';
 import { TextShimmer } from '@/components/ui/TextShimmer';
+import ToolButton from './ToolButton';
+import clsx from 'clsx';
 
 const BotBubble = memo(
   ({
+    id,
     text,
     isLoading,
     handleFinishAnswering,
+    isAnswering,
+    recreateChat,
+    isLastMessage,
   }: {
+    id?: number;
     text: string;
     isLoading?: boolean;
     handleFinishAnswering?: () => void;
+    isAnswering?: boolean;
+    recreateChat?: (id: number) => void;
+    isLastMessage?: boolean;
   }) => {
     const [displayText, setDisplayText] = useState('');
     const words = useMemo(() => text.split(' ') ?? [], [text]);
 
+    const handleCopy = useCallback(() => {
+      const textToCopy = text.replace(/<[^>]*>/g, '');
+      navigator.clipboard.writeText(textToCopy);
+    }, [text]);
+
     useEffect(() => {
+      if (!isLastMessage) return;
       let currentIndex = 0;
       const timer = setInterval(() => {
         if (currentIndex < words.length) {
@@ -31,7 +47,7 @@ const BotBubble = memo(
       }, 50);
 
       return () => clearInterval(timer);
-    }, [handleFinishAnswering, text, words]);
+    }, [handleFinishAnswering, isLastMessage, text, words]);
 
     useEffect(() => {
       const lastChat = document.querySelector('.chat-message:last-child');
@@ -53,10 +69,21 @@ const BotBubble = memo(
             <TextShimmer duration={1}>답변 생성중입니다..</TextShimmer>
           </div>
         ) : (
-          <div
-            className="max-w-[calc(100%-5.6rem)] flex-1 whitespace-break-spaces text-body-1-medium [&>*]:w-full [&>*]:whitespace-pre-line"
-            dangerouslySetInnerHTML={{ __html: displayText }}
-          />
+          <div className="flex max-w-[calc(100%-5.6rem)] flex-1 flex-col gap-[0.8rem]">
+            <div
+              className={clsx(
+                'flex w-full flex-col gap-[0.8rem] whitespace-normal text-body-1-medium',
+                '[&>*]:w-full [&>*]:whitespace-normal'
+              )}
+              dangerouslySetInnerHTML={{ __html: displayText }}
+            />
+            {(!isAnswering || !isLastMessage) && (
+              <div className="flex gap-[1rem]">
+                <ToolButton size={28} icon="Copy" onClick={handleCopy} />
+                <ToolButton icon="Reaction" onClick={() => recreateChat?.((id ?? 0) - 1)} />
+              </div>
+            )}
+          </div>
         )}
       </div>
     );

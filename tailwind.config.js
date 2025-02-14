@@ -49,6 +49,8 @@ module.exports = {
           'radial-gradient(122.41% 81.02% at 15.55% 83.7%, var(--color-yellow-100, rgba(253, 252, 233, 0.50)) 0%, rgba(248, 250, 251, 0.00) 68.5%), radial-gradient(101.49% 84.29% at 74.32% 32.08%, var(--color-blue-100, #E7EBFF) 0%, var(--color-gray-100, #F8FAFB) 68.5%)',
         'gradient-dark':
           'radial-gradient(122.41% 81.02% at 15.55% 83.7%, var(--color-blue-100, rgba(35, 45, 77, 0.10)) 0%, var(--color-background, rgba(14, 14, 14, 0.10) 68.5%), radial-gradient(137.17% 109.57% at 88.91% 5.18%, var(--color-blue-100, rgba(35, 45, 77, 0.60)) 0%, var(--color-gray-100, rgba(29, 29, 29, 0.60)) 83.32%), var(--color-background, #0E0E0E)',
+        'gradient-card-1': 'radial-gradient(101.49% 84.29% at 74.32% 32.08%, var(--blue-300, #97ADFE) 0%, var(--blue-200, #C3CDFE) 68.5%)',
+        'gradient-card-2': 'radial-gradient(101.49% 84.29% at 74.32% 32.08%, var(--blue-100, #E7EBFF) 0%, var(--gray-100, #F8FAFB) 68.5%)',
       },
       fontSize: {
         // headline
@@ -310,5 +312,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), require("tailwind-scrollbar-hide")],
 };
