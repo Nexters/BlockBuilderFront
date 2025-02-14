@@ -47,6 +47,7 @@ export const useUser = () => {
         }
 
         const response = await fetch('/api/wallet/me');
+        console.log('response: ', response);
         if (!response.ok) {
           throw new Error('Failed to fetch user data');
         }

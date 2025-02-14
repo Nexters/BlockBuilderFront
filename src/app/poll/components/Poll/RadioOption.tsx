@@ -1,15 +1,15 @@
 import clsx from 'clsx';
 
-interface RadioOptionProps {
+interface RadioOptionProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
-  value: string;
+  value: string | number;
   label: string;
   percentage: number;
   checked: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function RadioOption({ name, value, label, percentage, checked, onChange }: RadioOptionProps) {
+export default function RadioOption({ name, value, label, percentage, checked, onChange, disabled }: RadioOptionProps) {
   return (
     <label className="block cursor-pointer">
       <input
@@ -18,6 +18,7 @@ export default function RadioOption({ name, value, label, percentage, checked, o
         value={value}
         checked={checked}
         onChange={onChange}
+        disabled={disabled}
         className="absolute h-0 w-0 opacity-0" // 실제 라디오 버튼 숨기기
       />
 

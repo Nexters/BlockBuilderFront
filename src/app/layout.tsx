@@ -5,6 +5,7 @@ import localFont from 'next/font/local';
 import ResponsiveContainer from '@/components/ResponsiveContainer';
 import { getInitialViewport } from '@/utils/viewport';
 import { UserProvider } from '@/contexts/UserContext';
+import TanStackProvider from '@/providers/TanstackProvider';
 
 import './globals.css';
 
@@ -26,12 +27,15 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const initialWidth = await getInitialViewport();
+
   return (
     <html lang="ko" suppressHydrationWarning className={`${pretendard.variable}`}>
       <body>
         <ThemeProvider attribute="class">
           <UserProvider>
-            <ResponsiveContainer initialWidth={initialWidth}>{children}</ResponsiveContainer>
+            <TanStackProvider>
+              <ResponsiveContainer initialWidth={initialWidth}>{children}</ResponsiveContainer>
+            </TanStackProvider>
           </UserProvider>
         </ThemeProvider>
       </body>

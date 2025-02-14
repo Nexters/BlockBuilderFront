@@ -1,17 +1,18 @@
-import Container from './components/Container';
-import Tabs from './components/Tabs';
-import Poll from './components/Poll';
+import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
+import PollClient from './PollClient';
+import { getVoteList } from './api/getVoteList';
+import { getQueryClient } from '@/providers/getQueryClient';
 
-export default function PollPage() {
+export default async function PollPage() {
+  const queryClient = getQueryClient();
+  await queryClient.prefetchQuery({
+    queryFn: getVoteList,
+    queryKey: ['getVoteList'],
+  });
+
   return (
-    <Container>
-      <h1 className="text-title-1-semibold text-gray-800">투표하고 블록체인에 저장해볼까요?</h1>
-      <p className="mt-[0.8rem] text-body-2-regular text-gray-700">
-        투표를 하면 블록체인에 저장된 컨트렉트를 확인할 수 있어요.
-      </p>
-      <Tabs>
-        <Poll />
-      </Tabs>
-    </Container>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <PollClient />
+    </HydrationBoundary>
   );
 }
