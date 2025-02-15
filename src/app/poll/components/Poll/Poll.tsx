@@ -7,6 +7,7 @@ import { postParticipateToVote } from '../../api/postParticipateToVote';
 import { useMutation } from '@tanstack/react-query';
 import SubmitButton from './SubmitButton';
 import { useToast } from '@/contexts/ToastContext';
+import { useDebounce } from '@/hooks/useDebounce';
 
 interface PollProps {
   endTime: string;
@@ -65,6 +66,15 @@ export default function Poll({
     window.open(receipt_link, '_blank');
   };
 
+  const debouncedVote = useDebounce({
+    callback: handleVote,
+    delay: 500,
+  });
+  const debouncedOpenReceiptLink = useDebounce({
+    callback: handleOpenReceiptLink,
+    delay: 500,
+  });
+
   const isExpired = new Date(endTime) < new Date();
   const isDisabled = voted || isExpired;
 
@@ -109,8 +119,8 @@ export default function Poll({
           <SubmitButton
             isDisabled={!selected}
             isVoted={voted}
-            onReceiptClick={handleOpenReceiptLink}
-            onVoteClick={handleVote}
+            onReceiptClick={debouncedOpenReceiptLink}
+            onVoteClick={debouncedVote}
           />
         </div>
       )}

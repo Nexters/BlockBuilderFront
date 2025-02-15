@@ -52,7 +52,7 @@ export default function RadioOption({
             style={{ width: `${voted || isExpired ? percentage : 0}%` }}
           />
           <div className="relative flex flex-1 flex-col gap-[1.2rem]">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-[1.4rem]">
               <div>
                 {isExpired && isVotedByUser && (
                   <span className="mb-[0.6rem] inline-flex items-center gap-[0.2rem] rounded-full bg-gray-800 p-[0.2rem_0.6rem_0.2rem_0.4rem] text-caption-1-semibold text-blue-200">
@@ -62,7 +62,7 @@ export default function RadioOption({
                 )}
                 <p
                   className={clsx(
-                    'text-body-1-medium',
+                    'line-clamp-2 text-body-1-medium',
                     checked || isVotedByUser || (isExpired && isWinner) ? 'text-blue-600' : 'text-gray-800'
                   )}
                 >

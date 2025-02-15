@@ -7,7 +7,6 @@ import Tabs from './components/Tabs';
 import { useVoteList } from './hooks/useVoteList';
 import { useVoteListByUser } from './hooks/useVoteListByUser';
 import { useMemo, useState } from 'react';
-import Nickname from './components/Nickname';
 import TooltipContainer from './components/Poll/TooltipContainer';
 
 export default function PollClient() {
@@ -52,7 +51,6 @@ export default function PollClient() {
       <p className="mt-[0.8rem] text-body-2-regular text-gray-700">
         투표를 하면 블록체인에 저장된 컨트렉트를 확인할 수 있어요.
       </p>
-      <Nickname />
       <Tabs currentTab={currentTab} handleChangeTab={handleChangeTab}>
         {polls?.map(
           ({
