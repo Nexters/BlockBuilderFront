@@ -89,3 +89,12 @@ body {
   font-size: 10px;
   color: var(--color-gray-900);
 }
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
