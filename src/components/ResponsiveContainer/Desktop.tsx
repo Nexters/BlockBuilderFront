@@ -16,7 +16,10 @@ export default function Desktop({ children }: { children: React.ReactNode }) {
         </div>
         <ThemeSwitch />
       </aside>
-      <main className="flex-1" style={{ background: 'var(--background-radial-gradient)' }}>
+      <main
+        className="max-h-[100vh] flex-1 overflow-y-auto"
+        style={{ background: 'var(--background-radial-gradient)' }}
+      >
         {children}
       </main>
     </div>
