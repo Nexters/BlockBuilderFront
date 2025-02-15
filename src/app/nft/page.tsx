@@ -1,53 +1,11 @@
 'use client';
 
-import { userStorage, useUser } from '@/hooks/useUser';
-import { fetchJson } from '@/utils/api';
-import { useEffect, useState } from 'react';
-import { Nft, TokenUri } from './type';
 import Image from 'next/image';
 import Link from 'next/link';
+import useNft from './useNft';
 
 const NftPage = () => {
-  const [nft, setNft] = useState<Nft | null>(null);
-  const { data: user } = useUser();
-  const { getNft, saveNft } = userStorage;
-  const [tokenUri, setTokenUri] = useState<TokenUri | null>(null);
-
-  useEffect(() => {
-    const nft = getNft();
-    if (nft) {
-      setNft(nft);
-    } else {
-      if (!user) return;
-      const fetchNft = async () => {
-        const nft = await fetchJson<Nft>('/api/nft/ca/mint-nft', {
-          method: 'POST',
-          body: JSON.stringify({
-            recipient: user.token,
-          }),
-        });
-        setNft(nft);
-        saveNft({
-          image_url: nft.image_url,
-          opensea: nft.opensea,
-          receipt_link: nft.receipt_link,
-          tokenId: nft.tokenId,
-          tokenUri: nft.tokenUri,
-        });
-      };
-      fetchNft();
-    }
-  }, [user, getNft, saveNft]);
-
-  useEffect(() => {
-    if (!nft) return;
-    const fetchTokenUri = async () => {
-      const data = await fetch(nft.tokenUri);
-      const tokenUri = await data.json();
-      setTokenUri(tokenUri);
-    };
-    fetchTokenUri();
-  }, [nft]);
+  const { nft, tokenUri } = useNft();
 
   return (
     <div className="flex size-full flex-col items-center justify-center gap-[4rem] p-[4rem]">
