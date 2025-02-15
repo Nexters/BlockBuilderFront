@@ -20,7 +20,7 @@ const useGenerateAnswer = () => {
         throw new Error('User token is not found');
       }
 
-      const response = await fetchJson<string>('/api/agent/chat', {
+      const response = await fetchJson<string>('/api/agent/gemini', {
         method: 'POST',
         body: JSON.stringify({ msg: text }),
         headers: {
