@@ -1,3 +1,4 @@
+import { ToastProvider } from '@/contexts/ToastContext';
 import { Navigation } from './common/Navigation';
 import RecentSearchKeyword from './common/RecentSearchKeyword';
 import ThemeSwitch from './common/ThemeSwitch';
@@ -16,12 +17,14 @@ export default function Desktop({ children }: { children: React.ReactNode }) {
         </div>
         <ThemeSwitch />
       </aside>
-      <main
-        className="max-h-[100vh] flex-1 overflow-y-auto"
-        style={{ background: 'var(--background-radial-gradient)' }}
-      >
-        {children}
-      </main>
+      <ToastProvider>
+        <main
+          className="relative max-h-[100vh] flex-1 overflow-y-auto"
+          style={{ background: 'var(--background-radial-gradient)' }}
+        >
+          {children}
+        </main>
+      </ToastProvider>
     </div>
   );
 }

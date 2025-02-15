@@ -1,4 +1,5 @@
 import { Icon, IconType } from '@/assets/icons';
+import { ToastProvider } from '@/contexts/ToastContext';
 import { useMount } from '@/hooks/useMount';
 import { Menu, useNavigation } from '@/hooks/useNavigation';
 import { capitalize } from '@/utils/string';
@@ -19,12 +20,14 @@ export default function Tablet({ children }: { children: React.ReactNode }) {
           <ThemeSwitch />
         </nav>
       </aside>
-      <main
-        className="max-h-[100vh] flex-1 overflow-y-auto"
-        style={{ background: 'var(--background-radial-gradient)' }}
-      >
-        {children}
-      </main>
+      <ToastProvider>
+        <main
+          className="relative max-h-[100vh] flex-1 overflow-y-auto"
+          style={{ background: 'var(--background-radial-gradient)' }}
+        >
+          {children}
+        </main>
+      </ToastProvider>
     </div>
   );
 }

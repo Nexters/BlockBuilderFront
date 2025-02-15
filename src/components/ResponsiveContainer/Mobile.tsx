@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Navigation } from './common/Navigation';
 import RecentSearchKeyword from './common/RecentSearchKeyword';
 import ThemeSwitch from './common/ThemeSwitch';
+import { ToastProvider } from '@/contexts/ToastContext';
 
 export default function Mobile({ children }: { children: React.ReactNode }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -41,9 +42,11 @@ export default function Mobile({ children }: { children: React.ReactNode }) {
           <ThemeSwitch />
         </div>
       </aside>
-      <main className="w-full" style={{ background: 'var(--background-radial-gradient)' }}>
-        {children}
-      </main>
+      <ToastProvider>
+        <main className="relative w-full" style={{ background: 'var(--background-radial-gradient)' }}>
+          {children}
+        </main>
+      </ToastProvider>
     </>
   );
 }

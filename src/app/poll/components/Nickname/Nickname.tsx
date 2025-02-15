@@ -1,10 +1,15 @@
+import { userStorage } from '@/hooks/useUser';
+import { useState } from 'react';
+
 export default function Nickname() {
+  const nickName = userStorage.getUserData().nickname || '';
+  const [nextNickname, setNextNickname] = useState(nickName);
   const handleChangeNickname = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('e: ', e.target.value);
+    setNextNickname(e.target.value);
   };
 
   return (
-    <div className="flex items-center gap-[1.6rem]">
+    <div className="mt-[2.8rem] flex items-center gap-[1.6rem]">
       <label htmlFor="nickname" className="text-body-2-medium text-gray-600">
         닉네임
       </label>
@@ -12,7 +17,7 @@ export default function Nickname() {
         <input
           type="text"
           id="nickname"
-          value="명랑한고릴라"
+          value={nextNickname}
           className="h-[4.2rem] w-full min-w-[18.5rem] rounded-[0.8rem] border border-gray-300 py-[0.8rem] pl-[1.2rem] pr-[1rem] text-body-1-medium text-gray-700 shadow-sm focus:outline-none"
           onChange={handleChangeNickname}
         />

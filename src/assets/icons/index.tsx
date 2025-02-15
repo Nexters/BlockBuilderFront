@@ -12,6 +12,8 @@ import Poll from './Poll';
 import Reaction from './Reaction';
 import Copy from './Copy';
 import Landing from './Landing';
+import CheckCircle from './CheckCircle';
+import Tooltip from './Tooltip';
 
 export const Icons = {
   Menu,
@@ -27,6 +29,8 @@ export const Icons = {
   Reaction,
   Copy,
   Landing,
+  CheckCircle,
+  Tooltip,
 } as const;
 
 export type IconType = keyof typeof Icons;
