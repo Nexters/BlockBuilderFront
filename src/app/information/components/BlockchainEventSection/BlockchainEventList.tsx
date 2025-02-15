@@ -35,7 +35,7 @@ const BlockchainEventList = ({
         })}
       </Swiper>
 
-      <ul className="grid grid-flow-col grid-rows-2 gap-[2rem] overflow-x-auto pl-[4rem] pr-[2rem] md:hidden mobile:pl-[2rem]">
+      <ul className="grid grid-flow-col grid-rows-2 gap-[2rem] overflow-x-auto pl-[4rem] pr-[2rem] scrollbar-hide md:hidden mobile:pl-[2rem]">
         {blockchainEventList.map((blockchainEvent) => {
           return (
             <li key={`${blockchainEvent.id}-${blockchainEvent.sourceIndex}`}>

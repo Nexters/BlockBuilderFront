@@ -18,7 +18,12 @@ export default function Desktop({ children }: { children: React.ReactNode }) {
         <ThemeSwitch />
       </aside>
       <ToastProvider>
-        <main className="bg-gradient-light dark:bg-gradient-dark relative flex-1">{children}</main>
+        <main
+          className="relative max-h-[100vh] flex-1 overflow-y-auto"
+          style={{ background: 'var(--background-radial-gradient)' }}
+        >
+          {children}
+        </main>
       </ToastProvider>
     </div>
   );

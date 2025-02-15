@@ -52,7 +52,7 @@ export default function ChatPage() {
   );
 
   return (
-    <div className="relative h-screen w-full overflow-hidden mobile:h-[calc(100vh-56px)]">
+    <div className="relative h-screen w-full overflow-hidden mobile:h-[calc(100vh-5.6rem)]">
       {chatList.length === 0 ? (
         view === 'recommendation' ? (
           <QuestionRecommendation handleSubmit={handleSubmit} handleViewChange={() => setView('total')} />

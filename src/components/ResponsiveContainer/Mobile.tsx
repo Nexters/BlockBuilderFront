@@ -43,7 +43,9 @@ export default function Mobile({ children }: { children: React.ReactNode }) {
         </div>
       </aside>
       <ToastProvider>
-        <main className="bg-gradient-light dark:bg-gradient-dark relative w-full">{children}</main>
+        <main className="relative w-full" style={{ background: 'var(--background-radial-gradient)' }}>
+          {children}
+        </main>
       </ToastProvider>
     </>
   );

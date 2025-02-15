@@ -11,6 +11,7 @@ import News from './News';
 import Poll from './Poll';
 import Reaction from './Reaction';
 import Copy from './Copy';
+import Landing from './Landing';
 import CheckCircle from './CheckCircle';
 import Tooltip from './Tooltip';
 
@@ -27,6 +28,7 @@ export const Icons = {
   Meetup,
   Reaction,
   Copy,
+  Landing,
   CheckCircle,
   Tooltip,
 } as const;

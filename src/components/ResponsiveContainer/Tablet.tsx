@@ -21,7 +21,12 @@ export default function Tablet({ children }: { children: React.ReactNode }) {
         </nav>
       </aside>
       <ToastProvider>
-        <main className="bg-gradient-light dark:bg-gradient-dark relative w-full">{children}</main>
+        <main
+          className="relative max-h-[100vh] flex-1 overflow-y-auto"
+          style={{ background: 'var(--background-radial-gradient)' }}
+        >
+          {children}
+        </main>
       </ToastProvider>
     </div>
   );
