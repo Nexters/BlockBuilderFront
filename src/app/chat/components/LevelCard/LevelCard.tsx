@@ -8,7 +8,7 @@ const LevelCard = ({ level, isSelected, onClick }: { level: Level; isSelected: b
         'flex h-[3rem] w-[4.9rem] flex-col items-center justify-center gap-[0.2rem] rounded-[0.6rem] border',
         isSelected
           ? 'border-blue-400 bg-gray-100 text-blue-500 shadow-normal'
-          : 'border-blue-100 bg-white/60 text-gray-500'
+          : 'bg-system-light/60 border-blue-100 text-gray-500'
       )}
       onClick={onClick}
     >

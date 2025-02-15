@@ -11,6 +11,7 @@ import News from './News';
 import Poll from './Poll';
 import Reaction from './Reaction';
 import Copy from './Copy';
+import Landing from './Landing';
 
 export const Icons = {
   Menu,
@@ -25,6 +26,7 @@ export const Icons = {
   Meetup,
   Reaction,
   Copy,
+  Landing,
 } as const;
 
 export type IconType = keyof typeof Icons;

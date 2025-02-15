@@ -60,15 +60,15 @@ const SearchBar = ({ text, setText, handleSubmit, disabled }: SearchBarProps) =>
           onKeyDown={handleKeyDown}
           rows={1}
           placeholder="궁금한 정보를 모두 물어보세요."
-          className="scrollbar-hide max-h-[20.4rem] w-full resize-none overflow-y-auto rounded-[2.4rem] border border-blue-100 bg-white py-[1.6rem] pl-[2.2rem] pr-[6rem] text-body-1-regular focus:bg-gray-100 focus:shadow-normal focus:outline-none focus:ring-1 focus:ring-blue-400 mobile:max-h-[11.6rem]"
+          className="scrollbar-hide bg-system-light max-h-[20.4rem] w-full resize-none overflow-y-auto rounded-[2.4rem] border border-blue-100 py-[1.6rem] pl-[2.2rem] pr-[6rem] text-body-1-regular focus:bg-gray-100 focus:shadow-normal focus:outline-none focus:ring-1 focus:ring-blue-400 mobile:max-h-[11.6rem]"
         />
         <button
           type="submit"
           onClick={() => handleSubmit(text)}
-          className="absolute bottom-[1.2rem] right-[1.2rem] flex size-[3.2rem] -rotate-90 items-center justify-center rounded-full bg-blue-400 text-white disabled:bg-gray-500"
+          className="text-system-light absolute bottom-[1.2rem] right-[1.2rem] flex size-[3.2rem] -rotate-90 items-center justify-center rounded-full bg-blue-400 disabled:bg-gray-500"
           disabled={text.trim().length === 0 || disabled}
         >
-          <Icon name="ArrowRight" className="text-white" />
+          <Icon name="ArrowRight" className="text-system-light" />
         </button>
       </div>
     </div>

@@ -61,7 +61,7 @@ const Quiz = ({
         </div>
         <button
           className={clsx(
-            'flex h-[7.2rem] w-full items-center justify-center rounded-[1.2rem] bg-blue-400 py-[0.5rem] text-title-2-semibold text-white hover:bg-blue-500 disabled:bg-gray-200 disabled:text-gray-500'
+            'text-system-light flex h-[7.2rem] w-full items-center justify-center rounded-[1.2rem] bg-blue-400 py-[0.5rem] text-title-2-semibold hover:bg-blue-500 disabled:bg-gray-200 disabled:text-gray-500'
           )}
           disabled={selectedAnswer === null}
           onClick={() => onAnswerSubmit(selectedAnswer)}
