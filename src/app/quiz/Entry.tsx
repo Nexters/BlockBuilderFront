@@ -9,7 +9,7 @@ const Entry = ({ onStart }: { onStart: () => void }) => {
       </div>
       <Image src="/images/chat/block.gif" alt="block" width={300} height={300} className="mobile:size-[24rem]" />
       <button
-        className="h-[7.2rem] w-full shrink-0 rounded-[1.2rem] bg-blue-500 px-[1.5rem] py-[0.8rem] text-title-1-semibold text-white"
+        className="text-system-light h-[7.2rem] w-full shrink-0 rounded-[1.2rem] bg-blue-500 px-[1.5rem] py-[0.8rem] text-title-1-semibold"
         onClick={onStart}
       >
         퀴즈 시작하기
