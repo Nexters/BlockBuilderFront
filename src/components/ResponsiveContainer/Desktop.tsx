@@ -1,3 +1,4 @@
+import { ToastProvider } from '@/contexts/ToastContext';
 import { Navigation } from './common/Navigation';
 import RecentSearchKeyword from './common/RecentSearchKeyword';
 import ThemeSwitch from './common/ThemeSwitch';
@@ -16,7 +17,9 @@ export default function Desktop({ children }: { children: React.ReactNode }) {
         </div>
         <ThemeSwitch />
       </aside>
-      <main className="bg-gradient-light dark:bg-gradient-dark flex-1">{children}</main>
+      <ToastProvider>
+        <main className="bg-gradient-light dark:bg-gradient-dark relative flex-1">{children}</main>
+      </ToastProvider>
     </div>
   );
 }

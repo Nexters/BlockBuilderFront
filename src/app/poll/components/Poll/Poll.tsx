@@ -5,8 +5,11 @@ import RadioOption from './RadioOption';
 import { userStorage } from '@/hooks/useUser';
 import { postParticipateToVote } from '../../api/postParticipateToVote';
 import { useMutation } from '@tanstack/react-query';
+import SubmitButton from './SubmitButton';
+import { useToast } from '@/contexts/ToastContext';
 
 interface PollProps {
+  endTime: string;
   topicNo: number;
   title: string;
   voterCount: number;
@@ -21,6 +24,7 @@ interface PollProps {
 }
 
 export default function Poll({
+  endTime,
   topicNo,
   title,
   voterCount,
@@ -28,11 +32,15 @@ export default function Poll({
   firstOptionPercentage,
   secondOption,
   secondOptionPercentage,
+  receipt_link,
   voted,
+  voted_option,
   onVoted,
 }: PollProps) {
   const eoa = userStorage.getUserData()?.token || '';
   const [selected, setSelected] = useState<number>(0);
+
+  const { showToast } = useToast();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelected(Number(e.target.value));
@@ -48,25 +56,38 @@ export default function Poll({
     },
   });
 
-  const handleSubmit = () => {
+  const handleVote = () => {
     participateToVote({ eoa, topicNo, voteOption: selected });
+    showToast('투표가 완료되었어요!');
   };
 
+  const handleOpenReceiptLink = () => {
+    window.open(receipt_link, '_blank');
+  };
+
+  const isExpired = new Date(endTime) < new Date();
+  const isDisabled = voted || isExpired;
+
   return (
-    <fieldset className="px-[3rem] py-[2.4rem]">
+    <fieldset className="rounded-[1.2rem] bg-background px-[3rem] py-[2rem]">
       <p className="text-title-3-semibold text-gray-900">{title}</p>
-      <div className="mt-[0.6rem] flex justify-between">
-        <p className="text-body-2-medium text-gray-700">{voterCount}명 참여중</p>
+      <div className="mt-[0.4rem] flex justify-between">
+        <p className="text-body-2-medium text-gray-600">{voterCount}명 참여중</p>
       </div>
-      <div className="mb-[4rem] mt-[3rem] flex flex-col gap-[2rem]">
+      <div className="mb-[3rem] mt-[2rem] flex flex-col gap-[2rem]">
         <RadioOption
           name="blockchain"
           value={1}
           label={firstOption}
           percentage={firstOptionPercentage}
           checked={selected === 1}
+          isExpired={isExpired}
           onChange={handleChange}
-          disabled={voted}
+          disabled={isDisabled}
+          voted={voted}
+          isVotedByUser={voted_option === 1}
+          isWinner={firstOptionPercentage > secondOptionPercentage}
+          isDraw={firstOptionPercentage === secondOptionPercentage}
         />
         <RadioOption
           name="blockchain"
@@ -74,20 +95,25 @@ export default function Poll({
           label={secondOption}
           percentage={secondOptionPercentage}
           checked={selected === 2}
+          isExpired={isExpired}
           onChange={handleChange}
-          disabled={voted}
+          disabled={isDisabled}
+          voted={voted}
+          isVotedByUser={voted_option === 2}
+          isWinner={firstOptionPercentage < secondOptionPercentage}
+          isDraw={firstOptionPercentage === secondOptionPercentage}
         />
       </div>
-      <div className="flex w-full justify-center">
-        <button
-          type="submit"
-          className="h-[4.8rem] w-[40rem] rounded-[0.8rem] bg-blue-400 text-body-1-semibold text-gray-100"
-          onClick={handleSubmit}
-          disabled={!selected}
-        >
-          투표하기
-        </button>
-      </div>
+      {!isExpired && (
+        <div className="flex w-full justify-center">
+          <SubmitButton
+            isDisabled={!selected}
+            isVoted={voted}
+            onReceiptClick={handleOpenReceiptLink}
+            onVoteClick={handleVote}
+          />
+        </div>
+      )}
     </fieldset>
   );
 }

@@ -7,6 +7,8 @@ import Tabs from './components/Tabs';
 import { useVoteList } from './hooks/useVoteList';
 import { useVoteListByUser } from './hooks/useVoteListByUser';
 import { useMemo, useState } from 'react';
+import Nickname from './components/Nickname';
+import TooltipContainer from './components/Poll/TooltipContainer';
 
 export default function PollClient() {
   const [currentTab, setCurrentTab] = useState<'ongoing' | 'end'>('ongoing');
@@ -25,7 +27,6 @@ export default function PollClient() {
     const currentPolls = currentTab === 'ongoing' ? ongoingPolls : endedPolls;
     const finalPolls = currentPolls?.map((poll) => {
       const voted = voteListByUser?.find((vote) => vote.topic_id === poll.id);
-      console.log('voted: ', voted);
       return {
         ...poll,
         voted: Boolean(voted),
@@ -42,18 +43,21 @@ export default function PollClient() {
     refetchVoteListByUser();
   };
 
-  console.log('polls: ', polls, 'voteList: ', voteList);
-
   return (
     <Container>
-      <h1 className="text-title-1-semibold text-gray-800">투표하고 블록체인에 저장해볼까요?</h1>
+      <div className="flex items-center gap-[1.2rem]">
+        <h1 className="text-title-1-semibold text-gray-800">투표하고 블록체인에 저장해볼까요?</h1>
+        <TooltipContainer />
+      </div>
       <p className="mt-[0.8rem] text-body-2-regular text-gray-700">
         투표를 하면 블록체인에 저장된 컨트렉트를 확인할 수 있어요.
       </p>
+      <Nickname />
       <Tabs currentTab={currentTab} handleChangeTab={handleChangeTab}>
         {polls?.map(
           ({
             id,
+            end_time,
             topic_no,
             question,
             voter,
@@ -67,6 +71,7 @@ export default function PollClient() {
           }) => (
             <Poll
               key={id}
+              endTime={end_time}
               topicNo={topic_no}
               title={question}
               voterCount={voter}

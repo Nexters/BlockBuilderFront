@@ -1,7 +1,6 @@
 'use client';
 
 import clsx from 'clsx';
-import Nickname from '../Nickname';
 
 interface TabsProps {
   children: React.ReactNode;
@@ -32,7 +31,6 @@ export default function Tabs({ children, currentTab, handleChangeTab }: TabsProp
           종료된 투표
         </button>
       </div>
-      <Nickname />
       {children}
     </div>
   );
