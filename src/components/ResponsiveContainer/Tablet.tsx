@@ -19,7 +19,9 @@ export default function Tablet({ children }: { children: React.ReactNode }) {
           <ThemeSwitch />
         </nav>
       </aside>
-      <main className="bg-gradient-light dark:bg-gradient-dark w-full">{children}</main>
+      <main className="w-full" style={{ background: 'var(--background-radial-gradient)' }}>
+        {children}
+      </main>
     </div>
   );
 }
