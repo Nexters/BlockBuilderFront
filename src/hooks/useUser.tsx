@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fetchJson } from '../utils/api';
 import { Nft } from '@/app/nft/type';
+import { Coin } from '@/app/coin/type';
 
 export const STORAGE_KEY = 'for-the-block.storage';
 
@@ -49,6 +50,21 @@ export const userStorage = {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(userData));
     } else {
       localStorage.setItem(STORAGE_KEY, JSON.stringify({ nft }));
+    }
+  },
+
+  getCoin: () => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved).coin : null;
+  },
+  saveCoin: (coin: Coin) => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    const userData = saved ? JSON.parse(saved) : null;
+    if (userData) {
+      userData.coin = coin;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(userData));
+    } else {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ coin }));
     }
   },
 };
