@@ -15,7 +15,7 @@ const QuizPage = () => {
   const [isChecking, setIsChecking] = useState(false);
 
   useEffect(() => {
-    const quizResult = userStorage.getQuizResult();
+    const quizResult = userStorage.getData('quiz');
 
     if (quizResult) {
       setCorrectCount(quizResult.correctCount);

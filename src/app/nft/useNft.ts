@@ -11,12 +11,12 @@ import { fetchJson } from "@/utils/api";
 
 const useNft = () => {
   const { data: user } = useUser();
-  const { getNft, saveNft } = userStorage;
+  const { getData, saveData } = userStorage;
   const [nft, setNft] = useState<Nft | null>(null);
   const [tokenUri, setTokenUri] = useState<TokenUri | null>(null);
 
   useEffect(() => {
-    const nft = getNft();
+    const nft = getData('nft');
     if (nft) {
       setNft(nft);
     } else {
@@ -29,17 +29,20 @@ const useNft = () => {
           }),
         });
         setNft(nft);
-        saveNft({
-          image_url: nft.image_url,
-          opensea: nft.opensea,
-          receipt_link: nft.receipt_link,
-          tokenId: nft.tokenId,
-          tokenUri: nft.tokenUri,
+        saveData({
+          type: 'nft',
+          data: {
+            image_url: nft.image_url,
+            opensea: nft.opensea,
+            receipt_link: nft.receipt_link,
+            tokenId: nft.tokenId,
+            tokenUri: nft.tokenUri,
+          },
         });
       };
       fetchNft();
     }
-  }, [user, getNft, saveNft]);
+  }, [user, getData, saveData]);
 
   useEffect(() => {
     if (!nft) return;

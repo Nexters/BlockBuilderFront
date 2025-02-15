@@ -14,16 +14,7 @@ type CardProps = {
 };
 
 const Card = ({ type, title, description, url }: CardProps) => {
-  const result = useMemo(() => {
-    switch (type) {
-      case 'quiz':
-        return userStorage.getQuizResult();
-      case 'coin':
-        return userStorage.getCoin();
-      case 'nft':
-        return userStorage.getNft();
-    }
-  }, [type]);
+  const result = useMemo(() => userStorage.getData(type), [type]);
 
   const getText = useCallback(() => {
     switch (type) {

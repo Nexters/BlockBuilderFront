@@ -9,11 +9,11 @@ import { userStorage } from "@/hooks/useUser";
 
 const useCoin = () => {
   const { data: user } = useUser();
-  const { getCoin, saveCoin } = userStorage;
+  const { getData, saveData } = userStorage;
   const [coin, setCoin] = useState<Coin | null>(null);
 
   useEffect(() => {
-    const coin = getCoin();
+    const coin = getData('coin');
     if (coin) {
       setCoin(coin);
     } else {
@@ -30,18 +30,21 @@ const useCoin = () => {
           }),
         });
         setCoin(coin);
-        saveCoin({
-          receipt_link: coin.receipt_link,
-          image: coin.image,
-          name: coin.name,
-          symbol: coin.symbol,
-          amount: coin.amount,
-          result: coin.result,
+        saveData({
+          type: 'coin',
+          data: {
+            receipt_link: coin.receipt_link,
+            image: coin.image,
+            name: coin.name,
+            symbol: coin.symbol,
+            amount: coin.amount,
+            result: coin.result,
+          },
         });
       };
       fetchCoin();
     }
-  }, [getCoin, saveCoin, user]);
+  }, [getData, saveData, user]);
   return { coin };
 };
 

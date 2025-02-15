@@ -23,49 +23,30 @@ export const userStorage = {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(userData));
   },
 
-  getQuizResult: () => {
+  getData: (type: 'quiz' | 'nft' | 'coin') => {
     const saved = localStorage.getItem(STORAGE_KEY);
-    return saved ? JSON.parse(saved).quizResult : null;
+    return saved ? JSON.parse(saved)[type] : null;
   },
-  saveQuizResult: (result: { correctCount: number; submittedAnswer: string[] }) => {
+  saveData: ({
+    type,
+    data,
+  }:
+    | {
+        type: 'quiz';
+        data: { correctCount: number; submittedAnswer: string[] };
+      }
+    | {
+        type: 'nft';
+        data: Nft;
+      }
+    | {
+        type: 'coin';
+        data: Coin;
+      }) => {
     const saved = localStorage.getItem(STORAGE_KEY);
-    const userData = saved ? JSON.parse(saved) : null;
-    if (userData) {
-      userData.quizResult = result;
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(userData));
-    } else {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({ quizResult: result }));
-    }
-  },
-
-  getNft: () => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    return saved ? JSON.parse(saved).nft : null;
-  },
-  saveNft: (nft: Nft) => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    const userData = saved ? JSON.parse(saved) : null;
-    if (userData) {
-      userData.nft = nft;
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(userData));
-    } else {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({ nft }));
-    }
-  },
-
-  getCoin: () => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    return saved ? JSON.parse(saved).coin : null;
-  },
-  saveCoin: (coin: Coin) => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    const userData = saved ? JSON.parse(saved) : null;
-    if (userData) {
-      userData.coin = coin;
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(userData));
-    } else {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({ coin }));
-    }
+    const userData = saved ? JSON.parse(saved) : {};
+    userData[type] = data;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(userData));
   },
 };
 

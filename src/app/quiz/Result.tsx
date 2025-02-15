@@ -18,7 +18,10 @@ const Result = ({
 
   const onFinish = useCallback(() => {
     setLoading(false);
-    userStorage.saveQuizResult({ correctCount, submittedAnswer });
+    userStorage.saveData({
+      type: 'quiz',
+      data: { correctCount, submittedAnswer },
+    });
   }, [correctCount, submittedAnswer]);
 
   useEffect(() => {
