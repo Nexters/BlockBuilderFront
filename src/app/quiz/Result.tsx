@@ -65,7 +65,7 @@ const Result = ({
         <p className="text-title-1-semibold">아래 활동을 추천해드릴게요!</p>
         <div className="flex w-full gap-[1.5rem] mobile:flex-col">
           {recommendations.map((content) => (
-            <Recommendation key={content} {...contentMap[content]} />
+            <Recommendation key={content} type={content} {...contentMap[content]} />
           ))}
         </div>
       </div>
