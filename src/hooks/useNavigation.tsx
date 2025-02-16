@@ -9,6 +9,9 @@ export const useNavigation = () => {
   const activeMenu = pathname?.split('/')[1] || 'landing';
 
   const isActiveMenu = (menu: Menu) => {
+    if (['nft', 'coin', 'quiz'].includes(activeMenu) && menu === 'landing') {
+      return true;
+    }
     return activeMenu === menu;
   };
 

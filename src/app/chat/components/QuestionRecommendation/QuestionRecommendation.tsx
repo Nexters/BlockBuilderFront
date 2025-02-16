@@ -44,7 +44,7 @@ const QuestionRecommendation = ({ handleSubmit, handleViewChange }: QuestionReco
         </button>
       </div>
       <Image
-        className="absolute left-1/2 top-[calc(50%-24rem)] -translate-x-1/2 -translate-y-1/2"
+        className="absolute left-1/2 top-[calc(50%-24rem)] -translate-x-1/2 -translate-y-1/2 dark:mix-blend-overlay"
         src="/images/chat/block.gif"
         alt="block"
         width={isMobile ? 408 : 596}

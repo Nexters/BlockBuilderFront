@@ -1,35 +1,42 @@
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { useMemo } from 'react';
+import { userStorage } from '@/hooks/useUser';
 
 const Recommendation = ({
-  isAvailable,
+  type,
   title,
   description,
   url,
 }: {
-  isAvailable: boolean;
+  type: 'coin' | 'nft' | 'chat' | 'poll' | 'information';
   title: string;
   description: string;
   url: string;
 }) => {
   const router = useRouter();
+  const result = useMemo(() => {
+    if (type === 'coin' || type === 'nft') {
+      return userStorage.getData(type);
+    }
+    return null;
+  }, [type]);
 
   return (
     <button
-      className="relative flex size-full flex-col items-center justify-between gap-[0.8rem] rounded-[1.2rem] bg-blue-100 px-[2.4rem] py-[3.2rem] disabled:cursor-not-allowed mobile:flex-row mobile:py-[1.2rem]"
-      disabled={!isAvailable}
+      className="relative flex size-full h-[27.2rem] overflow-hidden rounded-[1.2rem] bg-blue-100 p-[2rem] mobile:h-[18rem] mobile:flex-row"
       onClick={() => {
-        if (!isAvailable) return;
         router.push(url);
       }}
     >
-      <div className="z-10 flex flex-col items-center gap-[0.4rem] mobile:items-start">
-        <p className="text-title-2-semibold">{title}</p>
-        <p className="break-keep text-body-1-regular mobile:text-start">{description}</p>
+      <div className="z-10 flex flex-col gap-[0.6rem]">
+        <p className="text-start text-title-2-semibold">{title}</p>
+        <p className="break-keep text-start text-body-2-regular text-gray-800">{description}</p>
+        {(type === 'coin' || type === 'nft') && (
+          <p className="text-start text-body-2-medium text-blue-400">{result ? 1 : 0}/1</p>
+        )}
       </div>
-      <div className="absolute size-[20rem] mobile:right-0 mobile:size-[12rem] tablet:bottom-0 desktop:bottom-0">
-        <Image src="/images/chat/block.gif" alt="block" fill />
-      </div>
+      <Image src="/images/landing/graphic-recommend.png" alt="recommend" fill className="object-cover" />
     </button>
   );
 };
