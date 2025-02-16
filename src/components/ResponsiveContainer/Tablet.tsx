@@ -5,12 +5,16 @@ import { Menu, useNavigation } from '@/hooks/useNavigation';
 import { capitalize } from '@/utils/string';
 import clsx from 'clsx';
 import { useTheme } from 'next-themes';
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Tablet({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex">
       <aside className="flex h-[100vh] w-[60px] min-w-[60px] flex-col items-center pb-[20px] pt-[20px]">
-        <button className="h-[36px] w-[36px] rounded-[10px] bg-[#6390FA]"></button>
+        <Link href="/" className="flex size-[36px] items-center gap-[1rem]">
+          <Image src="/images/symbol.png" alt="logo" width={36} height={36} />
+        </Link>
         <nav className="mb-[72px] mt-[26px] flex h-[100%] flex-col justify-between">
           <ul className="flex flex-col items-center gap-[10px]">
             <NavigationItem menu="landing" />

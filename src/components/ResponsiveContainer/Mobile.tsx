@@ -5,6 +5,8 @@ import { Navigation } from './common/Navigation';
 import RecentSearchKeyword from './common/RecentSearchKeyword';
 import ThemeSwitch from './common/ThemeSwitch';
 import { ToastProvider } from '@/contexts/ToastContext';
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Mobile({ children }: { children: React.ReactNode }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -19,7 +21,9 @@ export default function Mobile({ children }: { children: React.ReactNode }) {
         <button onClick={handleToggleDrawer}>
           <Icons.Menu className="fill-gray-900" />
         </button>
-        <button className="ml-[20px] h-[36px] w-[36px] rounded-[10px] bg-[#6390FA]"></button>
+        <Link href="/" className="ml-[20px] flex size-[36px] items-center gap-[1rem]">
+          <Image src="/images/symbol.png" alt="logo" width={36} height={36} />
+        </Link>
       </header>
 
       {isDrawerOpen && <div className="fixed inset-0 z-40 bg-black bg-opacity-50" onClick={handleToggleDrawer} />}
@@ -33,8 +37,10 @@ export default function Mobile({ children }: { children: React.ReactNode }) {
           <div>
             <header className="flex items-center">
               <Icons.Menu className="mr-[2rem] fill-gray-900" onClick={handleToggleDrawer} />
-              <button className="h-[36px] w-[36px] rounded-[10px] bg-[#6390FA]"></button>
-              <h1 className="ml-[12px] text-title-2-medium text-gray-800">for-the-block</h1>
+              <Link href="/" className="flex h-[36px] items-center gap-[1rem]">
+                <Image src="/images/symbol.png" alt="logo" width={36} height={36} />
+                <Image src="/images/logo.png" alt="logo" width={120} height={19} />
+              </Link>
             </header>
             <Navigation />
             <RecentSearchKeyword />
