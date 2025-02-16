@@ -18,10 +18,7 @@ const Result = ({
 
   const onFinish = useCallback(() => {
     setLoading(false);
-    userStorage.saveData({
-      type: 'quiz',
-      data: { correctCount, submittedAnswer },
-    });
+    userStorage.saveData({ type: 'quiz', data: { correctCount, submittedAnswer } });
   }, [correctCount, submittedAnswer]);
 
   useEffect(() => {
@@ -34,43 +31,43 @@ const Result = ({
     }
   }, [onFinish, isChecking]);
 
-  const { level, recommendations } = getRecommendations(correctCount);
+  const { level, image, recommendations } = getRecommendations(correctCount);
 
   if (isChecking && loading) {
     return (
-      <div className="flex size-full flex-col items-center gap-[3rem]">
-        <div className="flex flex-col items-center gap-[1.6rem]">
-          <h1 className="whitespace-pre-wrap text-center text-headline-2-bold mobile:text-headline-3-bold">
-            잠시만 기다려주세요!
-          </h1>
-          <p className="text-title-3-medium">열심히 채점을 하고 있어요</p>
+      <div className="scrollbar-hide h-screen w-full overflow-auto px-[4rem] pb-[8.6rem] pt-[21.8rem] mobile:h-[calc(100vh-56px)] mobile:px-[2rem] mobile:pt-[13.4rem]">
+        <div className="flex h-[27.2rem] w-full flex-col items-center gap-[2rem]">
+          <div className="flex flex-col items-center gap-[0.8rem]">
+            <h1 className="whitespace-pre-wrap text-center text-title-1-semibold">잠시만 기다려주세요!</h1>
+            <p className="text-body-2-regular text-gray-700">열심히 점수를 채점하고 있어요!</p>
+          </div>
+          <Image src="/images/chat/block.gif" alt="block" width={300} height={300} />
         </div>
-        <Image src="/images/chat/block.gif" alt="block" width={300} height={300} />
       </div>
     );
   }
   return (
-    <div className="flex size-full flex-col items-center gap-[3rem] mobile:gap-[2rem]">
-      <div className="flex flex-col text-center">
-        <p className="text-title-2-medium">당신은 블록체인</p>
-        <h1 className="text-headline-1-bold mobile:text-headline-2-bold">{level}</h1>
-        <p className="text-title-2-medium">입니다!</p>
+    <div className="scrollbar-hide flex h-screen w-full flex-col items-center gap-[7rem] overflow-auto px-[4rem] pb-[8.6rem] pt-[11.2rem] mobile:h-[calc(100vh-56px)] mobile:gap-[2rem] mobile:px-[2rem] mobile:py-[2.8rem]">
+      <div className="flex w-full max-w-[68.4rem] flex-col items-center">
+        <div className="flex flex-col gap-[0.6rem] text-center">
+          <p className="text-title-3-medium text-gray-700">나의 블록체인 지식 수준은</p>
+          <h1 className="text-headline-2-bold mobile:text-headline-2-bold">{level}</h1>
+        </div>
+        <Image src={image} alt="result" width={200} height={200} />
+        <div className="flex flex-col items-center gap-[1.4rem]">
+          <p className="text-title-3-medium">
+            <span className="pr-[0.6rem] text-blue-400">{correctCount}</span>문제를 맞혔어요!
+          </p>
+          <Explanation submittedAnswer={submittedAnswer} />
+        </div>
       </div>
-      <div className="flex gap-[1.6rem]">
-        <p className="text-title-1-semibold">
-          <span className="pr-[0.4rem] text-blue-500">{correctCount}</span>문제를 맞히셨어요!
-        </p>
-        <Explanation submittedAnswer={submittedAnswer} />
-      </div>
-      <p className="text-title-2-semibold">아래 활동을 추천드릴게요!</p>
-      <div className="flex w-full flex-1 gap-[1.6rem] mobile:flex-col">
-        {recommendations.map((content) => (
-          <Recommendation
-            key={content}
-            isAvailable={content !== 'nft' && content !== 'coin'}
-            {...contentMap[content]}
-          />
-        ))}
+      <div className="flex w-full max-w-[68.4rem] flex-col gap-[2.4rem]">
+        <p className="text-title-1-semibold">아래 활동을 추천해드릴게요!</p>
+        <div className="flex w-full gap-[1.5rem] mobile:flex-col">
+          {recommendations.map((content) => (
+            <Recommendation key={content} {...contentMap[content]} />
+          ))}
+        </div>
       </div>
     </div>
   );

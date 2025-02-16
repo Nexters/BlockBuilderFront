@@ -39,18 +39,21 @@ const Quiz = ({
   };
 
   return (
-    <div className="flex size-full flex-col justify-between gap-[3rem]">
-      <div className="flex flex-col gap-[2rem]">
+    <div className="scrollbar-hide flex h-screen w-full flex-col items-center gap-[4rem] overflow-auto px-[4rem] py-[5.4rem] mobile:h-[calc(100vh-56px)] mobile:px-[2rem] mobile:py-[4rem]">
+      <div className="flex w-full max-w-[68.4rem] flex-col gap-[10.6rem] mobile:gap-[3rem]">
         <ProgressBar current={currentQuestion + 1} total={questions.length} />
-        <h1 className="break-keep text-title-1-semibold">{`${question.id}. ${question.question}`}</h1>
+        <div className="flex flex-col gap-[1.2rem]">
+          <p className="text-body-1-semibold text-blue-400">Quiz {question.id}/5</p>
+          <h1 className="break-keep text-title-1-bold">{question.question}</h1>
+        </div>
       </div>
-      <div className="flex flex-col gap-[2.4rem]">
-        <div className="flex flex-col gap-[1rem]">
+      <div className="flex w-full max-w-[68.4rem] flex-col items-center gap-[3rem]">
+        <div className="flex w-full flex-col gap-[1.2rem]">
           {question.options.map((option) => (
             <button
               className={clsx(
-                'flex h-[7.2rem] w-full items-center justify-center whitespace-pre-wrap break-keep rounded-[1.2rem] border border-blue-100 px-[1.2rem] py-[0.8rem] text-title-3-regular hover:bg-blue-100',
-                selectedAnswer === option && 'border-blue-100 bg-blue-100'
+                'flex h-[7.2rem] w-full items-center justify-center whitespace-pre-wrap break-keep rounded-[0.8rem] border border-blue-100 px-[2rem] py-[1rem] text-title-3-medium hover:shadow-normal',
+                selectedAnswer === option ? 'border-blue-100 bg-blue-100 text-blue-400' : 'bg-system-light/60'
               )}
               key={option}
               onClick={() => onSelectAnswer(option)}
@@ -61,12 +64,12 @@ const Quiz = ({
         </div>
         <button
           className={clsx(
-            'text-system-light flex h-[7.2rem] w-full items-center justify-center rounded-[1.2rem] bg-blue-400 py-[0.5rem] text-title-2-semibold hover:bg-blue-500 disabled:bg-gray-200 disabled:text-gray-500'
+            'text-system-light flex h-[4.8rem] w-[25rem] items-center justify-center rounded-full bg-blue-400 text-body-1-semibold disabled:bg-gray-300 disabled:text-gray-600'
           )}
           disabled={selectedAnswer === null}
           onClick={() => onAnswerSubmit(selectedAnswer)}
         >
-          {currentQuestion < questions.length - 1 ? 'Next' : 'Finish'}
+          {currentQuestion < questions.length - 1 ? '다음' : '제출'}
         </button>
       </div>
     </div>

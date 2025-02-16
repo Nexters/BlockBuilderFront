@@ -6,8 +6,8 @@ const Explanation = ({ submittedAnswer }: { submittedAnswer: string[] }) => {
   return (
     <DrawerDialog
       trigger={
-        <button className="text-system-light rounded-full bg-blue-500 px-[1.6rem] py-[0.6rem] text-body-2-semibold">
-          해설 보기
+        <button className="text-system-light rounded-full bg-blue-400 px-[1.6rem] py-[0.6rem] text-body-2-semibold">
+          해설보기
         </button>
       }
       title="문제와 해설"

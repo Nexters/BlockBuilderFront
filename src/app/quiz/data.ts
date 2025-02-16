@@ -80,41 +80,44 @@ export const questions = [
 
 export type RecommendationType = 'nft' | 'coin' | 'chat' | 'poll' | 'information';
 
-export const getRecommendations = (correctCount: number): { level: string; recommendations: RecommendationType[] } => {
+export const getRecommendations = (correctCount: number): { level: string; image: string; recommendations: RecommendationType[] } => {
   if (correctCount >= 4) {
     return {
       level: '숙련자',
-      recommendations: ['chat', 'poll', 'information'],
+      image: '/images/landing/advanced.png',
+      recommendations: ['nft', 'coin', 'information'],
     };
   } else if (correctCount >= 2) {
     return {
       level: '중급자',
-      recommendations: ['nft', 'coin', 'chat'],
+      image: '/images/landing/intermediate.png',
+      recommendations: ['nft', 'coin', 'poll'],
     };
   } else {
     return {
       level: '초보자',
-      recommendations: ['nft', 'coin', 'poll'],
+      image: '/images/landing/beginner.png',
+      recommendations: ['nft', 'coin', 'chat'],
     };
   }
 };
 
 export const contentMap = {
   nft: {
-    title: '나만의 NFT 만들기',
-    description: 'NFT를 만들어 블록체인 세계에 소개해 보세요.',
+    title: '나만의 NFT 생성',
+    description: '클릭만으로 간단하게 NFT를 생성해보세요!',
     image: '/images/quiz/nft.png',
     url: '/nft',
   },
   coin: {
-    title: '나만의 코인 만들기',
-    description: '코인을 만들어 블록체인 세계에 소개해 보세요.',
+    title: '나만의 코인 생성',
+    description: '클릭만으로 간단하게 코인을 생성해보세요!',
     image: '/images/quiz/coin.png',
     url: '/coin',
   },
   chat: {
-    title: '블록챗과 대화하기',
-    description: '블록체인에 대해 물어보고 답해 보세요.',
+    title: '채팅으로 기초부터 블록체인 학습',
+    description: '질문하러가기',
     image: '/images/quiz/chat.png',
     url: '/chat',
   },
