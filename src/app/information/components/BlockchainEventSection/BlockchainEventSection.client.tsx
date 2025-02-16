@@ -21,6 +21,7 @@ const BlockchainEventSectionClient = ({
   hackathonList: TBlockchainInformationData[];
   meetupList: TBlockchainInformationData[];
 }) => {
+  const scrollRef = useRef<HTMLUListElement | null>(null);
   const swiperRef = useRef<SwiperRef>(null);
   const [currentEventTabValue, setCurrentEventTabValue] = useState<TEventTab>(eventTabList[0].value);
   const [currentPage, setCurrentPage] = useState(1);
@@ -35,6 +36,10 @@ const BlockchainEventSectionClient = ({
       setCurrentEventTabValue(selectedEventTab);
       setCurrentPage(1);
       swiperRef.current.swiper.slideTo(0, 0);
+    }
+
+    if (scrollRef && scrollRef.current) {
+      scrollRef.current.scrollTo(0, 0);
     }
   };
 
@@ -96,6 +101,7 @@ const BlockchainEventSectionClient = ({
           blockchainEventType={currentEventTabValue}
           blockchainEventList={currentEventTabValue === 'hackathon' ? hackathonList : meetupList}
           swiperRef={swiperRef}
+          scrollRef={scrollRef}
         />
       </div>
     </div>
