@@ -17,7 +17,7 @@ export default function TooltipContainer() {
     >
       <Tooltip />
       {isOpen && (
-        <div className="absolute top-0 w-[23rem] translate-y-[3.6rem] rounded-[0.8rem] bg-background px-[2rem] py-[1.8rem] shadow-normal mobile:right-0 mobile:origin-top-right tablet:left-0 tablet:origin-top-left desktop:left-0 desktop:origin-top-left">
+        <div className="absolute top-0 z-[10] w-[23rem] translate-y-[3.6rem] rounded-[0.8rem] bg-background px-[2rem] py-[1.8rem] shadow-normal mobile:right-0 mobile:origin-top-right tablet:left-0 tablet:origin-top-left desktop:left-0 desktop:origin-top-left">
           <p className="text-left text-body-2-semibold text-gray-800">블록체인 투표, 왜 특별할까요?</p>
           <p className="mt-[1rem] text-left text-body-3-medium text-gray-700">
             여러분의 선택은 블록체인에 영구적으로 보관되며, 수정하거나 삭제할 수 없어요. <br /> 블록체인은 투표로
