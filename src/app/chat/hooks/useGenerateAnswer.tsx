@@ -2,6 +2,7 @@ import { useCallback, useContext, useState } from 'react';
 import { fetchJson } from '@/utils/api';
 import { remark } from 'remark';
 import html from 'remark-html';
+import gfm from 'remark-gfm';
 import UserContext from '@/contexts/UserContext';
 
 const useGenerateAnswer = () => {
@@ -29,7 +30,7 @@ const useGenerateAnswer = () => {
       });
 
       const markdownToHtml = async (markdown: string) => {
-        const result = await remark().use(html).process(markdown);
+        const result = await remark().use(gfm).use(html).process(markdown);
         return result.toString();
       };
 

@@ -50,8 +50,8 @@ const ExplanationItem = ({
             key={option}
             className={clsx(
               'break-keep rounded-[0.8rem] border border-gray-200 p-[1.2rem] text-body-1-regular',
-              option === submittedAnswer && submittedAnswer !== correctAnswer && 'bg-red-200',
-              option === correctAnswer && 'bg-green-100 text-body-1-semibold'
+              option === submittedAnswer && submittedAnswer !== correctAnswer && 'bg-red-200 dark:bg-red-800',
+              option === correctAnswer && 'bg-green-100 text-body-1-semibold dark:bg-green-800'
             )}
           >
             <p>{option}</p>
