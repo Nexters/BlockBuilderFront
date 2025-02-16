@@ -48,7 +48,7 @@ const TotalQuestions = ({ handleSubmit }: TotalQuestionsProps) => {
             className={clsx(
               'flex w-fit items-start justify-center rounded-[0.8rem] px-[1.6rem] py-[0.6rem]',
               filter === value
-                ? 'bg-black text-body-2-semibold text-gray-100'
+                ? 'bg-system-dark text-body-2-semibold text-gray-100'
                 : 'bg-system-light border border-blue-100 px-[1.5rem] py-[0.5rem] text-body-2-medium text-gray-700'
             )}
             onClick={() => setFilter(value)}
