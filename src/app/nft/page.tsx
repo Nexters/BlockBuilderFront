@@ -15,6 +15,12 @@ const NftPage = () => {
           블록체인 기술을 활용하여 손쉽게 NFT를 만들어보세요. 쉽고 빠르게 소유권을 증명할 수 있는 NFT를 만들어 보세요.
         </p>
       </div>
+      {!nft && (
+        <div className="flex flex-col items-center gap-[1.2rem]">
+          <Image src="/images/chat/block.gif" alt="loading" width={200} height={200} />
+          <p className="text-body-2-semibold">NFT를 생성중이에요.</p>
+        </div>
+      )}
       {nft && (
         <div className="flex items-center gap-[3.2rem] mobile:flex-col">
           <Image src={nft.image_url} alt="nft" width={200} height={200} />
