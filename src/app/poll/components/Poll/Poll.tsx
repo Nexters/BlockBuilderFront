@@ -1,14 +1,15 @@
 'use client';
 
 import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
 import RadioOption from './RadioOption';
 import { userStorage } from '@/hooks/useUser';
 import { postParticipateToVote } from '../../api/postParticipateToVote';
-import { useMutation } from '@tanstack/react-query';
 import SubmitButton from './SubmitButton';
 import { useToast } from '@/contexts/ToastContext';
 import { useDebounce } from '@/hooks/useDebounce';
-
+import { useLottie } from 'lottie-react';
+import loadingAnimation from '@/assets/lotties/loading.json';
 interface PollProps {
   endTime: string;
   topicNo: number;
@@ -47,7 +48,7 @@ export default function Poll({
     setSelected(Number(e.target.value));
   };
 
-  const { mutate: participateToVote } = useMutation({
+  const { mutateAsync: participateToVote, isPending } = useMutation({
     mutationFn: postParticipateToVote,
     onSuccess: () => {
       onVoted?.();
@@ -57,8 +58,8 @@ export default function Poll({
     },
   });
 
-  const handleVote = () => {
-    participateToVote({ eoa, topicNo, voteOption: selected });
+  const handleVote = async () => {
+    await participateToVote({ eoa, topicNo, voteOption: selected });
     showToast('투표가 완료되었어요!');
   };
 
@@ -77,6 +78,11 @@ export default function Poll({
 
   const isExpired = new Date(endTime) < new Date();
   const isDisabled = voted || isExpired;
+
+  const { View } = useLottie(
+    { animationData: loadingAnimation, loop: true },
+    { width: 100, height: 48, display: 'block' }
+  );
 
   return (
     <fieldset className="rounded-[1.2rem] bg-background px-[3rem] py-[2rem]">
@@ -114,7 +120,8 @@ export default function Poll({
           isDraw={firstOptionPercentage === secondOptionPercentage}
         />
       </div>
-      {!isExpired && (
+      {isPending && <div className="flex h-[4.8rem] w-full items-center justify-center">{View}</div>}
+      {!isExpired && !isPending && (
         <div className="flex w-full justify-center">
           <SubmitButton
             isDisabled={!selected}
