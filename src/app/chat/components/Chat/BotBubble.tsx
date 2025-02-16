@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useState, useEffect, useMemo, memo, useCallback } from 'react';
+import { useState, useEffect, useMemo, memo, useCallback, useRef } from 'react';
 import { TextShimmer } from '@/components/ui/TextShimmer';
 import ToolButton from './ToolButton';
 import clsx from 'clsx';
@@ -24,6 +24,7 @@ const BotBubble = memo(
   }) => {
     const [displayText, setDisplayText] = useState('');
     const words = useMemo(() => text.split(' ') ?? [], [text]);
+    const actionRef = useRef<HTMLDivElement>(null);
 
     const handleCopy = useCallback(() => {
       const textToCopy = text.replace(/<[^>]*>/g, '');
@@ -54,6 +55,12 @@ const BotBubble = memo(
       lastChat?.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }, [displayText]);
 
+    useEffect(() => {
+      if (actionRef.current && isLastMessage && !isAnswering) {
+        actionRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      }
+    }, [isAnswering, isLastMessage]);
+
     return (
       <div className="chat-message flex w-full gap-[1.6rem]">
         <div className="size-[4rem] shrink-0 rounded-[1.2rem] bg-blue-400">
@@ -81,7 +88,7 @@ const BotBubble = memo(
               dangerouslySetInnerHTML={{ __html: displayText }}
             />
             {(!isAnswering || !isLastMessage) && (
-              <div className="flex gap-[1rem]">
+              <div className="flex gap-[1rem]" ref={actionRef}>
                 <ToolButton size={28} icon="Copy" onClick={handleCopy} />
                 <ToolButton icon="Reaction" onClick={() => recreateChat?.((id ?? 0) - 1)} />
               </div>
