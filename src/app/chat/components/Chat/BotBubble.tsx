@@ -73,7 +73,10 @@ const BotBubble = memo(
             <div
               className={clsx(
                 'flex w-full flex-col gap-[0.8rem] whitespace-normal text-body-1-medium',
-                '[&>*]:w-full [&>*]:whitespace-normal'
+                '[&>*]:w-full [&>*]:whitespace-normal',
+                '[&>table]:border [&>table]:border-gray-400',
+                '[&_th]:border [&_th]:border-gray-400 [&_th]:p-2',
+                '[&_td]:border [&_td]:border-gray-400 [&_td]:p-2'
               )}
               dangerouslySetInnerHTML={{ __html: displayText }}
             />
