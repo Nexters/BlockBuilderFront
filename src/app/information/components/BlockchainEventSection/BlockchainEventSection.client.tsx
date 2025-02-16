@@ -26,7 +26,7 @@ const BlockchainEventSectionClient = ({
   const [currentPage, setCurrentPage] = useState(1);
 
   const maxPage = useMemo(
-    () => Math.floor((currentEventTabValue === 'hackathon' ? hackathonList.length : meetupList.length) / 4),
+    () => Math.ceil((currentEventTabValue === 'hackathon' ? hackathonList.length : meetupList.length) / 4),
     [hackathonList, meetupList, currentEventTabValue]
   );
 
