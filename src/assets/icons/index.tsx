@@ -14,6 +14,7 @@ import Copy from './Copy';
 import Landing from './Landing';
 import CheckCircle from './CheckCircle';
 import Tooltip from './Tooltip';
+import Logo from './Logo';
 
 export const Icons = {
   Menu,
@@ -30,6 +31,7 @@ export const Icons = {
   Copy,
   Landing,
   CheckCircle,
+  Logo,
   Tooltip,
 } as const;
 

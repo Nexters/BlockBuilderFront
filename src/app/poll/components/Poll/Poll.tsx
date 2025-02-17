@@ -8,8 +8,8 @@ import { postParticipateToVote } from '../../api/postParticipateToVote';
 import SubmitButton from './SubmitButton';
 import { useToast } from '@/contexts/ToastContext';
 import { useDebounce } from '@/hooks/useDebounce';
-import { useLottie } from 'lottie-react';
 import loadingAnimation from '@/assets/lotties/loading.json';
+import dynamic from 'next/dynamic';
 interface PollProps {
   endTime: string;
   topicNo: number;
@@ -24,6 +24,8 @@ interface PollProps {
   receipt_link?: string;
   onVoted: () => void;
 }
+
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 
 export default function Poll({
   endTime,
@@ -79,11 +81,6 @@ export default function Poll({
   const isExpired = new Date(endTime) < new Date();
   const isDisabled = voted || isExpired;
 
-  const { View } = useLottie(
-    { animationData: loadingAnimation, loop: true },
-    { width: 100, height: 48, display: 'block' }
-  );
-
   return (
     <fieldset className="rounded-[1.2rem] bg-background px-[3rem] py-[2rem]">
       <p className="text-title-3-semibold text-gray-900">{title}</p>
@@ -120,7 +117,18 @@ export default function Poll({
           isDraw={firstOptionPercentage === secondOptionPercentage}
         />
       </div>
-      {isPending && <div className="flex h-[4.8rem] w-full items-center justify-center">{View}</div>}
+      {isPending && (
+        <div className="flex h-[4.8rem] w-full items-center justify-center">
+          <Lottie
+            animationData={loadingAnimation}
+            loop={true}
+            style={{
+              width: 100,
+              height: 48,
+            }}
+          />
+        </div>
+      )}
       {!isExpired && !isPending && (
         <div className="flex w-full justify-center">
           <SubmitButton
