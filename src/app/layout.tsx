@@ -31,7 +31,7 @@ export default async function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning className={`${pretendard.variable}`}>
       <body>
-        <ThemeProvider attribute="class">
+        <ThemeProvider attribute="class" enableSystem={false}>
           <UserProvider>
             <TanStackProvider>
               <ResponsiveContainer initialWidth={initialWidth}>{children}</ResponsiveContainer>
