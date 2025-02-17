@@ -1,4 +1,4 @@
-import { Icons } from '@/assets/icons';
+import { Icon } from '@/assets/icons';
 import clsx from 'clsx';
 import { useState } from 'react';
 import { Navigation } from './common/Navigation';
@@ -19,7 +19,7 @@ export default function Mobile({ children }: { children: React.ReactNode }) {
     <>
       <header className="flex h-[56px] w-full items-center pl-[20px] pr-[20px]">
         <button onClick={handleToggleDrawer}>
-          <Icons.Menu className="fill-gray-900" />
+          <Icon name="Menu" className="fill-gray-900" />
         </button>
         <Link href="/" className="ml-[20px] flex size-[36px] items-center gap-[1rem]">
           <Image src="/images/symbol.png" alt="logo" width={36} height={36} />
@@ -36,10 +36,10 @@ export default function Mobile({ children }: { children: React.ReactNode }) {
         <div className="flex h-full flex-col justify-between px-[20px] pb-[80px] pt-[20px]">
           <div>
             <header className="flex items-center">
-              <Icons.Menu className="mr-[2rem] fill-gray-900" onClick={handleToggleDrawer} />
+              <Icon name="Menu" className="mr-[2rem] fill-gray-900" onClick={handleToggleDrawer} />
               <Link href="/" className="flex h-[36px] items-center gap-[1rem]">
                 <Image src="/images/symbol.png" alt="logo" width={36} height={36} />
-                <Image src="/images/logo.png" alt="logo" width={120} height={19} />
+                <Icon name="Logo" className="text-gray-900" width={120} height={19} />
               </Link>
             </header>
             <Navigation />
