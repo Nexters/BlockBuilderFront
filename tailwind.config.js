@@ -45,7 +45,6 @@ module.exports = {
         white: '#FFFFFF',
         dark: '#0E0E0E',
         background: 'var(--color-background)',
-        toast: 'rgba(29, 29, 29, 0.6)',
       },
       backgroundImage: {
         'gradient-light':
