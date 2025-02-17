@@ -10,10 +10,12 @@ const BlockchainEventList = ({
   blockchainEventList,
   blockchainEventType,
   swiperRef,
+  scrollRef,
 }: {
   blockchainEventList: TBlockchainInformationData[];
   blockchainEventType: TBlockchainInformationType;
   swiperRef: RefObject<SwiperRef | null>;
+  scrollRef: RefObject<HTMLUListElement | null>;
 }) => {
   const blockchainEventListChunk = generate2DData({ data: blockchainEventList });
 
@@ -35,7 +37,10 @@ const BlockchainEventList = ({
         })}
       </Swiper>
 
-      <ul className="grid grid-flow-col grid-rows-2 gap-[2rem] overflow-x-auto pl-[4rem] pr-[2rem] scrollbar-hide md:hidden mobile:pl-[2rem]">
+      <ul
+        ref={scrollRef}
+        className="grid grid-flow-col grid-rows-2 gap-[2rem] overflow-x-auto pl-[4rem] pr-[2rem] scrollbar-hide md:hidden mobile:pl-[2rem]"
+      >
         {blockchainEventList.map((blockchainEvent) => {
           return (
             <li key={`${blockchainEvent.id}-${blockchainEvent.sourceIndex}`}>
