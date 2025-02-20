@@ -117,7 +117,7 @@ export const contentMap = {
   },
   chat: {
     title: '채팅으로 기초부터 블록체인 학습',
-    description: '질문하러가기',
+    description: '수준에 맞게 추천되는 질문으로 자연스럽게 블록체인을 배워보세요!',
     image: '/images/quiz/chat.png',
     url: '/chat',
   },
@@ -129,7 +129,7 @@ export const contentMap = {
   },
   information: {
     title: '블록체인 소식 알아보기',
-    description: '블록체인 관련 소식을 확인해 보세요.',
+    description: '전세계의 블록체인 소식을 한 눈에 확인해 보세요.',
     image: '/images/quiz/information.png',
     url: '/information',
   },
