@@ -3,51 +3,109 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import useNft from './useNft';
+import { useToast } from '@/contexts/ToastContext';
+import { useMemo } from 'react';
 
 const NftPage = () => {
   const { nft, tokenUri } = useNft();
+  const { showToast } = useToast();
+
+  const handleImageDownload = async (url: string, filename: string) => {
+    try {
+      const response = await fetch(url, { mode: 'cors' });
+      const blob = await response.blob();
+      const blobUrl = URL.createObjectURL(blob);
+
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(blobUrl);
+    } catch (error) {
+      console.error(error);
+      showToast('NFT 이미지를 다운로드하는데 실패했어요.');
+    }
+  };
+
+  const hasData = useMemo(() => {
+    return nft && tokenUri;
+  }, [nft, tokenUri]);
 
   return (
-    <div className="flex size-full flex-col items-center justify-center gap-[4rem] p-[4rem]">
-      <div className="flex flex-col items-center gap-[0.8rem]">
-        <h1 className="text-title-1-semibold">나만의 NFT를 만들어보세요</h1>
-        <p className="text-body-2-regular text-gray-700">
-          블록체인 기술을 활용하여 손쉽게 NFT를 만들어보세요. 쉽고 빠르게 소유권을 증명할 수 있는 NFT를 만들어 보세요.
-        </p>
-      </div>
-      {!nft && (
-        <div className="flex flex-col items-center gap-[1.2rem]">
-          <Image src="/images/chat/block.gif" alt="loading" width={200} height={200} />
-          <p className="text-body-2-semibold">NFT를 생성중이에요.</p>
-        </div>
-      )}
-      {nft && (
-        <div className="flex items-center gap-[3.2rem] mobile:flex-col">
-          <Image src={nft.image_url} alt="nft" width={200} height={200} />
-          <div className="flex flex-col gap-[1.2rem] text-body-2-regular">
-            <p className="text-title-2-semibold">
-              보도블럭에서 <span className="text-title-1-semibold text-blue-500">{nft.tokenId}</span> 번째로 NFT를
-              만들었어요!
+    <div className="flex size-full flex-col items-center justify-center gap-[4rem] p-[4rem] pb-[6.2rem]">
+      {!hasData && (
+        <>
+          <div className="flex flex-col items-center gap-[0.8rem]">
+            <h1 className="text-title-1-semibold">나만의 NFT를 만들어보세요</h1>
+            <p className="text-body-2-regular text-gray-700">
+              블록체인 기술을 활용하여 손쉽게 NFT를 만들어보세요. 쉽고 빠르게 소유권을 증명할 수 있는 NFT를 만들어
+              보세요.
             </p>
-            {tokenUri && (
-              <>
-                <p className="text-title-2-semibold">이름: {tokenUri.name}</p>
-                <p className="text-body-2-regular">설명: {tokenUri.description}</p>
-                <p className="text-title-3-semibold">특성</p>
-                <div className="flex gap-[0.4rem]">
-                  {tokenUri.attributes.map((attribute) => (
-                    <p key={attribute.trait_type} className="rounded-full bg-blue-200 px-[0.8rem] py-[0.4rem]">
-                      {attribute.value}
-                    </p>
-                  ))}
+          </div>
+          <div className="flex flex-col items-center gap-[1.2rem]">
+            <Image src="/images/chat/block.gif" alt="loading" width={200} height={200} />
+            <p className="text-body-2-semibold">NFT를 생성중이에요.</p>
+          </div>
+        </>
+      )}
+      {hasData && (
+        <div className="flex h-[80vh] max-w-[68.4rem] flex-col items-center justify-between">
+          <div className="flex flex-col items-center gap-[4rem]">
+            <div className="flex flex-col items-center">
+              <p className="text-title-3-medium text-gray-700">
+                보도블록에서 <span className="text-blue-400">{nft?.tokenId}</span>번째로 만들어진 NFT에요!
+              </p>
+              <p className="text-headline-2-bold">{tokenUri?.name}</p>
+            </div>
+            <div className="flex gap-[3rem]">
+              <div className="flex flex-col items-center gap-[2rem]">
+                <div className="overflow-hidden rounded-[0.8rem]">
+                  <Image src={nft!.image_url} alt="nft" width={200} height={200} />
                 </div>
-              </>
-            )}
-            <Link href={nft.opensea} className="text-body-2-regular text-blue-500" target="_blank">
-              opensea 링크 열기 (NFT 거래 페이지)
+                <button
+                  onClick={() => handleImageDownload(nft!.image_url, `${tokenUri?.name}.png`)}
+                  className="bg-system-light flex items-center rounded-full border border-blue-100 px-[1.6rem] py-[0.6rem] text-body-2-semibold hover:shadow-normal"
+                >
+                  이미지 저장
+                </button>
+              </div>
+              <div className="flex flex-1 flex-col gap-[2rem]">
+                <div className="flex flex-col gap-[0.8rem]">
+                  <p className="text-body-2-medium text-gray-600">설명</p>
+                  <p className="text-body-1-regular">{tokenUri?.description}</p>
+                </div>
+                <div className="flex flex-col gap-[0.8rem]">
+                  <p className="text-body-2-medium text-gray-600">특성</p>
+                  <div className="flex flex-wrap gap-[0.8rem]">
+                    {tokenUri?.attributes.map((attribute) => (
+                      <p
+                        key={attribute.trait_type}
+                        className="rounded-full bg-blue-100 px-[1.2rem] py-[0.6rem] text-body-2-semibold text-blue-400"
+                      >
+                        {attribute.value}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="text-system-light flex gap-[2rem] text-body-1-semibold">
+            <Link
+              href={nft!.opensea}
+              className="flex h-[4.8rem] w-[25rem] items-center justify-center rounded-full bg-blue-400"
+              target="_blank"
+            >
+              opensea에서 확인하기
             </Link>
-            <Link href={nft.receipt_link} className="text-body-2-regular text-blue-500" target="_blank">
-              receipt_link 열기 (NFT 영수증 페이지)
+            <Link
+              href={nft!.receipt_link}
+              className="flex h-[4.8rem] w-[25rem] items-center justify-center rounded-full bg-blue-400"
+              target="_blank"
+            >
+              NFT 영수증 확인하기
             </Link>
           </div>
         </div>
