@@ -18,8 +18,53 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'for the block',
-  description: '어렵기만 했던 블록체인, for the block에서 직접 경험하면서 쉽게 이해해보세요.',
+  title: {
+    template: '%s | for the Block',
+    default: '블록체인 큐레이터 - for the Block',
+  },
+  description:
+    '블록체인 정보를 더 쉽고 빠르게! for the Block 은 최신 블록체인 소식을 제공하며, 대화를 통해 블록체인 개념을 이해할 수 있도록 도와줍니다.',
+  keywords: [
+    'blockchain',
+    '블록체인',
+    '블록체인 챗봇',
+    '블록체인 투표',
+    '블록체인 밋업',
+    '블록체인 해커톤',
+    '블록체인 뉴스',
+    '블록체인 NFT',
+    '블록체인 교육',
+    '이더리움',
+    '베이스 이더리움',
+    'web3 온보딩',
+  ],
+  applicationName: 'for the Block',
+  openGraph: {
+    title: '블록체인 큐레이터 - for the Block',
+    description:
+      '블록체인 정보를 더 쉽고 빠르게! for the Block 은 최신 블록체인 소식을 제공하며, 대화를 통해 블록체인 개념을 이해할 수 있도록 도와줍니다.',
+    type: 'website',
+    siteName: 'for the block',
+    url: 'https://www.for-the-block.com',
+    images: {
+      url: '/opengraph-image.png',
+      alt: 'for the Block',
+      width: 1200,
+      height: 630,
+    },
+  },
+  twitter: {
+    title: '블록체인 큐레이터 - for the Block',
+    description:
+      '블록체인 정보를 더 쉽고 빠르게! for the Block 은 최신 블록체인 소식을 제공하며, 대화를 통해 블록체인 개념을 이해할 수 있도록 도와줍니다.',
+    site: 'https://www.for-the-block.com',
+    images: {
+      url: '/twitter-image.png',
+      alt: 'for the Block',
+      width: 1200,
+      height: 630,
+    },
+  },
 };
 
 export default async function RootLayout({
