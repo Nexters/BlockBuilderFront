@@ -3,10 +3,11 @@ import { ThemeProvider } from 'next-themes';
 import localFont from 'next/font/local';
 
 import ResponsiveContainer from '@/components/ResponsiveContainer';
-import { getInitialViewport } from '@/utils/viewport';
 import { UserProvider } from '@/contexts/UserContext';
 import TanStackProvider from '@/providers/TanstackProvider';
+import { getInitialViewport } from '@/utils/viewport';
 
+import Analytics from '@/components/Analytics/Analytics';
 import './globals.css';
 
 const pretendard = localFont({
@@ -31,13 +32,15 @@ export default async function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning className={`${pretendard.variable}`}>
       <body>
-        <ThemeProvider attribute="class" enableSystem={false}>
-          <UserProvider>
-            <TanStackProvider>
-              <ResponsiveContainer initialWidth={initialWidth}>{children}</ResponsiveContainer>
-            </TanStackProvider>
-          </UserProvider>
-        </ThemeProvider>
+        <Analytics>
+          <ThemeProvider attribute="class" enableSystem={false}>
+            <UserProvider>
+              <TanStackProvider>
+                <ResponsiveContainer initialWidth={initialWidth}>{children}</ResponsiveContainer>
+              </TanStackProvider>
+            </UserProvider>
+          </ThemeProvider>
+        </Analytics>
       </body>
     </html>
   );
