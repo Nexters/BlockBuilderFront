@@ -1,7 +1,5 @@
 import { BASE_URL } from '@/constants/url';
-import { TBlockchainInformationApiResponse, TBlockchainInformationResponse } from '../type';
-
-export type TBlockchainInformationType = 'hackathon' | 'meetup' | 'news';
+import { TBlockchainInformationApiResponse, TBlockchainInformationResponse, TBlockchainInformationType } from '../type';
 
 export const fetchBlockchainInformation = async ({
   blockchainInformationType,
