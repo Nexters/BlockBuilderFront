@@ -64,7 +64,7 @@ const TotalQuestions = ({ handleSubmit }: TotalQuestionsProps) => {
           .map((question) => (
             <button
               key={question.id}
-              className="hover:bg-gradient-card-2 bg-system-light/60 m-[0.6rem] flex h-[13.1rem] flex-col gap-[0.9rem] rounded-[1.2rem] border border-blue-100 p-[1.6rem] text-start hover:shadow-normal"
+              className="hover:bg-gradient-card-2 dark:hover:bg-gradient-card-2-dark bg-system-light/60 m-[0.6rem] flex h-[13.1rem] flex-col gap-[0.9rem] rounded-[1.2rem] border border-blue-100 p-[1.6rem] text-start hover:shadow-normal"
               onClick={() => handleClick(question.question)}
             >
               <p className="text-body-3-semibold text-blue-500">{question.category_name}</p>

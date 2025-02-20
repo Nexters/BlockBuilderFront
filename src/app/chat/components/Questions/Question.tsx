@@ -17,8 +17,8 @@ const Question = ({ id, category_name, question, isActive, isPrev, onClick }: Qu
         className={clsx(
           'flex flex-col gap-[0.8rem] rounded-[1.2rem] p-[1.6rem] text-start transition-transform hover:shadow-normal',
           isActive
-            ? 'hover:bg-gradient-card-1 h-full w-[22rem] bg-blue-200'
-            : 'bg-system-light/60 h-[10.6rem] w-[18.6rem] border border-blue-100'
+            ? 'hover:bg-gradient-card-1 dark:hover:bg-gradient-card-1-dark h-full w-[22rem] bg-blue-200'
+            : 'bg-opacity-normal/60 dark:bg-opacity-normal/30 h-[10.6rem] w-[18.6rem] border border-blue-100'
         )}
         onClick={onClick}
       >

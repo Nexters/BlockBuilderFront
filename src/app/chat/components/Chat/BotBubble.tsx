@@ -3,6 +3,7 @@ import { useState, useEffect, useMemo, memo, useCallback, useRef } from 'react';
 import { TextShimmer } from '@/components/ui/TextShimmer';
 import ToolButton from './ToolButton';
 import clsx from 'clsx';
+import { useToast } from '@/contexts/ToastContext';
 
 const BotBubble = memo(
   ({
@@ -25,11 +26,13 @@ const BotBubble = memo(
     const [displayText, setDisplayText] = useState('');
     const words = useMemo(() => text.split(' ') ?? [], [text]);
     const actionRef = useRef<HTMLDivElement>(null);
+    const { showToast } = useToast();
 
     const handleCopy = useCallback(() => {
       const textToCopy = text.replace(/<[^>]*>/g, '');
       navigator.clipboard.writeText(textToCopy);
-    }, [text]);
+      showToast('답변이 복사되었어요!');
+    }, [text, showToast]);
 
     useEffect(() => {
       if (!isLastMessage) return;

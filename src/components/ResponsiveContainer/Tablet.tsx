@@ -43,7 +43,7 @@ const NavigationItem = ({ menu }: { menu: Menu }) => {
   return (
     <li
       className={clsx(
-        'flex h-[36px] w-[36px] items-center justify-center rounded-[10px]',
+        'flex h-[36px] w-[36px] cursor-pointer items-center justify-center rounded-[10px]',
         isActiveMenu(menu) && 'bg-gray-200'
       )}
       onClick={handleChangeMenu(menu)}

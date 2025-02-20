@@ -42,6 +42,7 @@ module.exports = {
         'system-green': 'var(--color-system-green)',
         'system-light': 'rgba(var(--color-system-light) / <alpha-value>)',
         'system-dark': 'rgba(var(--color-system-dark) / <alpha-value>)',
+        'opacity-normal': 'rgba(var(--color-opacity-normal) / <alpha-value>)',
         white: '#FFFFFF',
         dark: '#0E0E0E',
         background: 'var(--color-background)',
@@ -53,8 +54,15 @@ module.exports = {
           'radial-gradient(122.41% 81.02% at 15.55% 83.7%, var(--color-blue-100, rgba(35, 45, 77, 0.10)) 0%, var(--color-background, rgba(14, 14, 14, 0.10) 68.5%), radial-gradient(137.17% 109.57% at 88.91% 5.18%, var(--color-blue-100, rgba(35, 45, 77, 0.60)) 0%, var(--color-gray-100, rgba(29, 29, 29, 0.60)) 83.32%), var(--color-background, #0E0E0E)',
         'gradient-card-1':
           'radial-gradient(101.49% 84.29% at 74.32% 32.08%, var(--blue-300, #97ADFE) 0%, var(--blue-200, #C3CDFE) 68.5%)',
+        'gradient-card-1-dark':
+          'radial-gradient(101.49% 84.29% at 74.32% 32.08%, var(--blue-300, #2F4EBF) 0%, var(--blue-200, #182357) 68.5%)',
         'gradient-card-2':
           'radial-gradient(101.49% 84.29% at 74.32% 32.08%, var(--blue-100, #E7EBFF) 0%, var(--gray-100, #F8FAFB) 68.5%)',
+        'gradient-card-2-dark':
+          'radial-gradient(101.49% 84.29% at 74.32% 32.08%, var(--blue-200, #1D1C57) 0%, var(--gray-100, #1D1D1D) 68.5%)',
+        'complex-gradient': `linear-gradient(0deg, var(--color-gray-100), var(--color-gray-100)),
+                          radial-gradient(76.2% 89.67% at 85.14% 22.26%, rgba(231, 235, 255, 0.8) 0%, rgba(248, 250, 251, 0) 79.5%),
+                          radial-gradient(69.07% 104.35% at 7.42% 86.67%, rgba(253, 252, 233, 0.5) 0%, rgba(248, 250, 251, 0) 68.5%)`,
       },
       fontSize: {
         // headline
@@ -313,11 +321,6 @@ module.exports = {
       boxShadow: {
         normal: 'var(--shadow-normal)',
         emphasize: 'var(--shadow-emphasize)',
-      },
-      backgroundImage: {
-        'complex-gradient': `linear-gradient(0deg, var(--color-gray-100), var(--color-gray-100)),
-                           radial-gradient(76.2% 89.67% at 85.14% 22.26%, rgba(231, 235, 255, 0.8) 0%, rgba(248, 250, 251, 0) 79.5%),
-                           radial-gradient(69.07% 104.35% at 7.42% 86.67%, rgba(253, 252, 233, 0.5) 0%, rgba(248, 250, 251, 0) 68.5%)`,
       },
       keyframes: {
         'fade-in-up': {

@@ -21,7 +21,7 @@ const NavigationButton = ({
       <button
         className={clsx(
           'pointer-events-auto flex size-[2.8rem] items-center justify-center',
-          isSmall && 'rounded-full border border-blue-100 bg-white',
+          isSmall && 'bg-system-light rounded-full border border-blue-100',
           direction === 'prev' && 'rotate-180'
         )}
         onClick={() => {
