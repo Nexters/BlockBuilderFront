@@ -19,5 +19,6 @@ export const initMixpanel = () => {
     track_pageview: false,
     persistence: 'localStorage',
     debug: SEND_LOG_MIXPANEL_TESTBED || !isProduction,
+    ignore_dnt: isProduction ? false : true,
   });
 };
