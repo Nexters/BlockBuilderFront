@@ -24,12 +24,11 @@ export default function usePollPageLogActions() {
   );
 
   const handleLoggingSubmitPoll = useCallback(
-    (poll: { id: number; eoa: string; optionIndex: number; option: string }) => {
+    (poll: { id: number; optionIndex: number; option: string }) => {
       sendLog({
         eventName: '투표_참여',
         eventProperties: {
           투표_아이디: poll.id,
-          투표_참여자_계정: poll.eoa,
           투표_옵션_인덱스: poll.optionIndex,
           투표_옵션: poll.option,
         },

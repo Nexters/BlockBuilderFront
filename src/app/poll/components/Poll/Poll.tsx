@@ -68,7 +68,6 @@ export default function Poll({
     showToast('투표가 완료되었어요!');
     handleLoggingSubmitPoll({
       id: topicNo,
-      eoa,
       optionIndex: selected,
       option: selected === 1 ? firstOption : secondOption,
     });
