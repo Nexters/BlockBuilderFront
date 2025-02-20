@@ -22,9 +22,9 @@ const NftPage = () => {
         <>
           <div className="flex flex-col items-center gap-[0.8rem]">
             <h1 className="text-title-1-semibold">나만의 NFT를 만들어보세요</h1>
-            <p className="text-body-2-regular text-gray-700">
-              블록체인 기술을 활용하여 손쉽게 NFT를 만들어보세요. 쉽고 빠르게 소유권을 증명할 수 있는 NFT를 만들어
-              보세요.
+            <p className="whitespace-pre-wrap text-center text-body-2-regular text-gray-700">
+              {`NFT란 블록체인 기술을 이용해서 디지털 자산의 소유주를 증명하는 가상의 토큰(token)이에요.\n쉽고 빠르게 소유권을 증명할 수 있는 NFT를 만들어보세요.
+              `}
             </p>
           </div>
           <div className="flex flex-col items-center gap-[1.2rem]">

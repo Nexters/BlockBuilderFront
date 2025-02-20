@@ -15,15 +15,15 @@ const CoinPage = () => {
       {!coin && (
         <>
           <div className="flex flex-col items-center gap-[0.8rem]">
-            <h1 className="text-title-1-semibold">나만의 NFT를 만들어보세요</h1>
-            <p className="text-body-2-regular text-gray-700">
-              블록체인 기술을 활용하여 손쉽게 NFT를 만들어보세요. 쉽고 빠르게 소유권을 증명할 수 있는 NFT를 만들어
-              보세요.
+            <h1 className="text-title-1-semibold">빠르고 쉽게 코인을 만들어보세요.</h1>
+            <p className="whitespace-pre-wrap text-center text-body-2-regular text-gray-700">
+              {`이알씨프로(ERCP)는 이더리움 알고리즘으로 만들어진 새로운 메인넷 코인이에요.\n스마트 컨트렉트를 통해 생성되며 입출금시 빠른 전송 속도와 낮은 수수료를 보장해요.\n이더리움과 ERC20 토큰은 전체 토큰 시장 가치의 90%를 차지하고 있어요.
+              `}
             </p>
           </div>
           <div className="flex flex-col items-center gap-[1.2rem]">
             <Image src="/images/chat/block.gif" alt="loading" width={200} height={200} />
-            <p className="text-body-2-semibold">NFT를 생성중이에요.</p>
+            <p className="text-body-2-semibold">코인을 생성중이에요.</p>
           </div>
         </>
       )}
@@ -52,7 +52,7 @@ const CoinPage = () => {
                   이미지 저장
                 </button>
               </div>
-              <div className="flex flex-1 flex-col gap-[2rem] mobile:hidden">
+              <div className="flex min-w-[10rem] flex-1 flex-col gap-[2rem] mobile:hidden">
                 <div className="flex flex-col gap-[0.8rem]">
                   <p className="text-body-2-medium text-gray-600">수량</p>
                   <p className="text-body-1-regular">{coin.amount}</p>
