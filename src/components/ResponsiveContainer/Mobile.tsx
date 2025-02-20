@@ -2,7 +2,6 @@ import { Icon } from '@/assets/icons';
 import clsx from 'clsx';
 import { useState } from 'react';
 import { Navigation } from './common/Navigation';
-import RecentSearchKeyword from './common/RecentSearchKeyword';
 import ThemeSwitch from './common/ThemeSwitch';
 import { ToastProvider } from '@/contexts/ToastContext';
 import Link from 'next/link';
@@ -43,7 +42,6 @@ export default function Mobile({ children }: { children: React.ReactNode }) {
               </Link>
             </header>
             <Navigation />
-            <RecentSearchKeyword />
           </div>
           <ThemeSwitch />
         </div>
