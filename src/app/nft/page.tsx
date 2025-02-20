@@ -6,29 +6,11 @@ import useNft from './useNft';
 import { useToast } from '@/contexts/ToastContext';
 import { useMemo } from 'react';
 import clsx from 'clsx';
+import { downloadImage } from '@/utils/download-image';
 
 const NftPage = () => {
   const { nft, tokenUri } = useNft();
   const { showToast } = useToast();
-
-  const handleImageDownload = async (url: string, filename: string) => {
-    try {
-      const response = await fetch(url, { mode: 'cors' });
-      const blob = await response.blob();
-      const blobUrl = URL.createObjectURL(blob);
-
-      const link = document.createElement('a');
-      link.href = blobUrl;
-      link.download = filename;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(blobUrl);
-    } catch (error) {
-      console.error(error);
-      showToast('NFT 이미지를 다운로드하는데 실패했어요.');
-    }
-  };
 
   const hasData = useMemo(() => {
     return nft && tokenUri;
@@ -66,7 +48,14 @@ const NftPage = () => {
                   <Image src={nft!.image_url} alt="nft" width={200} height={200} />
                 </div>
                 <button
-                  onClick={() => handleImageDownload(nft!.image_url, `${tokenUri?.name}.png`)}
+                  onClick={() =>
+                    downloadImage(
+                      nft!.image_url,
+                      `${tokenUri?.name}.png`,
+                      () => {},
+                      () => showToast('이미지 저장에 실패했어요')
+                    )
+                  }
                   className="bg-system-light flex items-center rounded-full border border-blue-100 px-[1.6rem] py-[0.6rem] text-body-2-semibold hover:shadow-normal"
                 >
                   이미지 저장
