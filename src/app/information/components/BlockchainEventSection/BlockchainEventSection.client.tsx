@@ -3,8 +3,7 @@
 import { Icon } from '@/assets/icons';
 import { useMemo, useRef, useState } from 'react';
 import { SwiperRef } from 'swiper/react';
-import { TBlockchainInformationType } from '../../api/fetchBlockchainInformation';
-import { TBlockchainInformationData } from '../../type';
+import { TBlockchainInformationData, TBlockchainInformationType } from '../../type';
 import BlockchainEventList from './BlockchainEventList';
 
 const eventTabList: { text: string; value: TBlockchainInformationType }[] = [

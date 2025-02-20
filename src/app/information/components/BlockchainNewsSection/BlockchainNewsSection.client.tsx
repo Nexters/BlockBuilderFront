@@ -5,6 +5,7 @@ import { useLottie } from 'lottie-react';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { fetchBlockchainInformation } from '../../api/fetchBlockchainInformation';
+import useInformationPageActions from '../../hooks/useInformationPageActions';
 import { TBlockchainInformationData } from '../../type';
 import BlockchainNews from './BlockchainNews';
 
@@ -17,6 +18,7 @@ const BlockchainNewsSectionClient = ({
   initialTotalPage: number;
   initialData: TBlockchainInformationData[];
 }) => {
+  const { handleInformationClick } = useInformationPageActions();
   const { ref, inView } = useInView();
 
   const [newsList, setNewsList] = useState<TBlockchainInformationData[]>(initialData);
@@ -46,12 +48,19 @@ const BlockchainNewsSectionClient = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView, hasNextPage]);
 
-  // TODO: Empty, Loading Spinner UI
   return (
     <>
       <ul className="grid grid-cols-1 gap-x-[1.5rem] gap-y-[2.4rem] pt-[2.4rem] tablet:grid-cols-2 desktop:grid-cols-3">
         {newsList?.map((news) => {
-          return <BlockchainNews key={`blockchain-news-${news.id}`} news={news} />;
+          return (
+            <li
+              key={`blockchain-news-${news.id}`}
+              className="group flex-1"
+              onClick={() => handleInformationClick(news, 'news')}
+            >
+              <BlockchainNews news={news} />
+            </li>
+          );
         })}
       </ul>
 

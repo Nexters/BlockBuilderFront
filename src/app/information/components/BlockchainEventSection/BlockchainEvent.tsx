@@ -1,8 +1,8 @@
 import { Icon } from '@/assets/icons';
 import Image from 'next/image';
 import Link from 'next/link';
-import { convertStartAndEndDate, TBlockchainInformationType } from '../../api/fetchBlockchainInformation';
-import { TBlockchainInformationData } from '../../type';
+import { convertStartAndEndDate } from '../../api/fetchBlockchainInformation';
+import { TBlockchainInformationData, TBlockchainInformationType } from '../../type';
 import BlockChainLabel from '../BlockchainLabel/BlockchainLabel';
 
 const BlockchainEvent = ({
