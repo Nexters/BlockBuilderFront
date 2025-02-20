@@ -40,16 +40,16 @@ const ExplanationItem = ({
   explanation: string;
 }) => {
   return (
-    <div className="flex flex-col gap-[2rem] rounded-[1.2rem] border-2 border-gray-200 p-[1.6rem]">
+    <div className="flex flex-col gap-[2rem] rounded-[1.2rem] border-2 border-gray-200 px-[3rem] py-[2.4rem]">
       <p className="break-keep text-title-2-semibold">
         {id}. {question}
       </p>
-      <div className="flex flex-col gap-[0.8rem]">
+      <div className="flex flex-col gap-[1rem]">
         {options.map((option) => (
           <div
             key={option}
             className={clsx(
-              'break-keep rounded-[0.8rem] border border-gray-200 p-[1.2rem] text-body-1-regular',
+              'break-keep rounded-[0.8rem] border border-gray-300 px-[1.8rem] py-[1.2rem] text-body-1-medium text-gray-800',
               option === submittedAnswer && submittedAnswer !== correctAnswer && 'bg-red-200 dark:bg-red-800',
               option === correctAnswer && 'bg-green-100 text-body-1-semibold dark:bg-green-800'
             )}
@@ -59,9 +59,9 @@ const ExplanationItem = ({
         ))}
       </div>
       <div className="flex flex-col gap-[0.4rem]">
-        <p className="text-title-3-semibold">해설</p>
+        <p className="text-title-2-semibold">해설</p>
         <div className="h-[1px] w-full bg-gray-400" />
-        <p className="whitespace-pre-wrap break-keep p-[0.4rem] text-body-1-regular">{explanation}</p>
+        <p className="whitespace-pre-wrap break-keep p-[0.4rem] text-body-1-medium text-gray-800">{explanation}</p>
       </div>
     </div>
   );
