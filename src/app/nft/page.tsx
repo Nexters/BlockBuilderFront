@@ -5,6 +5,7 @@ import Link from 'next/link';
 import useNft from './useNft';
 import { useToast } from '@/contexts/ToastContext';
 import { useMemo } from 'react';
+import clsx from 'clsx';
 
 const NftPage = () => {
   const { nft, tokenUri } = useNft();
@@ -34,7 +35,7 @@ const NftPage = () => {
   }, [nft, tokenUri]);
 
   return (
-    <div className="flex size-full flex-col items-center justify-center gap-[4rem] p-[4rem] pb-[6.2rem]">
+    <div className="flex size-full flex-col items-center justify-center gap-[4rem] p-[4rem] pb-[6.2rem] mobile:h-[calc(100vh-5.6rem)]">
       {!hasData && (
         <>
           <div className="flex flex-col items-center gap-[0.8rem]">
@@ -51,13 +52,13 @@ const NftPage = () => {
         </>
       )}
       {hasData && (
-        <div className="flex h-[80vh] max-w-[68.4rem] flex-col items-center justify-between">
-          <div className="flex flex-col items-center gap-[4rem]">
+        <div className="scrollbar-hide flex max-w-[68.4rem] flex-col items-center justify-between overflow-auto mobile:pb-[10rem] tablet:h-[80vh] desktop:h-[80vh]">
+          <div className="flex flex-col items-center gap-[4rem] mobile:gap-[3rem]">
             <div className="flex flex-col items-center">
               <p className="text-title-3-medium text-gray-700">
                 보도블록에서 <span className="text-blue-400">{nft?.tokenId}</span>번째로 만들어진 NFT에요!
               </p>
-              <p className="text-headline-2-bold">{tokenUri?.name}</p>
+              <p className="text-center text-headline-2-bold">{tokenUri?.name}</p>
             </div>
             <div className="flex gap-[3rem]">
               <div className="flex flex-col items-center gap-[2rem]">
@@ -71,7 +72,7 @@ const NftPage = () => {
                   이미지 저장
                 </button>
               </div>
-              <div className="flex flex-1 flex-col gap-[2rem]">
+              <div className="flex flex-1 flex-col gap-[2rem] mobile:hidden">
                 <div className="flex flex-col gap-[0.8rem]">
                   <p className="text-body-2-medium text-gray-600">설명</p>
                   <p className="text-body-1-regular">{tokenUri?.description}</p>
@@ -92,17 +93,22 @@ const NftPage = () => {
               </div>
             </div>
           </div>
-          <div className="text-system-light flex gap-[2rem] text-body-1-semibold">
+          <div
+            className={clsx(
+              'text-system-light flex gap-[2rem] text-body-1-semibold',
+              'mobile:bg-system-light mobile:absolute mobile:bottom-0 mobile:w-full mobile:flex-col mobile:gap-[1.2rem] mobile:p-[0.8rem_2rem_3.2rem]'
+            )}
+          >
             <Link
               href={nft!.opensea}
-              className="flex h-[4.8rem] w-[25rem] items-center justify-center rounded-full bg-blue-400"
+              className="flex h-[4.8rem] w-[25rem] items-center justify-center rounded-full bg-blue-400 mobile:w-full"
               target="_blank"
             >
               opensea에서 확인하기
             </Link>
             <Link
               href={nft!.receipt_link}
-              className="flex h-[4.8rem] w-[25rem] items-center justify-center rounded-full bg-blue-400"
+              className="flex h-[4.8rem] w-[25rem] items-center justify-center rounded-full bg-blue-400 mobile:w-full"
               target="_blank"
             >
               NFT 영수증 확인하기
