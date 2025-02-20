@@ -2,6 +2,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useMemo } from 'react';
 import { userStorage } from '@/hooks/useUser';
+import useQuizPageActions from './hooks/useQuizPageActions';
 
 const Recommendation = ({
   type,
@@ -22,11 +23,14 @@ const Recommendation = ({
     return null;
   }, [type]);
 
+  const { handleRecommendationClick } = useQuizPageActions();
+
   return (
     <button
       className="relative flex size-full h-[27.2rem] overflow-hidden rounded-[1.2rem] bg-blue-100 p-[2rem] mobile:h-[18rem] mobile:flex-row"
       onClick={() => {
         router.push(url);
+        handleRecommendationClick(type);
       }}
     >
       <div className="z-10 flex flex-col gap-[0.6rem]">
