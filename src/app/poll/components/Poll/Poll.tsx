@@ -10,6 +10,7 @@ import { useToast } from '@/contexts/ToastContext';
 import { useDebounce } from '@/hooks/useDebounce';
 import loadingAnimation from '@/assets/lotties/loading.json';
 import dynamic from 'next/dynamic';
+import usePollPageLogActions from '../../hooks/usePollPageLogActions';
 interface PollProps {
   endTime: string;
   topicNo: number;
@@ -44,6 +45,8 @@ export default function Poll({
   const eoa = userStorage.getUserData()?.token || '';
   const [selected, setSelected] = useState<number>(0);
 
+  const { handleLoggingSubmitPoll } = usePollPageLogActions();
+
   const { showToast } = useToast();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,6 +66,12 @@ export default function Poll({
   const handleVote = async () => {
     await participateToVote({ eoa, topicNo, voteOption: selected });
     showToast('투표가 완료되었어요!');
+    handleLoggingSubmitPoll({
+      id: topicNo,
+      eoa,
+      optionIndex: selected,
+      option: selected === 1 ? firstOption : secondOption,
+    });
   };
 
   const handleOpenReceiptLink = () => {

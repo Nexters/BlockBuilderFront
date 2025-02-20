@@ -1,11 +1,19 @@
 import Tooltip from '@/assets/icons/Tooltip';
 import { useState } from 'react';
+import usePollPageLogActions from '../../hooks/usePollPageLogActions';
 
 export default function TooltipContainer() {
+  const { handleLoggingOpenTooltip } = usePollPageLogActions();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggleTooltip = () => {
-    setIsOpen((prev) => !prev);
+    setIsOpen((prev) => {
+      if (prev === false) {
+        handleLoggingOpenTooltip();
+      }
+
+      return !prev;
+    });
   };
 
   return (
