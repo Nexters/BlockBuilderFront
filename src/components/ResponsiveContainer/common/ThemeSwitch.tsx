@@ -2,20 +2,28 @@ import { useTheme } from 'next-themes';
 import { useMount } from '@/hooks/useMount';
 import clsx from 'clsx';
 import { Icon } from '@/assets/icons';
+import useLogging from '@/hooks/useLogging';
 
 export default function ThemeSwitch() {
   const { theme, setTheme } = useTheme();
   const mounted = useMount();
+  const { sendLog } = useLogging();
+
+  const handleThemeChange = (theme: string) => {
+    setTheme(theme);
+    sendLog({ eventName: '테마_변경', eventProperties: { 변경_테마: theme } });
+  };
+
   if (!mounted) {
     return null;
   }
 
   return (
-    <div className=" w-[100%] flex p-[0.4rem] bg-gray-200 rounded-full">
+    <div className="flex w-[100%] rounded-full bg-gray-200 p-[0.4rem]">
       <button
-        onClick={() => setTheme('light')}
+        onClick={() => handleThemeChange('light')}
         className={clsx(
-          'w-[100%] flex items-center justify-center px-[20px] py-[4px] gap-[6px] rounded-full',
+          'flex w-[100%] items-center justify-center gap-[6px] rounded-full px-[20px] py-[4px]',
           theme === 'light' ? 'bg-white' : ''
         )}
       >
@@ -23,9 +31,9 @@ export default function ThemeSwitch() {
         <span className={clsx('text-body-1-medium', theme === 'light' ? 'text-gray-800' : 'text-gray-500')}>Light</span>
       </button>
       <button
-        onClick={() => setTheme('dark')}
+        onClick={() => handleThemeChange('dark')}
         className={clsx(
-          'w-[100%] flex items-center justify-center px-[20px] py-[4px] gap-[6px] rounded-full',
+          'flex w-[100%] items-center justify-center gap-[6px] rounded-full px-[20px] py-[4px]',
           theme === 'dark' ? 'bg-dark' : ''
         )}
       >
