@@ -43,7 +43,7 @@ const Card = ({ type, title, description, url }: CardProps) => {
       )}
       onClick={() => handleLandingCardClick(type)}
     >
-      <div className="flex flex-col gap-[0.6rem]">
+      <div className="z-10 flex flex-col gap-[0.6rem]">
         <p className="text-title-2-semibold">{title}</p>
         <p className="text-body-2-regular text-gray-800">{description}</p>
         {type === 'quiz' && result && (

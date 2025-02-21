@@ -36,8 +36,7 @@ const Questions = ({ questions, handleClick }: QuestionsProps) => {
         className={clsx(
           'pointer-events-none absolute top-0 z-10 flex size-full h-[15.1rem] max-w-[76.4rem] items-center justify-between px-[4rem]',
           isSmall &&
-            'bg-[linear-gradient(90deg,#F9FAF8_7%,rgba(255,255,255,0)_27%,rgba(255,255,255,0)_73.5%,#F1F4FD_93%)]',
-          'dark:bg-[linear-gradient(90deg,#1D1D1D_7%,rgba(14,14,14,0)_27%,rgba(14,14,14,0)_73.5%,#1D1D1D_93%)]'
+            'bg-[linear-gradient(90deg,#F9FAF8_7%,rgba(255,255,255,0)_27%,rgba(255,255,255,0)_73.5%,#F1F4FD_93%)] dark:bg-[linear-gradient(90deg,#1D1D1D_7%,rgba(14,14,14,0)_27%,rgba(14,14,14,0)_73.5%,#1D1D1D_93%)]'
         )}
       >
         <NavigationButton direction="prev" swiper={swiper} isSmall={isSmall} />
