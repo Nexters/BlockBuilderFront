@@ -32,7 +32,6 @@ const BlockchainEventSectionClient = ({
 
   const handleEventTabClick = (selectedEventTab: TEventTab) => {
     if (swiperRef && swiperRef?.current) {
-      setCurrentEventTabValue(selectedEventTab);
       setCurrentPage(1);
       swiperRef.current.swiper.slideTo(0, 0);
     }
@@ -40,6 +39,8 @@ const BlockchainEventSectionClient = ({
     if (scrollRef && scrollRef.current) {
       scrollRef.current.scrollTo(0, 0);
     }
+
+    setCurrentEventTabValue(selectedEventTab);
   };
 
   const handlePrevClick = () => {
@@ -97,6 +98,7 @@ const BlockchainEventSectionClient = ({
 
       <div className="md:px-[4rem] mobile:px-0">
         <BlockchainEventList
+          key={currentEventTabValue}
           blockchainEventType={currentEventTabValue}
           blockchainEventList={currentEventTabValue === 'hackathon' ? hackathonList : meetupList}
           swiperRef={swiperRef}

@@ -51,7 +51,7 @@ const BlockchainEventList = ({
               key={`${blockchainEvent.id}-${blockchainEvent.sourceIndex}`}
               onClick={() => handleInformationClick(blockchainEvent, blockchainEventType)}
             >
-              <BlockchainEvent blockchainEventType={blockchainEventType} blockchainEvent={blockchainEvent} />
+              <BlockchainEvent blockchainEvent={blockchainEvent} />
             </li>
           );
         })}

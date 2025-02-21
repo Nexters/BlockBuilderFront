@@ -1,24 +1,11 @@
 import { Icon } from '@/assets/icons';
 import Image from 'next/image';
 import Link from 'next/link';
-import { convertStartAndEndDate } from '../../api/fetchBlockchainInformation';
-import { TBlockchainInformationData, TBlockchainInformationType } from '../../type';
+import { TBlockchainInformationData } from '../../type';
 import BlockChainLabel from '../BlockchainLabel/BlockchainLabel';
 
-const BlockchainEvent = ({
-  blockchainEventType,
-  blockchainEvent,
-}: {
-  blockchainEventType?: TBlockchainInformationType;
-  blockchainEvent: TBlockchainInformationData;
-}) => {
+const BlockchainEvent = ({ blockchainEvent }: { blockchainEvent: TBlockchainInformationData }) => {
   const { url, imgUrl, title, startDate, endDate, network, host, prize } = blockchainEvent;
-
-  const [convertedStartDate, convertedEndDate] = convertStartAndEndDate({
-    startDate,
-    endDate,
-    blockchainInformationType: blockchainEventType,
-  });
 
   return (
     <Link href={url} target="_blank">
@@ -40,7 +27,7 @@ const BlockchainEvent = ({
           <div>
             <BlockChainLabel className="mb-[0.8rem]" blockchainNetwork={network} />
             <p className="text-nowrap pb-[0.2rem] text-body-2-medium text-gray-700">
-              {convertedStartDate} ~ {convertedEndDate}
+              {startDate} ~ {endDate}
             </p>
             <h3 className="line-clamp-1 break-all text-title-3-semibold text-gray-900 group-hover:underline">
               {title}
