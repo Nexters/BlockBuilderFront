@@ -5,18 +5,13 @@ export const fetchBlockchainInformation = async ({
   blockchainInformationType,
   page,
   size,
-  requestInit,
 }: {
   blockchainInformationType: TBlockchainInformationType;
   page?: number;
   size?: number;
-  requestInit?: RequestInit;
 }): Promise<TBlockchainInformationResponse> => {
   try {
-    const res = await fetch(
-      `${BASE_URL}/api/info/${blockchainInformationType}?page=${page}&size=${size}`,
-      requestInit ?? { next: { revalidate: 3600 } }
-    );
+    const res = await fetch(`${BASE_URL}/api/info/${blockchainInformationType}?page=${page}&size=${size}`);
     const data = (await res.json()) as TBlockchainInformationApiResponse;
 
     return convertFromBlockchainInformationApiResponse({ apiResponse: data, blockchainInformationType });
