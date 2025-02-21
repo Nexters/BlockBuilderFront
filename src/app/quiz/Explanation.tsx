@@ -1,12 +1,18 @@
 import { DrawerDialog } from '@/components/ResponsiveContainer/common/DrawerDialog';
 import { questions } from './data';
 import clsx from 'clsx';
+import useQuizPageActions from './hooks/useQuizPageActions';
 
 const Explanation = ({ submittedAnswer }: { submittedAnswer: string[] }) => {
+  const { handleExplanationClick } = useQuizPageActions();
+
   return (
     <DrawerDialog
       trigger={
-        <button className="text-system-light rounded-full bg-blue-400 px-[1.6rem] py-[0.6rem] text-body-2-semibold">
+        <button
+          className="rounded-full bg-blue-400 px-[1.6rem] py-[0.6rem] text-body-2-semibold text-system-light"
+          onClick={handleExplanationClick}
+        >
           해설보기
         </button>
       }

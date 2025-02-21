@@ -6,9 +6,12 @@ import useCoin from './useCoin';
 import { downloadImage } from '@/utils/download-image';
 import { useToast } from '@/contexts/ToastContext';
 import clsx from 'clsx';
+import useCoinPageActions from './hooks/useCoinPageActions';
+
 const CoinPage = () => {
   const { coin } = useCoin();
   const { showToast } = useToast();
+  const { handleSaveImageClick, handleOpenReceiptClick } = useCoinPageActions();
 
   return (
     <div className="flex size-full flex-col items-center justify-center gap-[4rem] p-[4rem] pb-[6.2rem] mobile:h-[calc(100vh-5.6rem)]">
@@ -28,7 +31,7 @@ const CoinPage = () => {
         </>
       )}
       {coin && (
-        <div className="scrollbar-hide flex max-w-[68.4rem] flex-col items-center justify-between overflow-auto mobile:pb-[10rem] tablet:h-[80vh] desktop:h-[80vh]">
+        <div className="flex max-w-[68.4rem] flex-col items-center justify-between overflow-auto scrollbar-hide mobile:pb-[10rem] tablet:h-[80vh] desktop:h-[80vh]">
           <div className="flex flex-col items-center gap-[4rem] mobile:gap-[3rem]">
             <div className="flex flex-col items-center">
               <p className="text-center text-headline-2-bold">{coin.name}</p>
@@ -39,15 +42,16 @@ const CoinPage = () => {
                   <Image src={coin.image} alt="coin" width={200} height={200} />
                 </div>
                 <button
-                  onClick={() =>
+                  onClick={() => {
                     downloadImage(
                       coin.image,
                       `${coin.name}.png`,
                       () => {},
                       () => showToast('이미지 저장에 실패했어요')
-                    )
-                  }
-                  className="bg-system-light flex items-center rounded-full border border-blue-100 px-[1.6rem] py-[0.6rem] text-body-2-semibold hover:shadow-normal"
+                    );
+                    handleSaveImageClick();
+                  }}
+                  className="flex items-center rounded-full border border-blue-100 bg-system-light px-[1.6rem] py-[0.6rem] text-body-2-semibold hover:shadow-normal"
                 >
                   이미지 저장
                 </button>
@@ -62,14 +66,15 @@ const CoinPage = () => {
           </div>
           <div
             className={clsx(
-              'text-system-light flex text-body-1-semibold',
-              'mobile:bg-system-light mobile:absolute mobile:bottom-0 mobile:w-full mobile:p-[0.8rem_2rem_3.2rem]'
+              'flex text-body-1-semibold text-system-light',
+              'mobile:absolute mobile:bottom-0 mobile:w-full mobile:bg-system-light mobile:p-[0.8rem_2rem_3.2rem]'
             )}
           >
             <Link
               href={coin.receipt_link}
               className="flex h-[4.8rem] w-[25rem] items-center justify-center rounded-full bg-blue-400 mobile:w-full"
               target="_blank"
+              onClick={handleOpenReceiptClick}
             >
               코인 영수증 확인하기
             </Link>

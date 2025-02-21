@@ -6,6 +6,7 @@ import useRecommendQuestions from '../../hooks/useRecommendQuestions';
 import Image from 'next/image';
 import { Icon } from '@/assets/icons';
 import useScreen from '@/hooks/useScreen';
+import useChatPageActions from '../../hooks/useChatPageActions';
 
 interface QuestionRecommendationProps {
   handleSubmit: (text: string) => void;
@@ -15,6 +16,7 @@ interface QuestionRecommendationProps {
 const QuestionRecommendation = ({ handleSubmit, handleViewChange }: QuestionRecommendationProps) => {
   const { questions, selectedLevel, setSelectedLevel } = useRecommendQuestions();
   const { isMobile } = useScreen();
+  const { handleRecommendationLevelClick, handleTotalQuestionClick } = useChatPageActions();
 
   const handleClick = (text: string) => {
     handleSubmit(text);
@@ -30,14 +32,20 @@ const QuestionRecommendation = ({ handleSubmit, handleViewChange }: QuestionReco
               key={key}
               level={value}
               isSelected={selectedLevel === value}
-              onClick={() => setSelectedLevel(value)}
+              onClick={() => {
+                setSelectedLevel(value);
+                handleRecommendationLevelClick(value);
+              }}
             />
           ))}
         </div>
         <Questions questions={questions} handleClick={handleClick} />
         <button
-          onClick={handleViewChange}
-          className="bg-system-light/60 flex items-center gap-[0.4rem] rounded-full border border-blue-100 py-[0.6rem] pl-[1.2rem] pr-[0.8rem] text-body-2-medium text-gray-700 hover:shadow-normal"
+          onClick={() => {
+            handleViewChange();
+            handleTotalQuestionClick();
+          }}
+          className="flex items-center gap-[0.4rem] rounded-full border border-blue-100 bg-system-light/60 py-[0.6rem] pl-[1.2rem] pr-[0.8rem] text-body-2-medium text-gray-700 hover:shadow-normal"
         >
           <span>질문 더보기</span>
           <Icon name="ArrowRight" size={20} />

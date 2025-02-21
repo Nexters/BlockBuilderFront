@@ -1,7 +1,6 @@
 import { ToastProvider } from '@/contexts/ToastContext';
 import Image from 'next/image';
 import { Navigation } from './common/Navigation';
-import RecentSearchKeyword from './common/RecentSearchKeyword';
 import ThemeSwitch from './common/ThemeSwitch';
 import Link from 'next/link';
 import { Icon } from '@/assets/icons';
@@ -17,7 +16,6 @@ export default function Desktop({ children }: { children: React.ReactNode }) {
             </Link>
           </header>
           <Navigation />
-          <RecentSearchKeyword />
         </div>
         <ThemeSwitch />
       </aside>

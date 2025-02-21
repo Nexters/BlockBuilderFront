@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Level, LevelMap, QuestionCategory, QuestionCategoryMap, Questions } from '../../data';
 import clsx from 'clsx';
 import { fetchJson } from '@/utils/api';
+import useChatPageActions from '../../hooks/useChatPageActions';
 
 interface TotalQuestionsProps {
   handleSubmit: (text: string) => void;
@@ -11,7 +12,7 @@ const TotalQuestions = ({ handleSubmit }: TotalQuestionsProps) => {
   const [tab, setTab] = useState<Level>(Level.BEGINNER);
   const [filter, setFilter] = useState<QuestionCategory>(QuestionCategoryMap[0]);
   const [questions, setQuestions] = useState<Questions>([]);
-
+  const { handleTotalLevelClick, handleTotalCategoryClick, handleTotalQuestionSelect } = useChatPageActions();
   useEffect(() => {
     const fetchQuestions = async () => {
       const questions = await fetchJson<Questions>('/api/info/level/questions');
@@ -35,7 +36,10 @@ const TotalQuestions = ({ handleSubmit }: TotalQuestionsProps) => {
               'flex flex-1 items-start justify-center',
               tab === value ? 'border-b-2 border-blue-400 text-blue-500' : 'border-b border-blue-100 text-gray-700'
             )}
-            onClick={() => setTab(value)}
+            onClick={() => {
+              setTab(value);
+              handleTotalLevelClick(value);
+            }}
           >
             <h2 className="text-body-2-semibold">{LevelMap[value]}</h2>
           </button>
@@ -49,23 +53,29 @@ const TotalQuestions = ({ handleSubmit }: TotalQuestionsProps) => {
               'flex w-fit items-start justify-center rounded-[0.8rem] px-[1.6rem] py-[0.6rem]',
               filter === value
                 ? 'bg-system-dark text-body-2-semibold text-gray-100'
-                : 'bg-system-light border border-blue-100 px-[1.5rem] py-[0.5rem] text-body-2-medium text-gray-700'
+                : 'border border-blue-100 bg-system-light px-[1.5rem] py-[0.5rem] text-body-2-medium text-gray-700'
             )}
-            onClick={() => setFilter(value)}
+            onClick={() => {
+              setFilter(value);
+              handleTotalCategoryClick(value);
+            }}
           >
             <h2 className="w-fit text-body-2-semibold">{value}</h2>
           </button>
         ))}
       </div>
-      <div className="scrollbar-hide -m-[0.6rem] grid h-full flex-1 grid-cols-1 overflow-y-auto pb-[15.6rem] mobile:pb-[10rem] tablet:grid-cols-2 desktop:grid-cols-3">
+      <div className="-m-[0.6rem] grid h-full flex-1 grid-cols-1 overflow-y-auto pb-[15.6rem] scrollbar-hide mobile:pb-[10rem] tablet:grid-cols-2 desktop:grid-cols-3">
         {questions
           .find((question) => question.level === tab)
-          ?.questions.filter((question) => filter === '전체' || question.category_name === filter)
+          ?.questions.filter((question) => filter === '전체' || question.category_name.trim() === filter)
           .map((question) => (
             <button
               key={question.id}
-              className="hover:bg-gradient-card-2 dark:hover:bg-gradient-card-2-dark bg-system-light/60 m-[0.6rem] flex h-[13.1rem] flex-col gap-[0.9rem] rounded-[1.2rem] border border-blue-100 p-[1.6rem] text-start hover:shadow-normal"
-              onClick={() => handleClick(question.question)}
+              className="m-[0.6rem] flex h-[13.1rem] flex-col gap-[0.9rem] rounded-[1.2rem] border border-blue-100 bg-system-light/60 p-[1.6rem] text-start hover:bg-gradient-card-2 hover:shadow-normal dark:hover:bg-gradient-card-2-dark"
+              onClick={() => {
+                handleClick(question.question);
+                handleTotalQuestionSelect(question.question);
+              }}
             >
               <p className="text-body-3-semibold text-blue-500">{question.category_name}</p>
               <p className="line-clamp-3 max-w-[18.8rem] text-body-1-medium">{question.question}</p>

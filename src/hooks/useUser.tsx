@@ -16,14 +16,17 @@ type walletMeResponse = {
 
 export const userStorage = {
   getUserData: () => {
+    if (typeof window === 'undefined') return null;
     const saved = localStorage.getItem(STORAGE_KEY);
     return saved ? JSON.parse(saved) : null;
   },
   saveUserData: (userData: { token: string; nickname: string }) => {
+    if (typeof window === 'undefined') return;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(userData));
   },
 
   getData: (type: 'quiz' | 'nft' | 'coin') => {
+    if (typeof window === 'undefined') return null;
     const saved = localStorage.getItem(STORAGE_KEY);
     return saved ? JSON.parse(saved)[type] : null;
   },
@@ -43,6 +46,7 @@ export const userStorage = {
         type: 'coin';
         data: Coin;
       }) => {
+    if (typeof window === 'undefined') return;
     const saved = localStorage.getItem(STORAGE_KEY);
     const userData = saved ? JSON.parse(saved) : {};
     userData[type] = data;

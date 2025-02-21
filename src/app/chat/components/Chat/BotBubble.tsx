@@ -4,6 +4,7 @@ import { TextShimmer } from '@/components/ui/TextShimmer';
 import ToolButton from './ToolButton';
 import clsx from 'clsx';
 import { useToast } from '@/contexts/ToastContext';
+import useChatPageActions from '../../hooks/useChatPageActions';
 
 const BotBubble = memo(
   ({
@@ -27,12 +28,14 @@ const BotBubble = memo(
     const words = useMemo(() => text.split(' ') ?? [], [text]);
     const actionRef = useRef<HTMLDivElement>(null);
     const { showToast } = useToast();
+    const { handleCopyClick } = useChatPageActions();
 
     const handleCopy = useCallback(() => {
       const textToCopy = text.replace(/<[^>]*>/g, '');
       navigator.clipboard.writeText(textToCopy);
       showToast('답변이 복사되었어요!');
-    }, [text, showToast]);
+      handleCopyClick();
+    }, [text, showToast, handleCopyClick]);
 
     useEffect(() => {
       if (!isLastMessage) return;

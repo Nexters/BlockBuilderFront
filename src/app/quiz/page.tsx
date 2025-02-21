@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Quiz from './Quiz';
 import Result from './Result';
 import { userStorage } from '@/hooks/useUser';
+import useQuizPageActions from './hooks/useQuizPageActions';
 
 type QuizState = 'Quiz' | 'Result';
 
@@ -12,6 +13,7 @@ const QuizPage = () => {
   const [correctCount, setCorrectCount] = useState(0);
   const [submittedAnswer, setSubmittedAnswer] = useState<string[]>([]);
   const [isChecking, setIsChecking] = useState(false);
+  const { handleQuizFinishClick } = useQuizPageActions();
 
   useEffect(() => {
     const quizResult = userStorage.getData('quiz');
@@ -33,6 +35,7 @@ const QuizPage = () => {
         onFinish={() => {
           setIsChecking(true);
           setState('Result');
+          handleQuizFinishClick(correctCount);
         }}
       />
     );

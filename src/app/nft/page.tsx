@@ -7,10 +7,12 @@ import { useToast } from '@/contexts/ToastContext';
 import { useMemo } from 'react';
 import clsx from 'clsx';
 import { downloadImage } from '@/utils/download-image';
+import useNftPageActions from './hooks/useNftPageActions';
 
 const NftPage = () => {
   const { nft, tokenUri } = useNft();
   const { showToast } = useToast();
+  const { handleSaveImageClick, handleOpenOpenseaClick, handleOpenReceiptClick } = useNftPageActions();
 
   const hasData = useMemo(() => {
     return nft && tokenUri;
@@ -48,14 +50,15 @@ const NftPage = () => {
                   <Image src={nft!.image_url} alt="nft" width={200} height={200} />
                 </div>
                 <button
-                  onClick={() =>
+                  onClick={() => {
                     downloadImage(
                       nft!.image_url,
                       `${tokenUri?.name}.png`,
                       () => {},
                       () => showToast('이미지 저장에 실패했어요')
-                    )
-                  }
+                    );
+                    handleSaveImageClick();
+                  }}
                   className="bg-system-light flex items-center rounded-full border border-blue-100 px-[1.6rem] py-[0.6rem] text-body-2-semibold hover:shadow-normal"
                 >
                   이미지 저장
@@ -92,6 +95,9 @@ const NftPage = () => {
               href={nft!.opensea}
               className="flex h-[4.8rem] w-[25rem] items-center justify-center rounded-full bg-blue-400 mobile:w-full"
               target="_blank"
+              onClick={() => {
+                handleOpenOpenseaClick();
+              }}
             >
               opensea에서 확인하기
             </Link>
@@ -99,6 +105,9 @@ const NftPage = () => {
               href={nft!.receipt_link}
               className="flex h-[4.8rem] w-[25rem] items-center justify-center rounded-full bg-blue-400 mobile:w-full"
               target="_blank"
+              onClick={() => {
+                handleOpenReceiptClick();
+              }}
             >
               NFT 영수증 확인하기
             </Link>
