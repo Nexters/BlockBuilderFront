@@ -45,12 +45,12 @@ const TotalQuestions = ({ handleSubmit }: TotalQuestionsProps) => {
           </button>
         ))}
       </div>
-      <div className="flex w-full flex-wrap gap-[0.8rem]">
+      <div className="flex w-full flex-wrap gap-[0.8rem] mobile:flex-nowrap mobile:overflow-x-auto">
         {Object.entries(QuestionCategoryMap).map(([key, value]) => (
           <button
             key={key}
             className={clsx(
-              'flex w-fit items-start justify-center rounded-[0.8rem] px-[1.6rem] py-[0.6rem]',
+              'flex w-fit shrink-0 items-start justify-center rounded-[0.8rem] px-[1.6rem] py-[0.6rem]',
               filter === value
                 ? 'bg-system-dark text-body-2-semibold text-gray-100'
                 : 'border border-blue-100 bg-system-light px-[1.5rem] py-[0.5rem] text-body-2-medium text-gray-700'
