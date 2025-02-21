@@ -1,6 +1,7 @@
 import { Icon } from '@/assets/icons';
 import clsx from 'clsx';
 import { SwiperClass } from 'swiper/react';
+import useChatPageActions from '../../hooks/useChatPageActions';
 
 const NavigationButton = ({
   direction,
@@ -11,6 +12,8 @@ const NavigationButton = ({
   swiper: SwiperClass | null;
   isSmall: boolean;
 }) => {
+  const { handleRecommendationSwipe } = useChatPageActions();
+
   return (
     <div
       className={clsx(
@@ -21,7 +24,7 @@ const NavigationButton = ({
       <button
         className={clsx(
           'pointer-events-auto flex size-[2.8rem] items-center justify-center',
-          isSmall && 'bg-system-light rounded-full border border-blue-100',
+          isSmall && 'rounded-full border border-blue-100 bg-system-light',
           direction === 'prev' && 'rotate-180'
         )}
         onClick={() => {
@@ -30,6 +33,7 @@ const NavigationButton = ({
           } else {
             swiper?.slideNext();
           }
+          handleRecommendationSwipe();
         }}
       >
         <Icon name="ArrowRight" className="text-gray-900" />

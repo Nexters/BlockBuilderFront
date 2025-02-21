@@ -7,12 +7,14 @@ import Chat from './components/Chat';
 import { ChatType } from './data';
 import useGenerateAnswer from './hooks/useGenerateAnswer';
 import TotalQuestions from './components/TotalQuestions';
+import useChatPageActions from './hooks/useChatPageActions';
 
 export default function ChatPage() {
   const [text, setText] = useState('');
   const [chatList, setChatList] = useState<ChatType[]>([]);
   const [view, setView] = useState<'recommendation' | 'total'>('recommendation');
   const { generateAnswer, isLoading, isAnswering, handleFinishAnswering } = useGenerateAnswer();
+  const { handleQuestionSubmit, handleRegenerateClick } = useChatPageActions();
 
   useEffect(() => {
     if (chatList.length > 0) {
@@ -28,6 +30,7 @@ export default function ChatPage() {
   const handleSubmit = useCallback(
     async (text: string) => {
       if (text.trim().length > 0) {
+        handleQuestionSubmit(text.trim());
         setText('');
         createChat(text.trim(), true);
         const result = await generateAnswer(text);
@@ -36,7 +39,7 @@ export default function ChatPage() {
         }
       }
     },
-    [createChat, generateAnswer]
+    [createChat, generateAnswer, handleQuestionSubmit]
   );
 
   const recreateChat = useCallback(
@@ -45,10 +48,11 @@ export default function ChatPage() {
         const lastUserChat = [...chatList].find((chat) => chat.id === id);
         if (lastUserChat) {
           handleSubmit(lastUserChat.text);
+          handleRegenerateClick();
         }
       }
     },
-    [chatList, handleSubmit]
+    [chatList, handleSubmit, handleRegenerateClick]
   );
 
   return (

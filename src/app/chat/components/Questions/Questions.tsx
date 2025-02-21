@@ -5,6 +5,7 @@ import NavigationButton from './NavigationButton';
 import { useEffect, useState } from 'react';
 import 'swiper/css';
 import clsx from 'clsx';
+import useChatPageActions from '../../hooks/useChatPageActions';
 
 interface QuestionsProps {
   questions: RecommendQuestion[];
@@ -16,6 +17,7 @@ const SMALL_BREAKPOINT = 824;
 const Questions = ({ questions, handleClick }: QuestionsProps) => {
   const [swiper, setSwiper] = useState<SwiperClass | null>(null);
   const [isSmall, setIsSmall] = useState(window.matchMedia(`(max-width: ${SMALL_BREAKPOINT}px)`).matches);
+  const { handleRecommendationSwipe, handleRecommendationSelect } = useChatPageActions();
 
   useEffect(() => {
     window.addEventListener('resize', () => {
@@ -46,6 +48,9 @@ const Questions = ({ questions, handleClick }: QuestionsProps) => {
           spaceBetween={12}
           centeredSlides
           loop
+          onSlideChangeTransitionEnd={() => {
+            handleRecommendationSwipe();
+          }}
           onSwiper={(e) => {
             setSwiper(e);
           }}
@@ -57,7 +62,10 @@ const Questions = ({ questions, handleClick }: QuestionsProps) => {
                   {...question}
                   isActive={isActive}
                   isPrev={isPrev}
-                  onClick={() => handleClick(question.question)}
+                  onClick={() => {
+                    handleClick(question.question);
+                    handleRecommendationSelect(question.question);
+                  }}
                 />
               )}
             </SwiperSlide>
