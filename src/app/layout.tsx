@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     default: '블록체인 큐레이터 - for the Block',
   },
   description:
-    '블록체인 정보를 더 쉽고 빠르게! for the Block 은 최신 블록체인 소식을 제공하며, 대화를 통해 블록체인 개념을 이해할 수 있도록 도와줍니다.',
+    '블록체인 정보를 더 쉽고 빠르게! 최신 블록체인 소식을 제공하고, 대화를 통해 블록체인 개념을 쉽게 이해할 수 있도록 도와줍니다.',
   keywords: [
     'blockchain',
     '블록체인',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: '블록체인 큐레이터 - for the Block',
     description:
-      '블록체인 정보를 더 쉽고 빠르게! for the Block 은 최신 블록체인 소식을 제공하며, 대화를 통해 블록체인 개념을 이해할 수 있도록 도와줍니다.',
+      '블록체인 정보를 더 쉽고 빠르게! 최신 블록체인 소식을 제공하고, 대화를 통해 블록체인 개념을 쉽게 이해할 수 있도록 도와줍니다.',
     type: 'website',
     siteName: 'for the block',
     url: 'https://www.for-the-block.com',
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   twitter: {
     title: '블록체인 큐레이터 - for the Block',
     description:
-      '블록체인 정보를 더 쉽고 빠르게! for the Block 은 최신 블록체인 소식을 제공하며, 대화를 통해 블록체인 개념을 이해할 수 있도록 도와줍니다.',
+      '블록체인 정보를 더 쉽고 빠르게! 최신 블록체인 소식을 제공하고, 대화를 통해 블록체인 개념을 쉽게 이해할 수 있도록 도와줍니다.',
     site: 'https://www.for-the-block.com',
     images: {
       url: '/twitter-image.png',
