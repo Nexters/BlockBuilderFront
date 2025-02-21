@@ -16,10 +16,12 @@ const SMALL_BREAKPOINT = 824;
 
 const Questions = ({ questions, handleClick }: QuestionsProps) => {
   const [swiper, setSwiper] = useState<SwiperClass | null>(null);
-  const [isSmall, setIsSmall] = useState(window.matchMedia(`(max-width: ${SMALL_BREAKPOINT}px)`).matches);
+  const [isSmall, setIsSmall] = useState(false);
   const { handleRecommendationSwipe, handleRecommendationSelect } = useChatPageActions();
 
   useEffect(() => {
+    setIsSmall(window.matchMedia(`(max-width: ${SMALL_BREAKPOINT}px)`).matches);
+
     window.addEventListener('resize', () => {
       setIsSmall(window.matchMedia(`(max-width: ${SMALL_BREAKPOINT}px)`).matches);
     });
