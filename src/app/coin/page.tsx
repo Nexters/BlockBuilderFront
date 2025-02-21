@@ -1,86 +1,109 @@
 'use client';
 
-import Image from 'next/image';
-import Link from 'next/link';
-import useCoin from './useCoin';
-import { downloadImage } from '@/utils/download-image';
 import { useToast } from '@/contexts/ToastContext';
-import clsx from 'clsx';
-import useCoinPageActions from './hooks/useCoinPageActions';
+import { userStorage } from '@/hooks/useUser';
+import { redirect, RedirectType, useRouter } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 
 const CoinPage = () => {
-  const { coin } = useCoin();
   const { showToast } = useToast();
-  const { handleSaveImageClick, handleOpenReceiptClick } = useCoinPageActions();
+  const { getData } = userStorage;
+  const router = useRouter();
+  const coinNameRef = useRef<HTMLInputElement | null>(null);
+  const coinSymbolRef = useRef<HTMLInputElement | null>(null);
+  const [isRender, setIsRender] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const coinName = coinNameRef?.current?.value;
+    const coinSymbol = coinSymbolRef?.current?.value;
+
+    if (!coinName) {
+      showToast('코인 이름을 입력해야 만들 수 있어요 !');
+      return;
+    }
+
+    if (!coinSymbol) {
+      showToast('코인 심볼을 입력해야 만들 수 있어요 !');
+      return;
+    }
+
+    if (coinName && coinSymbol) {
+      localStorage.setItem('coinName', coinName);
+      localStorage.setItem('coinSymbol', coinSymbol);
+
+      router.push('/coin/success');
+    }
+  };
+
+  useEffect(() => {
+    const coin = getData('coin');
+    if (coin) {
+      redirect('/coin/success', RedirectType.replace);
+    }
+
+    setIsRender(true);
+  }, []);
+
+  if (!isRender) {
+    return null;
+  }
 
   return (
-    <div className="flex size-full flex-col items-center justify-center gap-[4rem] p-[4rem] pb-[6.2rem] mobile:h-[calc(100vh-5.6rem)]">
-      {!coin && (
-        <>
-          <div className="flex flex-col items-center gap-[0.8rem]">
-            <h1 className="text-title-1-semibold">빠르고 쉽게 코인을 만들어보세요.</h1>
-            <p className="whitespace-pre-wrap text-center text-body-2-regular text-gray-700">
-              {`이알씨프로(ERCP)는 이더리움 알고리즘으로 만들어진 새로운 메인넷 코인이에요.\n스마트 컨트렉트를 통해 생성되며 입출금시 빠른 전송 속도와 낮은 수수료를 보장해요.\n이더리움과 ERC20 토큰은 전체 토큰 시장 가치의 90%를 차지하고 있어요.
-              `}
+    <div className="flex size-full flex-col items-center mobile:h-[calc(100vh-5.6rem)]">
+      <div className="flex h-full flex-col justify-between px-[1.6rem] pb-[13.4rem] pt-[11.2rem] mobile:w-full">
+        <div>
+          <div className="flex flex-1 flex-col items-center gap-y-[0.6rem] pb-[8rem] mobile:pb-[4rem]">
+            <p className="text-headline-2-bold text-gray-900 mobile:text-headline-4-bold">
+              나만의 코인을 생성해볼까요?
+            </p>
+            <p className="text-title-3-medium text-gray-700 mobile:text-body-2-medium">
+              넥스터즈 보도블럭 팀이 당신을 위한 코인을 생성해드릴게요.
             </p>
           </div>
-          <div className="flex flex-col items-center gap-[1.2rem]">
-            <Image src="/images/chat/block.gif" alt="loading" width={200} height={200} />
-            <p className="text-body-2-semibold">코인을 생성중이에요.</p>
-          </div>
-        </>
-      )}
-      {coin && (
-        <div className="flex max-w-[68.4rem] flex-col items-center justify-between overflow-auto scrollbar-hide mobile:pb-[10rem] tablet:h-[80vh] desktop:h-[80vh]">
-          <div className="flex flex-col items-center gap-[4rem] mobile:gap-[3rem]">
-            <div className="flex flex-col items-center">
-              <p className="text-center text-headline-2-bold">{coin.name}</p>
-            </div>
-            <div className="flex gap-[3rem]">
-              <div className="flex flex-col items-center gap-[2rem]">
-                <div className="overflow-hidden rounded-[0.8rem]">
-                  <Image src={coin.image} alt="coin" width={200} height={200} />
+
+          <form className="flex flex-col gap-y-[8rem]" onSubmit={handleSubmit}>
+            <div className="flex flex-col gap-y-[2.4rem]">
+              <fieldset className="relative flex flex-col gap-y-[0.8rem]">
+                <label htmlFor="coin-name" className="text-body-3-semibold">
+                  코인 이름
+                </label>
+                <div className="relative flex min-h-[5.6rem] w-full items-end">
+                  <input
+                    id="coin-name"
+                    ref={coinNameRef}
+                    placeholder="원하는 코인 이름을 입력하세요."
+                    className="max-h-[20.4rem] w-full resize-none overflow-y-auto rounded-[0.8rem] border border-blue-100 bg-system-light p-[1.6rem] text-body-1-regular scrollbar-hide focus:bg-gray-100 focus:shadow-normal focus:outline-none focus:ring-1 focus:ring-blue-400 mobile:max-h-[11.6rem]"
+                  />
                 </div>
-                <button
-                  onClick={() => {
-                    downloadImage(
-                      coin.image,
-                      `${coin.name}.png`,
-                      () => {},
-                      () => showToast('이미지 저장에 실패했어요')
-                    );
-                    handleSaveImageClick();
-                  }}
-                  className="flex items-center rounded-full border border-blue-100 bg-system-light px-[1.6rem] py-[0.6rem] text-body-2-semibold hover:shadow-normal"
-                >
-                  이미지 저장
-                </button>
-              </div>
-              <div className="flex min-w-[10rem] flex-1 flex-col gap-[2rem] mobile:hidden">
-                <div className="flex flex-col gap-[0.8rem]">
-                  <p className="text-body-2-medium text-gray-600">수량</p>
-                  <p className="text-body-1-regular">{coin.amount}</p>
+              </fieldset>
+              <fieldset className="relative flex flex-col gap-y-[0.8rem]">
+                <label htmlFor="coin-symbol" className="text-body-3-semibold">
+                  코인 심볼
+                </label>
+                <div className="relative flex min-h-[5.6rem] w-full items-end">
+                  <input
+                    id="coin-symbol"
+                    ref={coinSymbolRef}
+                    placeholder="원하는 코인 심볼을 입력하세요."
+                    className="max-h-[20.4rem] w-full resize-none overflow-y-auto rounded-[0.8rem] border border-blue-100 bg-system-light p-[1.6rem] text-body-1-regular scrollbar-hide focus:bg-gray-100 focus:shadow-normal focus:outline-none focus:ring-1 focus:ring-blue-400 mobile:max-h-[11.6rem]"
+                  />
                 </div>
-              </div>
+              </fieldset>
             </div>
-          </div>
-          <div
-            className={clsx(
-              'flex text-body-1-semibold text-system-light',
-              'mobile:absolute mobile:bottom-0 mobile:w-full mobile:bg-system-light mobile:p-[0.8rem_2rem_3.2rem]'
-            )}
-          >
-            <Link
-              href={coin.receipt_link}
-              className="flex h-[4.8rem] w-[25rem] items-center justify-center rounded-full bg-blue-400 mobile:w-full"
-              target="_blank"
-              onClick={handleOpenReceiptClick}
-            >
-              코인 영수증 확인하기
-            </Link>
-          </div>
+
+            <div className="mobile:fixed mobile:bottom-0 mobile:left-0 mobile:z-10 mobile:w-full mobile:bg-background mobile:p-[1.6rem]">
+              <button
+                type="submit"
+                className="mx-auto flex h-[4.8rem] w-[25rem] items-center justify-center rounded-full bg-blue-400 text-body-1-semibold text-white mobile:w-full"
+              >
+                코인 생성하기
+              </button>
+            </div>
+          </form>
         </div>
-      )}
+      </div>
     </div>
   );
 };
