@@ -8,6 +8,7 @@ import { useVoteList } from './hooks/useVoteList';
 import { useVoteListByUser } from './hooks/useVoteListByUser';
 import { useMemo, useState } from 'react';
 import TooltipContainer from './components/Poll/TooltipContainer';
+import usePollPageLogActions from './hooks/usePollPageLogActions';
 
 export default function PollClient() {
   const [currentTab, setCurrentTab] = useState<'ongoing' | 'end'>('ongoing');
@@ -16,8 +17,11 @@ export default function PollClient() {
   const eoa = userStorage.getUserData()?.token || '';
   const { data: voteListByUser, refetch: refetchVoteListByUser } = useVoteListByUser({ eoa });
 
+  const { handleLoggingSwitchTab } = usePollPageLogActions();
+
   const handleChangeTab = (tab: 'ongoing' | 'end') => {
     setCurrentTab(tab);
+    handleLoggingSwitchTab(tab);
   };
 
   const polls = useMemo(() => {
