@@ -20,8 +20,7 @@ const CoinPage = () => {
           <div className="flex flex-col items-center gap-[0.8rem]">
             <h1 className="text-title-1-semibold">빠르고 쉽게 코인을 만들어보세요.</h1>
             <p className="whitespace-pre-wrap text-center text-body-2-regular text-gray-700">
-              {`이알씨프로(ERCP)는 이더리움 알고리즘으로 만들어진 새로운 메인넷 코인이에요.\n스마트 컨트렉트를 통해 생성되며 입출금시 빠른 전송 속도와 낮은 수수료를 보장해요.\n이더리움과 ERC20 토큰은 전체 토큰 시장 가치의 90%를 차지하고 있어요.
-              `}
+              {`1,000개만 발행되는 특별한 나만의 코인을 만들고 있습니다!\n이 토큰은 단순한 가치를 넘어, 커뮤니티와 재미를 위한 실험적인 프로젝트입니다.`}
             </p>
           </div>
           <div className="flex flex-col items-center gap-[1.2rem]">
