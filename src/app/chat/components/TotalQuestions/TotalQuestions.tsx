@@ -67,7 +67,7 @@ const TotalQuestions = ({ handleSubmit }: TotalQuestionsProps) => {
       <div className="-m-[0.6rem] grid h-full flex-1 grid-cols-1 overflow-y-auto pb-[15.6rem] scrollbar-hide mobile:pb-[10rem] tablet:grid-cols-2 desktop:grid-cols-3">
         {questions
           .find((question) => question.level === tab)
-          ?.questions.filter((question) => filter === '전체' || question.category_name === filter)
+          ?.questions.filter((question) => filter === '전체' || question.category_name.trim() === filter)
           .map((question) => (
             <button
               key={question.id}
