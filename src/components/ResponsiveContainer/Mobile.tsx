@@ -1,11 +1,11 @@
 import { Icon } from '@/assets/icons';
+import { ToastProvider } from '@/contexts/ToastContext';
 import clsx from 'clsx';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 import { Navigation } from './common/Navigation';
 import ThemeSwitch from './common/ThemeSwitch';
-import { ToastProvider } from '@/contexts/ToastContext';
-import Link from 'next/link';
-import Image from 'next/image';
 
 export default function Mobile({ children }: { children: React.ReactNode }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -16,7 +16,7 @@ export default function Mobile({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <header className="flex h-[56px] w-full items-center pl-[20px] pr-[20px]">
+      <header className="flex h-[56px] w-full items-center bg-background pl-[20px] pr-[20px]">
         <button onClick={handleToggleDrawer}>
           <Icon name="Menu" className="fill-gray-900" />
         </button>
