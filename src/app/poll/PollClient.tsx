@@ -9,6 +9,7 @@ import { useVoteListByUser } from './hooks/useVoteListByUser';
 import { useMemo, useState } from 'react';
 import TooltipContainer from './components/Poll/TooltipContainer';
 import usePollPageLogActions from './hooks/usePollPageLogActions';
+import Image from 'next/image';
 
 export default function PollClient() {
   const [currentTab, setCurrentTab] = useState<'ongoing' | 'end'>('ongoing');
@@ -56,6 +57,19 @@ export default function PollClient() {
         투표를 하면 블록체인에 저장된 컨트렉트를 확인할 수 있어요.
       </p>
       <Tabs currentTab={currentTab} handleChangeTab={handleChangeTab}>
+        {polls?.length === 0 && (
+          <div className="mt-[12rem] flex flex-col items-center justify-center">
+            <Image src="/images/poll/poll_empty_block.png" alt="end_poll_empty" width={260} height={260} />
+            <strong className="mt-[1rem] text-title-1-semibold text-gray-900">
+              {currentTab === 'ongoing' ? '진행중인 투표' : '종료된 투표'}가 없어요!
+            </strong>
+            <p className="mt-[0.8rem] text-body-2-regular text-gray-700">
+              {currentTab === 'ongoing'
+                ? '종료된 투표에서 참여한 투표를 확인해볼까요?'
+                : '진행중인 투표에서 참여해볼까요?'}
+            </p>
+          </div>
+        )}
         {polls?.map(
           ({
             id,
