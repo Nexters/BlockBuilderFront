@@ -1,4 +1,5 @@
 import { Icon } from '@/assets/icons';
+import { rgbDataURL } from '@/utils/image';
 import Image from 'next/image';
 import Link from 'next/link';
 import { TBlockchainInformationData } from '../../type';
@@ -19,7 +20,9 @@ const BlockchainEvent = ({ blockchainEvent }: { blockchainEvent: TBlockchainInfo
               objectFit: 'cover',
             }}
             className="transition-all duration-300 group-hover:scale-110"
-            priority
+            loading="lazy"
+            placeholder="blur"
+            blurDataURL={rgbDataURL(233, 233, 233)}
           />
         </div>
 

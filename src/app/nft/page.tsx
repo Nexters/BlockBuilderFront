@@ -1,13 +1,13 @@
 'use client';
 
+import { useToast } from '@/contexts/ToastContext';
+import { downloadImage } from '@/utils/image';
+import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
-import useNft from './useNft';
-import { useToast } from '@/contexts/ToastContext';
 import { useMemo } from 'react';
-import clsx from 'clsx';
-import { downloadImage } from '@/utils/download-image';
 import useNftPageActions from './hooks/useNftPageActions';
+import useNft from './useNft';
 
 const NftPage = () => {
   const { nft, tokenUri } = useNft();
@@ -36,7 +36,7 @@ const NftPage = () => {
         </>
       )}
       {hasData && (
-        <div className="scrollbar-hide flex max-w-[68.4rem] flex-col items-center justify-between overflow-auto mobile:pb-[10rem] tablet:h-[80vh] desktop:h-[80vh]">
+        <div className="flex max-w-[68.4rem] flex-col items-center justify-between overflow-auto scrollbar-hide mobile:pb-[10rem] tablet:h-[80vh] desktop:h-[80vh]">
           <div className="flex flex-col items-center gap-[4rem] mobile:gap-[3rem]">
             <div className="flex flex-col items-center">
               <p className="text-title-3-medium text-gray-700">
@@ -59,7 +59,7 @@ const NftPage = () => {
                     );
                     handleSaveImageClick();
                   }}
-                  className="bg-system-light flex items-center rounded-full border border-blue-100 px-[1.6rem] py-[0.6rem] text-body-2-semibold hover:shadow-normal"
+                  className="flex items-center rounded-full border border-blue-100 bg-system-light px-[1.6rem] py-[0.6rem] text-body-2-semibold hover:shadow-normal"
                 >
                   이미지 저장
                 </button>
@@ -87,8 +87,8 @@ const NftPage = () => {
           </div>
           <div
             className={clsx(
-              'text-system-light flex gap-[2rem] text-body-1-semibold',
-              'mobile:bg-system-light mobile:absolute mobile:bottom-0 mobile:w-full mobile:flex-col mobile:gap-[1.2rem] mobile:p-[0.8rem_2rem_3.2rem]'
+              'flex gap-[2rem] text-body-1-semibold text-system-light',
+              'mobile:absolute mobile:bottom-0 mobile:w-full mobile:flex-col mobile:gap-[1.2rem] mobile:bg-system-light mobile:p-[0.8rem_2rem_3.2rem]'
             )}
           >
             <Link
