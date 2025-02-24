@@ -24,8 +24,9 @@ const BlockchainNewsSectionClient = ({
   const [newsList, setNewsList] = useState<TBlockchainInformationData[]>(initialData);
   const [currentPage, setCurrentPage] = useState(initialCurrentPage + 1);
   const [hasNextPage, setHasNextPage] = useState(initialCurrentPage < initialTotalPage);
-
   const { View } = useLottie({ animationData: loadingAnimation, loop: true }, { width: 100, height: 60 });
+
+  const finalNewsList = typeof window === 'undefined' ? initialData : newsList;
 
   useEffect(() => {
     const fetchNextPage = async () => {
@@ -51,7 +52,7 @@ const BlockchainNewsSectionClient = ({
   return (
     <>
       <ul className="grid grid-cols-1 gap-x-[1.5rem] gap-y-[2.4rem] pt-[2.4rem] tablet:grid-cols-2 desktop:grid-cols-3">
-        {newsList?.map((news) => {
+        {finalNewsList?.map((news) => {
           return (
             <li
               key={`blockchain-news-${news.id}`}
