@@ -1,4 +1,5 @@
 import { formatRelativeTime } from '@/utils/date';
+import { rgbDataURL } from '@/utils/image';
 import Image from 'next/image';
 import Link from 'next/link';
 import { TBlockchainInformationData } from '../../type';
@@ -16,7 +17,9 @@ const BlockchainNews = ({ news }: { news: TBlockchainInformationData }) => {
           layout="fill"
           style={{ objectFit: 'cover' }}
           className="transition-all duration-300 group-hover:scale-110"
-          priority
+          loading="lazy"
+          placeholder="blur"
+          blurDataURL={rgbDataURL(233, 233, 233)}
         />
       </div>
 
