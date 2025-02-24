@@ -1,7 +1,7 @@
 'use client';
 
 import { useToast } from '@/contexts/ToastContext';
-import { downloadImage } from '@/utils/download-image';
+import { downloadImage } from '@/utils/image';
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
